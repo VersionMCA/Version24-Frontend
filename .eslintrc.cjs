@@ -4,26 +4,36 @@ module.exports = {
     es2021: true,
   },
   extends: [
-    "plugin:prettier/recommended",
-    "plugin:react/recommended",
-    "airbnb",
-    "airbnb/hooks",
+    'airbnb',
+    'airbnb/hooks',
+    'plugin:react/recommended',
+    'plugin:prettier/recommended',
   ],
   overrides: [
     {
       env: {
         node: true,
       },
-      files: [".eslintrc.{js,cjs}"],
+      files: ['.eslintrc.{js,cjs}'],
       parserOptions: {
-        sourceType: "script",
+        sourceType: 'script',
       },
     },
   ],
   parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
+    ecmaVersion: 'latest',
+    sourceType: 'module',
   },
-  plugins: ["react"],
-  rules: {},
+  plugins: ['react', 'prettier'],
+  rules: {
+    'linebreak-style': 'off',
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: true,
+        optionalDependencies: false,
+        peerDependencies: false,
+      },
+    ],
+  },
 };
