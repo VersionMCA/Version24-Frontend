@@ -25,3 +25,7 @@ dist-ssr
 
 # Custom ignore
 eventCard/
+
+.eslintcache
+
+stepsToReproduce.txt
