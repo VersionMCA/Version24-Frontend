@@ -4,10 +4,13 @@ import React, { useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Squash as Hamburger } from 'hamburger-react';
 import routes from './NavRoutes';
+import ScrambleText from './ScrambleText';
 
 export default function NavMobile() {
   const [isOpen, setOpen] = useState(false);
   const ref = useRef(null);
+
+  ScrambleText();
 
   useClickAway(ref, () => setOpen(false));
 
@@ -40,7 +43,7 @@ export default function NavMobile() {
                   >
                     <Link
                       onClick={() => setOpen((prev) => !prev)}
-                      className="flex items-center justify-between w-full p-4 bg-neutral-950"
+                      className="flex items-center justify-between w-full p-4 bg-neutral-950 codedText"
                       to={route.href}
                     >
                       <span className="flex gap-1">{route.title}</span>
