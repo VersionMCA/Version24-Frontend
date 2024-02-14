@@ -7,7 +7,7 @@ const routes = [
   {
     id: 1,
     title: 'Home',
-    href: '/home',
+    href: '/',
   },
   {
     id: 2,
