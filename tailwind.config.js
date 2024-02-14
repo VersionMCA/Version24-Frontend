@@ -10,11 +10,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        'color-primary': '#3498db',
+        primary: '#3498db',
       },
       fontFamily: {
-        'font-primary': ['Orbitron', 'sans-serif'],
-        'font-secondary': ['Raleway', 'sans-serif'],
+        primary: ['Orbitron', 'sans-serif'],
+        secondary: ['Raleway', 'sans-serif'],
       },
     },
   },
