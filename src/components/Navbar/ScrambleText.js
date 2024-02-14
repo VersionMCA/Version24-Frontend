@@ -32,8 +32,6 @@ export default function ScrambleText() {
             duration: arr1.length / 20, // duration based on text length
             ease: 'power4.in',
             delay: 0.1,
-            color: '#fff',
-            background: '#000',
             onUpdate: () => {
               const p = Math.floor(tl.progress() * arr1.length); // whole number from 0 - text length
               if (step !== p) {
