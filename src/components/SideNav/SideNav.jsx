@@ -1,25 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import logoInsta from '../../../public/res/social/logo-insta.png';
 import logoLinkedIn from '../../../public/res/social/logo-linkedin.png';
 import logoYouTube from '../../../public/res/social/logo-youtube.png';
 
 export default function SideNav() {
   return (
-    <nav className="px-4 md:px-6 flex justify-end  items-center h-screen">
-      <ul className="[&>*>*>img]:w-8 flex flex-col max-w-fit justify-between h-40">
-        <li>
+    <nav className="px-4 md:px-6 flex justify-end  items-center">
+      <ul className="[&>*>*>img]:w-6 md:[&>*>*>img]:w-8  md:flex flex-col max-w-fit justify-between hidden md:h-40  fixed top-1/3">
+        <li className="hover:scale-105">
           <Link to="/#">
             <img src={logoInsta} alt="Instagram" />
           </Link>
         </li>
-        <li>
+        <li className="hover:scale-105">
           <Link to="/#">
             <img src={logoLinkedIn} alt="LinkedIn" />
           </Link>
         </li>
-        <li>
+        <li className="hover:scale-105">
           <Link to="/#">
             <img src={logoYouTube} alt="YouTube" />
           </Link>
