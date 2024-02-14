@@ -7,13 +7,13 @@ export default function NavDesktop() {
   ScrambleText();
 
   return (
-    <ul className="hidden lg:flex lg:items-center pr-2 gap-16">
+    <ul className="hidden lg:flex lg:items-center pr-5 gap-16">
       {routes.map((route) => {
         return (
           <li key={route.id} className="w-32 text-center">
             <Link
               to={route.href}
-              className="flex items-center text-white gap-1 transition-all codedText"
+              className="flex justify-center text-white gap-1 transition-all codedText"
             >
               {route.title}
             </Link>

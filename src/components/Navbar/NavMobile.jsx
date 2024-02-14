@@ -4,13 +4,10 @@ import React, { useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Squash as Hamburger } from 'hamburger-react';
 import routes from './NavRoutes';
-import ScrambleText from './ScrambleText';
 
 export default function NavMobile() {
   const [isOpen, setOpen] = useState(false);
   const ref = useRef(null);
-
-  ScrambleText();
 
   useClickAway(ref, () => setOpen(false));
 
