@@ -16,6 +16,9 @@ export default {
         primary: ['Orbitron', 'sans-serif'],
         secondary: ['Raleway', 'sans-serif'],
       },
+      backgroundImage: {
+        'login-bg': "url('/login/version-login-background.png')",
+      },
     },
   },
 
