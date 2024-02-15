@@ -1,7 +1,9 @@
 import React from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
-import SideNav from '../../components/SideNav/SideNav';
+import RightSideNav from '../../components/SideNav/RightSideNav';
+import VersionTimer from '../../components/VersionTimer/VersionTimer';
+
 import './HomePage.scss';
 
 export default function HomePage() {
@@ -15,7 +17,8 @@ export default function HomePage() {
         />
       </div>
       <Navbar />
-      <SideNav />
+      <RightSideNav />
+      <VersionTimer />
       <Footer />
     </div>
   );
