@@ -20,7 +20,7 @@ export default function InputBox({
         required={isRequired}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="bg-[rgba(52,152,219,0.25)] w-70 sm:w-80 outline-none text-white px-3 py-2 focus:ring-2 tracking-widest"
+        className="bg-[rgba(52,152,219,0.25)] w-80 outline-none text-white px-3 py-2 focus:ring-2 tracking-widest"
       />
     </div>
   );

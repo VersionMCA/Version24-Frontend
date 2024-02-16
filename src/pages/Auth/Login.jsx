@@ -1,5 +1,4 @@
 /* eslint-disable react/no-unescaped-entities */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
@@ -10,6 +9,7 @@ import Button from '../../components/Button/Button';
 import InputBox from '../../components/InputBox/InputBox';
 
 import './Auth.scss';
+import FormContainer from './FormContainer';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -37,55 +37,50 @@ function Login() {
 
   return (
     <Layout>
-      <section className="section section__auth min-h-lvh flex items-center justify-center md:justify-end">
-        <div className=" flex flex-col items-center justify-center mt-5 md:mr-32">
-          <h1 className="text-white text-3xl font-bold tracking-[10px] mb-6">
-            VERSION <span className="text-primary">LOGIN</span>
-          </h1>
-          <form
-            className="text-white text-sm font-secondar lg:p-16  p-10 flex flex-col form form__login font-secondary"
-            onSubmit={(e) => handleSubmit(e)}
-          >
-            <InputBox
-              type="email"
-              inputId="userEmail"
-              onChange={setEmail}
-              label="Email"
-              value={email}
-              isRequired
-            />
-            <InputBox
-              type="password"
-              inputId="password"
-              onChange={setPassword}
-              value={password}
-              label="Password"
-              isRequired
-            />
+      <FormContainer title="Login">
+        <form
+          className="text-white text-sm font-secondar lg:p-16  p-10 flex flex-col form form__login font-secondary"
+          onSubmit={(e) => handleSubmit(e)}
+        >
+          <InputBox
+            type="email"
+            inputId="userEmail"
+            onChange={setEmail}
+            label="Email"
+            value={email}
+            isRequired
+          />
+          <InputBox
+            type="password"
+            inputId="password"
+            onChange={setPassword}
+            value={password}
+            label="Password"
+            isRequired
+          />
 
-            <div className="flex justify-between mt-3 items-center">
-              <Link
-                to="/forgotPassword"
-                className=" pb-[2px] transition-all border-b-2 border-transparent hover:border-b-2 hover:border-primary"
-              >
-                Forgot Password?
-              </Link>
-              <Button designType="primary" type="submit">
-                LOGIN
-              </Button>
-            </div>
-            <p className="text-center mt-6 text-sm">
-              Don't have account?
-              <Link
-                className="ml-1 text-primary cursor-pointer uppercase hover:font-semibold transition-all"
-                to="/register"
-              >
-                Sign Up
-              </Link>
-            </p>
-          </form>
-        </div>
-      </section>
+          <div className="flex justify-between mt-3 items-center">
+            <Link
+              to="/forgotPassword"
+              className=" pb-[2px] transition-all border-b-2 border-transparent hover:border-b-2 hover:border-primary"
+            >
+              Forgot Password?
+            </Link>
+            <Button designType="primary" type="submit">
+              LOGIN
+            </Button>
+          </div>
+          <p className="text-center mt-6 text-sm">
+            Don't have account?
+            <Link
+              className="ml-1 text-primary cursor-pointer uppercase hover:font-semibold transition-all"
+              to="/register"
+            >
+              Sign Up
+            </Link>
+          </p>
+        </form>
+      </FormContainer>
     </Layout>
   );
 }

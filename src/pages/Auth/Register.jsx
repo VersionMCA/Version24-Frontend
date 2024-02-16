@@ -3,21 +3,22 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Layout from '../../components/Layout/Layout';
+import FormContainer from './FormContainer';
+import InputBox from '../../components/InputBox/InputBox';
+import Button from '../../components/Button/Button';
 
 function Register() {
-  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [phoneNumber, setPhoneNumber] = useState(undefined);
   const [college, setCollege] = useState('');
-  const [rollNumber, setRollNumber] = useState('');
   const navigate = useNavigate();
-  //   console.log(username, email, password);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (phoneNumber.toString().length !== 10) {
-      alert('Not a valid Phone Number');
+      // alert('Not a valid Phone Number');
       return;
     }
     axios
@@ -30,60 +31,42 @@ function Register() {
         mobile: phoneNumber,
       })
       .then((response) => {
-        if (response.data?.status === 'success') alert(response.data.message);
-        navigate('/login');
+        if (response.data?.status === 'success')
+          // alert(response.data.message);
+          navigate('/login');
       })
       .catch(() => {
         // console.log(error);
-        alert('Your password is too short, must contain atleast 8 characters.');
+        // alert('Your password is too short, must contain atleast 8 characters.');
       });
   };
 
   return (
-    <div className="bg-login-bg bg-left bg-no-repeat bg-contain bg-black h-screen relative">
-      <div className=" flex flex-col items-center justify-center h-full lg:absolute lg:left-3/4 lg:translate-x-[-100%]">
-        <h1 className="text-white text-xl font-bold tracking-[10px] mb-[20px]">
-          VERSION <span className="text-primary">LOGIN</span>
-        </h1>
+    <Layout>
+      <FormContainer title="Register">
         <form
-          action="POST"
-          className="text-white text-sm font-secondary border-2 border-primary lg:p-12 p-6 flex flex-col [&>input]:mb-[5px] [&>input]:p-2"
+          className="text-white text-sm font-secondar p-10 md:p-20 flex flex-col form form__register font-secondary"
           onSubmit={(e) => handleSubmit(e)}
         >
-          <label htmlFor="username" className="h-[33px]">
-            USERNAME
-          </label>
-          <input
-            type="text"
-            id="username"
-            required
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="bg-[rgba(52,152,219,0.25)] w-[301px] h-[33px]"
-          />
-          <label htmlFor="email" className="h-[33px]">
-            EMAIL
-          </label>
-          <input
+          <InputBox
             type="email"
-            id="email"
-            required
+            inputId="userEmail"
+            onChange={setEmail}
+            label="Email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="bg-[rgba(52,152,219,0.25)] w-[301px] h-[33px]"
+            isRequired
           />
-          <label htmlFor="college" className="h-[33px]">
-            COLLEGE
-          </label>
-          <input
-            type="text"
-            id="college"
-            required
+
+          <InputBox
+            type="email"
+            inputId="college"
+            onChange={setCollege}
+            label="College"
             value={college}
-            onChange={(e) => setCollege(e.target.value)}
-            className="bg-[rgba(52,152,219,0.25)] w-[301px] h-[33px]"
+            isRequired
           />
-          <label htmlFor="rollNumber" className="h-[33px]">
+
+          {/* <label htmlFor="rollNumber" className="h-[33px]">
             ROLL NUMBER
           </label>
           <input
@@ -93,48 +76,43 @@ function Register() {
             value={rollNumber}
             onChange={(e) => setRollNumber(e.target.value)}
             className="bg-[rgba(52,152,219,0.25)] w-[301px] h-[33px]"
-          />
-          <label htmlFor="phoneNumber" className="h-[33px]">
-            PHONE NUMBER
-          </label>
-          <input
+          /> */}
+
+          <InputBox
             type="number"
-            id="phoneNumber"
-            required
+            inputId="phoneNumber"
+            onChange={setPhoneNumber}
+            label="Phone Number"
             value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            className="bg-[rgba(52,152,219,0.25)] w-[301px] h-[33px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            isRequired
           />
-          <label htmlFor="password" className="h-[33px]">
-            PASSWORD
-          </label>
-          <input
+
+          <InputBox
             type="password"
-            id="password"
-            required
+            inputId="password"
+            onChange={setPassword}
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="bg-[rgba(52,152,219,0.25)] w-[301px] h-[33px]"
+            label="Password"
+            isRequired
           />
-          <div className="flex justify-between mt-3 items-center">
-            <Link className="text-xs cursor-pointer" to="forgotPassword">
-              Forgot Password?
-            </Link>
-            <span className="border-2 border-primary">
-              <button className="border-2 border-primary p-2" type="submit">
-                REGISTER
-              </button>
-            </span>
+          <div className="flex mt-3 justify-end">
+            <Button designType="primary" type="submit">
+              Register
+            </Button>
           </div>
-          <p className="text-center mt-8 text-xs">
-            Already have account?{' '}
-            <Link className="text-primary cursor-pointer" to="/login">
-              Log In
+
+          <div className="text-center mt-10">
+            Have an account?
+            <Link
+              to="/login"
+              className=" pb-[2px] text-primary uppercase transition-all hover:font-semibold ml-1"
+            >
+              Sign In
             </Link>
-          </p>
+          </div>
         </form>
-      </div>
-    </div>
+      </FormContainer>
+    </Layout>
   );
 }
 
