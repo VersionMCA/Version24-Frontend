@@ -12,7 +12,6 @@ function Register() {
   const [college, setCollege] = useState('');
   const [rollNumber, setRollNumber] = useState('');
   const navigate = useNavigate();
-  //   console.log(username, email, password);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -121,7 +120,10 @@ function Register() {
               Forgot Password?
             </Link>
             <span className="border-2 border-primary">
-              <button className="border-2 border-primary p-2" type="submit">
+              <button
+                className="border-2 border-primary p-2 relative before:absolute before:right-[-15px] before:top-[-15px]"
+                type="submit"
+              >
                 REGISTER
               </button>
             </span>
