@@ -7,7 +7,7 @@ import Footer from '../Footer/Footer';
 export default function Layout({ children }) {
   return (
     <div>
-      <Navbar />
+      <Navbar bgWhite={false} />
       <main>{children}</main>
       <Footer />
     </div>
