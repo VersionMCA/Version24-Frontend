@@ -1,0 +1,22 @@
+.form {
+  &__login {
+    background-image: url('../../../public/res/authPage/form_bg.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+.section {
+  &__auth {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.85),
+        rgba(0, 0, 0, 0.99)
+      ),
+      url('../../../public/res/authPage/auth_bg.jpg');
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+  }
+}
