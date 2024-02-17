@@ -3,140 +3,185 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Layout from '../../components/Layout/Layout';
+import FormContainer from './FormContainer';
+import InputBox from '../../components/InputBox/InputBox';
+import Button from '../../components/Button/Button';
+import { toast } from 'react-toastify';
+import toastStyle from '../../utilities/toastStyle';
 
 function Register() {
-  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState(undefined);
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [formNo, setFormNo] = useState(1);
+  const [fullName, setfullName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [college, setCollege] = useState('');
-  const [rollNumber, setRollNumber] = useState('');
-  const navigate = useNavigate();
-  const handleSubmit = async (e) => {
-    e.preventDefault();
 
-    if (phoneNumber.toString().length !== 10) {
-      alert('Not a valid Phone Number');
+  const navigate = useNavigate();
+
+  const handleSubmit = async () => {
+    if (!email || !password || !fullName || !phoneNumber || !college) {
+      toast.error('Please fill all the fields', toastStyle);
       return;
     }
-    axios
-      .post(`${__URL__}/signup`, {
-        name: username,
-        email,
-        university: college,
-        password,
-        rollNumber,
-        mobile: phoneNumber,
-      })
-      .then((response) => {
-        if (response.data?.status === 'success') alert(response.data.message);
-        navigate('/login');
-      })
-      .catch(() => {
-        // console.log(error);
-        alert('Your password is too short, must contain atleast 8 characters.');
-      });
+
+    const data = {
+      email,
+      password,
+      fullName,
+      phoneNumber,
+      college,
+    };
+
+    try {
+      const res = await axios.post(
+        `${__URL__}/signup`,
+        { ...data },
+        { withCredentials: true }
+      );
+      if (res.data?.status === 'success') {
+        toast.success(res.data.status, toastStyle);
+        navigate('/');
+      }
+    } catch (error) {
+      toast.error('Something went wrong', toastStyle);
+    }
+  };
+
+  const handleNext = () => {
+    console.log('next');
+    if (formNo === 1) {
+      if (!email || !password || !confirmPassword) {
+        toast.error('Please fill all the fields', toastStyle);
+        return;
+      }
+
+      if (password.length < 6) {
+        toast.error('Password should be atleast 6 characters long', toastStyle);
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        toast.error('Passwords do not match', toastStyle);
+        return;
+      }
+      setFormNo(2);
+    }
   };
 
   return (
-    <div className="bg-login-bg bg-left bg-no-repeat bg-contain bg-black h-screen relative">
-      <div className=" flex flex-col items-center justify-center h-full lg:absolute lg:left-3/4 lg:translate-x-[-100%]">
-        <h1 className="text-white text-xl font-bold tracking-[10px] mb-[20px]">
-          VERSION <span className="text-primary">LOGIN</span>
-        </h1>
-        <form
-          action="POST"
-          className="text-white text-sm font-secondary border-2 border-primary lg:p-12 p-6 flex flex-col [&>input]:mb-[5px] [&>input]:p-2"
-          onSubmit={(e) => handleSubmit(e)}
-        >
-          <label htmlFor="username" className="h-[33px]">
-            USERNAME
-          </label>
-          <input
-            type="text"
-            id="username"
-            required
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="bg-[rgba(52,152,219,0.25)] w-[301px] h-[33px]"
-          />
-          <label htmlFor="email" className="h-[33px]">
-            EMAIL
-          </label>
-          <input
-            type="email"
-            id="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="bg-[rgba(52,152,219,0.25)] w-[301px] h-[33px]"
-          />
-          <label htmlFor="college" className="h-[33px]">
-            COLLEGE
-          </label>
-          <input
-            type="text"
-            id="college"
-            required
-            value={college}
-            onChange={(e) => setCollege(e.target.value)}
-            className="bg-[rgba(52,152,219,0.25)] w-[301px] h-[33px]"
-          />
-          <label htmlFor="rollNumber" className="h-[33px]">
-            ROLL NUMBER
-          </label>
-          <input
-            type="text"
-            id="rollNumber"
-            required
-            value={rollNumber}
-            onChange={(e) => setRollNumber(e.target.value)}
-            className="bg-[rgba(52,152,219,0.25)] w-[301px] h-[33px]"
-          />
-          <label htmlFor="phoneNumber" className="h-[33px]">
-            PHONE NUMBER
-          </label>
-          <input
-            type="number"
-            id="phoneNumber"
-            required
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            className="bg-[rgba(52,152,219,0.25)] w-[301px] h-[33px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-          />
-          <label htmlFor="password" className="h-[33px]">
-            PASSWORD
-          </label>
-          <input
-            type="password"
-            id="password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="bg-[rgba(52,152,219,0.25)] w-[301px] h-[33px]"
-          />
-          <div className="flex justify-between mt-3 items-center">
-            <Link className="text-xs cursor-pointer" to="forgotPassword">
-              Forgot Password?
-            </Link>
-            <span className="border-2 border-primary">
-              <button
-                className="border-2 border-primary p-2 relative before:absolute before:right-[-15px] before:top-[-15px]"
-                type="submit"
-              >
-                REGISTER
-              </button>
-            </span>
-          </div>
-          <p className="text-center mt-8 text-xs">
-            Already have account?{' '}
-            <Link className="text-primary cursor-pointer" to="/login">
-              Log In
-            </Link>
-          </p>
+    <Layout>
+      <FormContainer title="Register">
+        <form className="text-white p-10 md:p-20 flex flex-col form form__auth">
+          {formNo === 1 && (
+            <>
+              <InputBox
+                type="email"
+                inputId="userEmail"
+                onChange={setEmail}
+                label="Email"
+                value={email}
+              />
+
+              <InputBox
+                type="password"
+                inputId="password"
+                onChange={setPassword}
+                value={password}
+                label="Password"
+              />
+              <InputBox
+                type="password"
+                inputId="confirmPassword"
+                onChange={setConfirmPassword}
+                value={confirmPassword}
+                label="Confirm Password"
+              />
+
+              <div className="flex mt-1 justify-between items-center">
+                <div className="tracking-normal">
+                  Have an Account?
+                  <Link
+                    to="/login"
+                    className="text-primary uppercase transition-all hover:font-semibold ml-1"
+                  >
+                    Login
+                  </Link>
+                </div>
+                <div className="flex justify-end">
+                  <Button
+                    type="button"
+                    onClick={handleNext}
+                    designType="icon"
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        handleNext();
+                      }
+                    }}
+                  >
+                    <img
+                      src="../../../public/res/authPage/next.svg"
+                      alt="next"
+                      className="h-11 mt-2"
+                    />
+                  </Button>
+                </div>
+              </div>
+            </>
+          )}
+          {formNo === 2 && (
+            <>
+              <InputBox
+                type="text"
+                inputId="college"
+                onChange={setCollege}
+                label="College"
+                value={college}
+              />
+              <InputBox
+                type="text"
+                inputId="fullName"
+                onChange={setfullName}
+                label="Your Name"
+                value={fullName}
+              />
+              <InputBox
+                type="number"
+                inputId="phoneNumber"
+                onChange={setPhoneNumber}
+                label="Phone Number"
+                value={phoneNumber}
+              />
+
+              <div className="flex mt-1 justify-between items-center">
+                <div className="flex">
+                  <Button
+                    type="button"
+                    onClick={() => setFormNo(1)}
+                    designType="icon"
+                  >
+                    <img
+                      src="../../../public/res/authPage/next.svg"
+                      alt="next"
+                      className="h-11 mt-2 rotate-180"
+                    />
+                  </Button>
+                </div>
+                <Button
+                  designType="primary"
+                  type="submit"
+                  onClick={handleSubmit}
+                >
+                  Register
+                </Button>
+              </div>
+            </>
+          )}
         </form>
-      </div>
-    </div>
+      </FormContainer>
+    </Layout>
   );
 }
 

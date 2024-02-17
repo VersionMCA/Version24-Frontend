@@ -1,22 +1,24 @@
 import React from 'react';
-import Navbar from '../../components/Navbar/Navbar';
-import Footer from '../../components/Footer/Footer';
-import SideNav from '../../components/SideNav/SideNav';
+import RightSideNav from '../../components/SideNav/RightSideNav';
+import VersionTimer from '../../components/VersionTimer/VersionTimer';
+
 import './HomePage.scss';
+import Layout from '../../components/Layout/Layout';
 
 export default function HomePage() {
   return (
-    <div className="bg-black bg-opacity-75 h-lvh homeContainer">
-      <div className="flex items-center justify-center h-lvh">
-        <img
-          src="../../../public/res/home_hero_img.png"
-          alt="Hero Element"
-          className="md:h-72 h-40"
-        />
+    <Layout>
+      <div className="bg-black bg-opacity-75 h-lvh homeContainer">
+        <div className="flex items-center justify-center h-lvh">
+          <img
+            src="../../../public/res/home_hero_img.png"
+            alt="Hero Element"
+            className="md:h-72 h-40"
+          />
+        </div>
+        <RightSideNav />
+        <VersionTimer />
       </div>
-      <Navbar />
-      <SideNav />
-      <Footer />
-    </div>
+    </Layout>
   );
 }

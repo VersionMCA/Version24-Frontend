@@ -1,85 +1,97 @@
 /* eslint-disable react/no-unescaped-entities */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import axios from 'axios';
+import Layout from '../../components/Layout/Layout';
+import Button from '../../components/Button/Button';
+import InputBox from '../../components/InputBox/InputBox';
+
+import './Auth.scss';
+import FormContainer from './FormContainer';
+import toastStyle from '../../utilities/toastStyle';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  // console.log(__URL__);
-  function handleSubmit(e) {
-    e.preventDefault();
+
+  const handleSubmit = async () => {
+    if (!email || !password) {
+      toast.error('Please fill all the fields', toastStyle);
+      return;
+    }
+
     const data = {
       email,
       password,
     };
-    axios
-      .post(`${__URL__}/login`, { ...data }, { withCredentials: true })
-      .then((response) => {
-        if (response.data?.status === 'success') {
-          alert(response.data?.message);
-          navigate('/');
-        }
-      })
-      .catch((err) => {
-        alert('Password too small, must contain atleast 8 characters.');
-      });
-  }
+
+    try {
+      const res = await axios.post(
+        `${__URL__}/login`,
+        { ...data },
+        { withCredentials: true }
+      );
+      if (res.data?.status === 'success') {
+        toast.success(res.data.status, toastStyle);
+        navigate('/');
+      }
+    } catch (error) {
+      if (error.response?.status === 401) {
+        toast.error('Invalid credentials', toastStyle);
+      } else {
+        toast.error('Something went wrong', toastStyle);
+      }
+    }
+  };
 
   return (
-    <div className="bg-login-bg bg-left bg-no-repeat bg-contain bg-black h-screen relative">
-      <div className=" flex flex-col items-center justify-center h-full lg:absolute lg:left-3/4 lg:translate-x-[-100%]">
-        <h1 className="text-white text-xl font-bold tracking-[10px] mb-[20px]">
-          VERSION <span className="text-primary">LOGIN</span>
-        </h1>
-        <form
-          action="POST"
-          className="text-white text-sm font-secondary border-2 border-primary lg:p-12 p-6 flex flex-col"
-          onSubmit={(e) => handleSubmit(e)}
-        >
-          <label htmlFor="email" className="h-[33px]">
-            EMAIL
-          </label>
-          <input
+    <Layout>
+      <FormContainer title="Login">
+        <form className="text-white text-sm font-secondar lg:p-16  p-10 flex flex-col form form__auth font-secondary">
+          <InputBox
             type="email"
-            id="email"
-            required
+            inputId="userEmail"
+            onChange={setEmail}
+            label="Email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="bg-[rgba(52,152,219,0.25)] w-[301px] h-[33px]"
+            isRequired
           />
-          <label htmlFor="password" className="h-[33px] mt-[5px]">
-            PASSWORD
-          </label>
-          <input
+          <InputBox
             type="password"
-            id="password"
-            required
+            inputId="password"
+            onChange={setPassword}
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="bg-[rgba(52,152,219,0.25)] w-[301px] h-[33px]"
+            label="Password"
+            isRequired
           />
+
           <div className="flex justify-between mt-3 items-center">
-            <Link to="/forgotPassword">Forgot Password?</Link>
-            <span className="border-2 border-primary">
-              <button className="border-2 border-primary p-2" type="submit">
-                LOGIN
-              </button>
-            </span>
+            <Link
+              to="/forgotPassword"
+              className=" pb-[2px] transition-all border-b-2 border-transparent hover:border-b-2 hover:border-primary"
+            >
+              Forgot Password?
+            </Link>
+            <Button designType="primary" type="submit" onClick={handleSubmit}>
+              LOGIN
+            </Button>
           </div>
-          <p className="text-center mt-8 text-xs">
+          <p className="text-center mt-6 text-sm">
             Don't have account?
-            <Link className="text-primary cursor-pointer" to="/register">
+            <Link
+              className="ml-1 text-primary cursor-pointer uppercase hover:font-semibold transition-all"
+              to="/register"
+            >
               Sign Up
             </Link>
           </p>
         </form>
-      </div>
-    </div>
+      </FormContainer>
+    </Layout>
   );
 }
 

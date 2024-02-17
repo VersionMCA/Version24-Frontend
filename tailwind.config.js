@@ -17,7 +17,7 @@ export default {
         secondary: ['Raleway', 'sans-serif'],
       },
       backgroundImage: {
-        'login-bg': "url('/login/version-login-background.png')",
+        'login-bg': "url('/authPage/version-login-background.png')",
       },
     },
   },

@@ -1,0 +1,26 @@
+@import '../../styles/mixin.scss';
+@import '../../styles/variable.scss';
+
+.form {
+  &__auth {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../../../public/res/authPage/short_form_bg.svg');
+  }
+}
+
+.section {
+  &__auth {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.85),
+        rgba(0, 0, 0, 0.99)
+      ),
+      url('../../../public/res/authPage/auth_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+}
