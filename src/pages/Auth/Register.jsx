@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-undef */
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -72,8 +71,11 @@ function Register() {
 
   return (
     <Layout>
-      <FormContainer title="Register">
-        <form className="text-white p-10 md:p-20 flex flex-col form form__auth">
+      <FormContainer title="Register" prefixTitle="Version">
+        <form
+          className="text-white p-10 md:p-20 flex flex-col form form__auth form__auth--register "
+          onSubmit={(e) => e.preventDefault()}
+        >
           {formNo === 1 && (
             <>
               <InputBox

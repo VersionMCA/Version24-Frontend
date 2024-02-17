@@ -6,7 +6,16 @@
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url('../../../public/res/authPage/short_form_bg.svg');
+
+    &--login,
+    &--register,
+    &--resetPass {
+      background-image: url('../../../public/res/authPage/form_bg.svg');
+    }
+
+    &--forgetPass {
+      background-image: url('../../../public/res/authPage/mini_form_bg.svg');
+    }
   }
 }
 

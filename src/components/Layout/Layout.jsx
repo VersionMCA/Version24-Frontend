@@ -10,8 +10,8 @@ export default function Layout({ children }) {
   return (
     <div>
       <Navbar bgWhite={false} />
-      <main>{children}</main> 
-      <ToastContainer />
+      <main>{children}</main>
+      <ToastContainer limit={1} autoClose={2000} />
       <Footer />
     </div>
   );

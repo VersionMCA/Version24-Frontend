@@ -1,6 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -50,8 +48,11 @@ function Login() {
 
   return (
     <Layout>
-      <FormContainer title="Login">
-        <form className="text-white p-10 md:p-20 flex flex-col form form__auth md:mt-6">
+      <FormContainer title="Login" prefixTitle="Version">
+        <form
+          className="text-white p-10 md:p-20 flex flex-col form form__auth form__auth--login md:mt-6"
+          onSubmit={(e) => e.preventDefault()}
+        >
           <InputBox
             type="email"
             inputId="userEmail"
@@ -81,7 +82,7 @@ function Login() {
             </Button>
           </div>
           <p className="text-center mt-6 text-sm">
-            Don't have account?
+            Don&apos;t have account?
             <Link
               className="ml-1 text-primary cursor-pointer uppercase hover:font-semibold transition-all"
               to="/register"
