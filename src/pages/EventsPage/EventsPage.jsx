@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-// import EventCard from '../../components/EventCard/EventCard';
+import EventCard from '../../components/EventCard/EventCard';
 import EventThumbnail from '../../components/EventThumbnail/EventThumbnail';
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
@@ -71,18 +71,17 @@ function Events() {
     <div>
       <Navbar />
       <div className="event__slider font-secondary">
-        {/* <div className="allEvents">
+        <div className="allEvents">
           {eventList.map((event) => {
             return (
-              // <EventCard
-              //   key={event.id}
-              //   id={event.id}
-              //   content={event.content}
-              //   imgLink={event.imgLink}
-              //   name={event.name}
-              //   date={event.date}
-              // />
-              <></>
+              <EventCard
+                key={event.id}
+                id={event.id}
+                content={event.content}
+                imgLink={event.imgLink}
+                name={event.name}
+                date={event.date}
+              />
             );
           })}
         </div>
@@ -114,19 +113,6 @@ function Events() {
           >
             <img src={arrowSvg} alt="rightArrow" />
           </div>
-        </div> */}
-        <div className="thumbnail">
-          {eventList.map((event) => {
-            return (
-              <EventThumbnail
-                setNewItemActive={setNewItemActive}
-                key={event.id}
-                id={event.id - 1}
-                imgLink={event.imgLink}
-                name={event.name}
-              />
-            );
-          })}
         </div>
       </div>
       <Footer />

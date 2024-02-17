@@ -1,0 +1,83 @@
+.eventCard__item {
+  color: #fff;
+  position: absolute;
+  inset: 0 0 0 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: 0.5s;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .content {
+    position: absolute;
+    left: 10%;
+    top: 15%;
+    width: 800px;
+    max-width: 85%;
+    z-index: 1;
+    p:nth-child(1) {
+      text-transform: uppercase;
+      letter-spacing: 10px;
+    }
+    h2 {
+      font-size: 5rem;
+      margin: 0;
+    }
+  }
+}
+.eventCard__item::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-image: linear-gradient(to top, #000 20%, transparent);
+}
+.eventCard__item.active {
+  filter: blur(1);
+  opacity: 1;
+  z-index: -1;
+  p:nth-child(1),
+  h2,
+  p:nth-child(3) {
+    transform: translateY(30px);
+    filter: blur(20px);
+    opacity: 0;
+    animation: showContent 0.5s 0.7s ease-in-out 1 forwards;
+  }
+  h2 {
+    animation-delay: 1s;
+  }
+  p:nth-child(3) {
+    animation-delay: 1.3s;
+  }
+}
+
+@keyframes showContent {
+  to {
+    transform: translateY(0);
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .eventCard__item .content h2 {
+    font-size: 4rem;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .eventCard__item .content h2 {
+    font-size: 60px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .eventCard__item .content h2 {
+    font-size: 40px;
+  }
+}
