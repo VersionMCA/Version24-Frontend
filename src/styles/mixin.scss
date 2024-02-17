@@ -19,4 +19,10 @@
       @content;
     }
   }
+
+  @if $breakpoint == miniPhone {
+    @media (max-width: 390px) {
+      @content;
+    }
+  }
 }
