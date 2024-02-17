@@ -123,7 +123,9 @@ export default function TeamPage() {
                 <h3 className="text-center text-white text-lg uppercase font-primary my-14">
                   {team.header}
                 </h3>
-                <div className="grid lg:grid-cols-3 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-16">
+                <div
+                  className={`${team.id !== '101' ? 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-16 px-24' : 'flex items-center justify-between flex-col md:flex-row px-44'}`}
+                >
                   {team.members.map((teamMember) => {
                     return (
                       <MemberCard key={teamMember.id} teamMember={teamMember} />
