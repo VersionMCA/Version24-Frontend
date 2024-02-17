@@ -11,6 +11,7 @@ export default {
     extend: {
       colors: {
         primary: '#3498db',
+        secondary: '#2f87c2',
       },
       fontFamily: {
         primary: ['Orbitron', 'sans-serif'],
