@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage';
+import EventsPage from './pages/EventsPage/EventsPage';
 import Login from './pages/Auth/Login';
 import TeamPage from './pages/TeamPage/TeamPage';
 import ForgotPassword from './pages/Auth/ForgotPassword';
@@ -13,6 +14,7 @@ function App() {
     <BrowserRouter path="/">
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/events" element={<EventsPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/teams" element={<TeamPage />} />
