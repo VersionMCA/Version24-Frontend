@@ -6,11 +6,11 @@ import './MemberCard.scss';
 // eslint-disable-next-line react/prop-types
 export default function MemberCard({ teamMember }) {
   return (
-    <div className="relative bg-transparent flex flex-col flex-wrap items-center justify-around h-80 w-48 m-auto">
-      <div className="absolute top-0 left-0 h-16 w-16 border-l-2 border-t-2 border-primary">
+    <div className="relative bg-transparent flex flex-col flex-wrap items-center justify-around h-96 m-auto">
+      <div className="absolute top-0 left-0 h-16 w-16 border-l-[5px] border-t-[5px] border-primary">
         {}
       </div>
-      <div className="relative group">
+      <div className="relative group overflow-hidden">
         {teamMember.github && (
           <a
             className="absolute top-20 ml-10 z-10 text-primary opacity-0 group-hover:opacity-100 font-secondary underline"
@@ -34,14 +34,14 @@ export default function MemberCard({ teamMember }) {
         <img
           src="/member/radhe.jpg"
           alt="person"
-          className={`h-56 w-36 pt-4 ${teamMember.github !== '' ? 'group-hover:opacity-20' : ''}`}
+          className={`grayscale h-72 w-[230px] object-cover p-6 ${teamMember.github !== '' ? 'group-hover:opacity-20' : ''}`}
         />
       </div>
-      <h3 className="text-primary text-sm font-secondary">{teamMember.name}</h3>
-      <h3 className="text-white text-sm font-secondary pb-4">
+      <h4 className="text-primary text-sm mt-[-40px]">{teamMember.name}</h4>
+      <h4 className="text-white text-sm pb-4 mt-[-30px]">
         {teamMember.designation}
-      </h3>
-      <div className="absolute bottom-0 right-0 h-16 w-16 border-b-2 border-r-2 border-primary">
+      </h4>
+      <div className="absolute bottom-0 right-0 h-16 w-16 border-b-[5px] border-r-[5px] border-primary">
         {}
       </div>
     </div>
