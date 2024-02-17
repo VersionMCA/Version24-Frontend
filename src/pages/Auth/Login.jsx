@@ -3,6 +3,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import axios from 'axios';
 import Layout from '../../components/Layout/Layout';
 import Button from '../../components/Button/Button';
@@ -10,38 +11,47 @@ import InputBox from '../../components/InputBox/InputBox';
 
 import './Auth.scss';
 import FormContainer from './FormContainer';
+import toastStyle from '../../utilities/toastStyle';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  // console.log(__URL__);
-  function handleSubmit(e) {
-    e.preventDefault();
+
+  const handleSubmit = async () => {
+    if (!email || !password) {
+      toast.error('Please fill all the fields', toastStyle);
+      return;
+    }
+
     const data = {
       email,
       password,
     };
-    axios
-      .post(`${__URL__}/login`, { ...data }, { withCredentials: true })
-      .then((response) => {
-        if (response.data?.status === 'success') {
-          alert(response.data?.message);
-          navigate('/');
-        }
-      })
-      .catch((err) => {
-        alert('Password too small, must contain atleast 8 characters.');
-      });
-  }
+
+    try {
+      const res = await axios.post(
+        `${__URL__}/login`,
+        { ...data },
+        { withCredentials: true }
+      );
+      if (res.data?.status === 'success') {
+        toast.success(res.data.status, toastStyle);
+        navigate('/');
+      }
+    } catch (error) {
+      if (error.response?.status === 401) {
+        toast.error('Invalid credentials', toastStyle);
+      } else {
+        toast.error('Something went wrong', toastStyle);
+      }
+    }
+  };
 
   return (
     <Layout>
       <FormContainer title="Login">
-        <form
-          className="text-white text-sm font-secondar lg:p-16  p-10 flex flex-col form form__login font-secondary"
-          onSubmit={(e) => handleSubmit(e)}
-        >
+        <form className="text-white text-sm font-secondar lg:p-16  p-10 flex flex-col form form__auth font-secondary">
           <InputBox
             type="email"
             inputId="userEmail"
@@ -66,7 +76,7 @@ function Login() {
             >
               Forgot Password?
             </Link>
-            <Button designType="primary" type="submit">
+            <Button designType="primary" type="submit" onClick={handleSubmit}>
               LOGIN
             </Button>
           </div>

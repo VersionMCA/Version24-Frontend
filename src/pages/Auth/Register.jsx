@@ -11,12 +11,16 @@ import Button from '../../components/Button/Button';
 function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState(undefined);
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [formNo, setFormNo] = useState(2);
+  const [userName, setUserName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [college, setCollege] = useState('');
+
   const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (phoneNumber.toString().length !== 10) {
       // alert('Not a valid Phone Number');
       return;
@@ -45,71 +49,118 @@ function Register() {
     <Layout>
       <FormContainer title="Register">
         <form
-          className="text-white text-sm font-secondar p-10 md:p-20 flex flex-col form form__register font-secondary"
+          className="text-white text-sm font-secondar p-10 md:p-20 flex flex-col form form__auth font-secondary"
           onSubmit={(e) => handleSubmit(e)}
         >
-          <InputBox
-            type="email"
-            inputId="userEmail"
-            onChange={setEmail}
-            label="Email"
-            value={email}
-            isRequired
-          />
+          {formNo === 1 && (
+            <>
+              <InputBox
+                type="email"
+                inputId="userEmail"
+                onChange={setEmail}
+                label="Email"
+                value={email}
+                isRequired
+              />
 
-          <InputBox
-            type="email"
-            inputId="college"
-            onChange={setCollege}
-            label="College"
-            value={college}
-            isRequired
-          />
+              <InputBox
+                type="password"
+                inputId="password"
+                onChange={setPassword}
+                value={password}
+                label="Password"
+                isRequired
+              />
+              <InputBox
+                type="confirmPassword"
+                inputId="confirmPassword"
+                onChange={setConfirmPassword}
+                value={confirmPassword}
+                label="Confirm Password"
+                isRequired
+              />
 
-          {/* <label htmlFor="rollNumber" className="h-[33px]">
-            ROLL NUMBER
-          </label>
-          <input
-            type="text"
-            id="rollNumber"
-            required
-            value={rollNumber}
-            onChange={(e) => setRollNumber(e.target.value)}
-            className="bg-[rgba(52,152,219,0.25)] w-[301px] h-[33px]"
-          /> */}
+              <div className="flex mt-1 justify-between items-center">
+                <div className="tracking-normal">
+                  Have an Account?
+                  <Link
+                    to="/login"
+                    className="text-primary uppercase transition-all hover:font-semibold ml-1"
+                  >
+                    Login
+                  </Link>
+                </div>
+                <div className="flex justify-end">
+                  <button
+                    type="button"
+                    onClick={() => setFormNo(2)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        setFormNo(2);
+                      }
+                    }}
+                  >
+                    <img
+                      src="../../../public/res/authPage/next.svg"
+                      alt="next"
+                      className="h-12 mt-2"
+                    />
+                  </button>
+                </div>
+              </div>
+            </>
+          )}
+          {formNo === 2 && (
+            <>
+              <InputBox
+                type="text"
+                inputId="college"
+                onChange={setCollege}
+                label="College"
+                value={college}
+                isRequired
+              />
+              <InputBox
+                type="text"
+                inputId="userName"
+                onChange={setUserName}
+                label="Your Name"
+                value={userName}
+                isRequired
+              />
+              <InputBox
+                type="number"
+                inputId="phoneNumber"
+                onChange={setPhoneNumber}
+                label="Phone Number"
+                value={phoneNumber}
+                isRequired
+              />
 
-          <InputBox
-            type="number"
-            inputId="phoneNumber"
-            onChange={setPhoneNumber}
-            label="Phone Number"
-            value={phoneNumber}
-            isRequired
-          />
-
-          <InputBox
-            type="password"
-            inputId="password"
-            onChange={setPassword}
-            value={password}
-            label="Password"
-            isRequired
-          />
-          <div className="flex mt-3 justify-end">
-            <Button designType="primary" type="submit">
-              Register
-            </Button>
-          </div>
-
-          <div className="text-center mt-10">
-            Have an account?
-            <Link
-              to="/login"
-              className=" pb-[2px] text-primary uppercase transition-all hover:font-semibold ml-1"
-            >
-              Sign In
-            </Link>
-          </div>
+              <div className="flex mt-1 justify-between items-center">
+                <div className="flex justify-end">
+                  <button
+                    type="button"
+                    onClick={() => setFormNo(1)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        setFormNo(2);
+                      }
+                    }}
+                  >
+                    <img
+                      src="../../../public/res/authPage/next.svg"
+                      alt="next"
+                      className="h-12 mt-2 rotate-180"
+                    />
+                  </button>
+                </div>
+                <Button designType="primary" type="submit">
+                  Register
+                </Button>
+              </div>
+            </>
+          )}
         </form>
       </FormContainer>
     </Layout>

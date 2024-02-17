@@ -2,20 +2,11 @@
 @import '../../styles/variable.scss';
 
 .form {
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  &__login {
+  &__auth {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     background-image: url('../../../public/res/authPage/short_form_bg.svg');
-  }
-
-  &__register {
-    background-image: url('../../../public/res/authPage/long_form_bg.svg');
-
-    @include respond(phone) {
-      background-image: none;
-      // border: 2px solid $color-primary;
-    }
   }
 }
 
