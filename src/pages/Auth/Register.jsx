@@ -3,55 +3,77 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import Layout from '../../components/Layout/Layout';
 import FormContainer from './FormContainer';
 import InputBox from '../../components/InputBox/InputBox';
 import Button from '../../components/Button/Button';
+import toastStyle from '../../utilities/toastStyle';
 
 function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [formNo, setFormNo] = useState(2);
-  const [userName, setUserName] = useState('');
+  const [formNo, setFormNo] = useState(1);
+  const [fullName, setfullName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [college, setCollege] = useState('');
 
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (phoneNumber.toString().length !== 10) {
-      // alert('Not a valid Phone Number');
+  const handleSubmit = async () => {
+    if (!email || !password || !fullName || !phoneNumber || !college) {
+      toast.error('Please fill all the fields', toastStyle);
       return;
     }
-    axios
-      .post(`${__URL__}/signup`, {
-        name: username,
-        email,
-        university: college,
-        password,
-        rollNumber,
-        mobile: phoneNumber,
-      })
-      .then((response) => {
-        if (response.data?.status === 'success')
-          // alert(response.data.message);
-          navigate('/login');
-      })
-      .catch(() => {
-        // console.log(error);
-        // alert('Your password is too short, must contain atleast 8 characters.');
-      });
+
+    const data = {
+      email,
+      password,
+      fullName,
+      phoneNumber,
+      college,
+    };
+
+    try {
+      const res = await axios.post(
+        `${__URL__}/signup`,
+        { ...data },
+        { withCredentials: true }
+      );
+      if (res.data?.status === 'success') {
+        toast.success(res.data.status, toastStyle);
+        navigate('/');
+      }
+    } catch (error) {
+      toast.error('Something went wrong', toastStyle);
+    }
+  };
+
+  const handleNext = () => {
+    if (formNo === 1) {
+      if (!email || !password || !confirmPassword) {
+        toast.error('Please fill all the fields', toastStyle);
+        return;
+      }
+
+      if (password.length < 6) {
+        toast.error('Password should be atleast 6 characters long', toastStyle);
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        toast.error('Passwords do not match', toastStyle);
+        return;
+      }
+      setFormNo(2);
+    }
   };
 
   return (
     <Layout>
       <FormContainer title="Register">
-        <form
-          className="text-white text-sm font-secondar p-10 md:p-20 flex flex-col form form__auth font-secondary"
-          onSubmit={(e) => handleSubmit(e)}
-        >
+        <form className="text-white p-10 md:p-20 flex flex-col form form__auth">
           {formNo === 1 && (
             <>
               <InputBox
@@ -60,7 +82,6 @@ function Register() {
                 onChange={setEmail}
                 label="Email"
                 value={email}
-                isRequired
               />
 
               <InputBox
@@ -69,15 +90,13 @@ function Register() {
                 onChange={setPassword}
                 value={password}
                 label="Password"
-                isRequired
               />
               <InputBox
-                type="confirmPassword"
+                type="password"
                 inputId="confirmPassword"
                 onChange={setConfirmPassword}
                 value={confirmPassword}
                 label="Confirm Password"
-                isRequired
               />
 
               <div className="flex mt-1 justify-between items-center">
@@ -91,21 +110,22 @@ function Register() {
                   </Link>
                 </div>
                 <div className="flex justify-end">
-                  <button
+                  <Button
                     type="button"
-                    onClick={() => setFormNo(2)}
+                    onClick={handleNext}
+                    designType="icon"
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
-                        setFormNo(2);
+                        handleNext();
                       }
                     }}
                   >
                     <img
                       src="../../../public/res/authPage/next.svg"
                       alt="next"
-                      className="h-12 mt-2"
+                      className="h-11 mt-2"
                     />
-                  </button>
+                  </Button>
                 </div>
               </div>
             </>
@@ -118,15 +138,13 @@ function Register() {
                 onChange={setCollege}
                 label="College"
                 value={college}
-                isRequired
               />
               <InputBox
                 type="text"
-                inputId="userName"
-                onChange={setUserName}
+                inputId="fullName"
+                onChange={setfullName}
                 label="Your Name"
-                value={userName}
-                isRequired
+                value={fullName}
               />
               <InputBox
                 type="number"
@@ -134,28 +152,27 @@ function Register() {
                 onChange={setPhoneNumber}
                 label="Phone Number"
                 value={phoneNumber}
-                isRequired
               />
 
               <div className="flex mt-1 justify-between items-center">
-                <div className="flex justify-end">
-                  <button
+                <div className="flex">
+                  <Button
                     type="button"
                     onClick={() => setFormNo(1)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        setFormNo(2);
-                      }
-                    }}
+                    designType="icon"
                   >
                     <img
                       src="../../../public/res/authPage/next.svg"
                       alt="next"
-                      className="h-12 mt-2 rotate-180"
+                      className="h-11 mt-2 rotate-180"
                     />
-                  </button>
+                  </Button>
                 </div>
-                <Button designType="primary" type="submit">
+                <Button
+                  designType="primary"
+                  type="submit"
+                  onClick={handleSubmit}
+                >
                   Register
                 </Button>
               </div>

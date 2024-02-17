@@ -10,7 +10,7 @@ export default function Layout({ children }) {
   return (
     <div>
       <Navbar />
-      <main>{children}</main> <ToastContainer />
+      <main>{children}</main> <ToastContainer limit={1} autoClose={3000} />
       <Footer />
     </div>
   );

@@ -51,7 +51,7 @@ function Login() {
   return (
     <Layout>
       <FormContainer title="Login">
-        <form className="text-white text-sm font-secondar lg:p-16  p-10 flex flex-col form form__auth font-secondary">
+        <form className="text-white p-10 md:p-20 flex flex-col form form__auth md:mt-6">
           <InputBox
             type="email"
             inputId="userEmail"
