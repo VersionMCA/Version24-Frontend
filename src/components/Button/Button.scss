@@ -11,6 +11,7 @@
   &__primary {
     border: 1.5px solid $color-primary;
     background-color: rgba(0, 0, 0, 0);
+    padding: 0.5rem 2rem;
 
     &::after {
       content: '';
@@ -28,5 +29,12 @@
       bottom: 0px;
       left: 0px;
     }
+  }
+
+  &__secondary {
+    padding: 0.5rem 0.8rem;
+    color: #000;
+    font-weight: 500;
+    background-color: $color-primary !important;
   }
 }

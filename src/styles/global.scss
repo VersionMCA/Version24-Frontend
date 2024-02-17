@@ -8,6 +8,18 @@
 @import 'variable.scss';
 @import 'mixin.scss';
 
+html {
+  scroll-behavior: smooth;
+
+  @include respond(phone) {
+    font-size: 15px;
+  }
+
+  @include respond(miniPhone) {
+    font-size: 14px;
+  }
+}
+
 body {
   font-family: $font-primary;
 }
@@ -25,4 +37,42 @@ input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
   appearance: none;
   margin: 0;
+}
+
+.toast {
+  margin-bottom: 2rem;
+  font-family: $font-primary;
+  font-weight: 400;
+  background-color: rgba(0, 0, 0, 0.85);
+  border-radius: 0;
+  color: #fff;
+  background: transparent;
+  border: 1px solid var(--toastify-icon-color-error);
+  &___body {
+    padding: 0;
+
+    &__progress {
+      display: none;
+    }
+  }
+
+  @include respond(phone) {
+    padding: 0;
+    font-size: 0.8rem;
+    width: 80%;
+    margin-left: 10%;
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #fff;
+  transition: background-color 5000s ease-in-out 0s;
 }

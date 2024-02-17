@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 
 import './Button.scss';
 
-export default function Button({ designType, onClick, children }) {
+export default function Button({ designType, onClick, children, onKeyDown }) {
   return (
     <div>
       <button
-        className={`px-8 py-2 button button__${designType}`}
-        type="button"
+        className={`button button__${designType} uppercase`}
+        type="submit"
         onClick={onClick}
+        onKeyDown={onKeyDown}
       >
         {children}
       </button>
@@ -22,8 +23,10 @@ Button.propTypes = {
   // type: PropTypes.string.isRequired,
   onClick: PropTypes.func,
   children: PropTypes.node.isRequired,
+  onKeyDown: PropTypes.func,
 };
 
 Button.defaultProps = {
   onClick: () => {},
+  onKeyDown: () => {},
 };

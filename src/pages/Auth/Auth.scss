@@ -2,19 +2,19 @@
 @import '../../styles/variable.scss';
 
 .form {
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  &__login {
-    background-image: url('../../../public/res/authPage/short_form_bg.svg');
-  }
+  &__auth {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 
-  &__register {
-    background-image: url('../../../public/res/authPage/long_form_bg.svg');
+    &--login,
+    &--register,
+    &--resetPass {
+      background-image: url('../../../public/res/authPage/form_bg.svg');
+    }
 
-    @include respond(phone) {
-      background-image: none;
-      // border: 2px solid $color-primary;
+    &--forgetPass {
+      background-image: url('../../../public/res/authPage/mini_form_bg.svg');
     }
   }
 }

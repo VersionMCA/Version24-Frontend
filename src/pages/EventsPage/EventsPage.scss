@@ -1,0 +1,25 @@
+.event__slider {
+  height: 100vh;
+  //   margin-top: -90px;
+  position: relative;
+  .allEvents {
+    font-style: inherit;
+    // Do nothing
+  }
+  .thumbnail {
+    position: absolute;
+    bottom: 35px;
+    z-index: 10;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    height: 250px;
+    padding: 0 50px;
+    box-sizing: border-box;
+    overflow: auto;
+    justify-content: start;
+  }
+  .thumbnail::-webkit-scrollbar {
+    width: 0;
+  }
+}
