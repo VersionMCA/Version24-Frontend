@@ -1,114 +1,42 @@
 import React from 'react';
-
-import './TeamPage.scss';
 import MemberCard from '../../components/MemberCard/MemberCard';
 import Footer from '../../components/Footer/Footer';
 import Navbar from '../../components/Navbar/Navbar';
+// import useModal from '../../hooks/useModal';
+import './TeamPage.scss';
 
-const teamInfo = [
-  {
-    id: '101',
-    header: 'Head of the department & Staff Advisor',
-    members: [
-      {
-        id: '201',
-        name: 'Dr. Michael Arock',
-        image: '/radhe.jpg',
-        designation: 'HOD',
-        github: '',
-        linkedin: '',
-      },
-      {
-        id: '202',
-        name: 'Dr.(Mrs.) S. Sangeetha',
-        image: '/radhe.jpg',
-        designation: 'Staff Advisor',
-        github: '',
-        linkedin: '',
-      },
-    ],
-  },
-  {
-    id: '102',
-    header: 'Central Execution Committee',
-    members: [
-      {
-        id: '301',
-        name: 'Abhiusnees Nandi',
-        image: '/radhe.jpg',
-        designation: 'Secretary',
-        github: 'https://www.github.com',
-        linkedin: 'https://w',
-      },
-      {
-        id: '302',
-        name: 'Pawan Agarwal',
-        image: '/radhe.jpg',
-        designation: 'Treasurer',
-        github: 'https://www.github.com',
-        linkedin: 'https://w',
-      },
-      {
-        id: '303',
-        name: 'Chirag Agarwal',
-        image: '/radhe.jpg',
-        designation: 'PPC Head',
-        github: 'https://www.github.com',
-        linkedin: 'https://w',
-      },
-      {
-        id: '304',
-        name: 'Aman Kumar Singh',
-        image: '/radhe.jpg',
-        designation: 'PRC Head',
-        github: 'https://www.github.com',
-        linkedin: 'https://w',
-      },
-      {
-        id: '305',
-        name: 'Mokshda Dave',
-        image: '/radhe.jpg',
-        designation: 'EEC Head',
-        github: 'https://www.github.com',
-        linkedin: 'https://w',
-      },
-      {
-        id: '306',
-        name: 'Chakshu Verma',
-        image: '/radhe.jpg',
-        designation: 'EEC Head',
-        github: 'https://www.github.com',
-        linkedin: 'https://w',
-      },
-      {
-        id: '307',
-        name: 'Nandini Kumari',
-        image: '/radhe.jpg',
-        designation: 'ARC Head',
-        github: 'https://www.github.com',
-        linkedin: 'https://w',
-      },
-      {
-        id: '308',
-        name: 'Tushar Nanda',
-        image: '/radhe.jpg',
-        designation: 'HRC Head',
-        github: 'https://www.github.com',
-        linkedin: 'https://w',
-      },
-      {
-        id: '309',
-        name: 'Harsha Jha',
-        image: '/radhe.jpg',
-        designation: 'HRC Head',
-        github: 'https://www.github.com',
-        linkedin: 'https://w',
-      },
-    ],
-  },
-];
+import teamInfo from './teamInfo';
+// import Modal from '../../components/Modal.jsx/Modal';
 
 export default function TeamPage() {
+  // const [toggle, visible] = useModal();
+
+  /*
+  <Modal visible={visible} toggle={toggle}>
+        <div className="modal__content flex justify-center flex-col">
+          <h2 className="text-xl font-semibold mb-10">
+            Message From{' '}
+            <span className="text-primary">Head Of Department</span>
+          </h2>
+          <p className="font-secondary text-sm">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          </p>
+        </div>
+      </Modal>
+
+  */
+
   return (
     <>
       <Navbar bgWhite />

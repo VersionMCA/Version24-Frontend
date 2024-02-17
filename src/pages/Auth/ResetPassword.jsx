@@ -17,7 +17,7 @@ export default function ResetPassword() {
     <Layout>
       <FormContainer title="Password" prefixTitle="Forget">
         <form
-          className="text-white p-10 md:p-20 flex flex-col form form__auth md:mt-6"
+          className="text-white p-10 md:p-20 flex flex-col form form__auth md:mt-6 form__auth--resetPass"
           onSubmit={handleSubmit}
         >
           <InputBox
