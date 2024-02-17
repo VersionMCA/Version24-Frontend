@@ -23,6 +23,7 @@ const versionDate = new Date('2024-03-22T00:00:00');
 
 export default function LeftSideNav() {
   const [currTime, setCurrTime] = useState(new Date());
+  const [timerFinished, setTimerFinished] = useState(false);
 
   const { days, hours, minutes, seconds } = getTimeRemaining(
     versionDate,
@@ -31,10 +32,23 @@ export default function LeftSideNav() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrTime(new Date());
+      const currentTime = new Date();
+      if (currentTime > versionDate) {
+        setTimerFinished(true);
+        clearInterval(interval);
+      }
+      setCurrTime(currentTime);
     }, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [timerFinished]);
+
+  if (timerFinished) {
+    return (
+      <div className="text-white text-center font-medium text-2xl md:text-4xl fixed bottom-20 md:left-10 left-20 text-opacity-30">
+        <p>00 : 00 : 00 : 00</p>
+      </div>
+    );
+  }
 
   return (
     <div className="text-white text-center font-medium text-2xl md:text-4xl fixed bottom-20 md:left-10 left-20 text-opacity-30">
