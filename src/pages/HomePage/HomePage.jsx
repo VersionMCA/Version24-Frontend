@@ -7,7 +7,7 @@ import Layout from '../../components/Layout/Layout';
 
 export default function HomePage() {
   return (
-    <Layout>
+    <Layout noBgBlack>
       <div className="bg-black bg-opacity-75 h-lvh homeContainer">
         <div className="flex items-center justify-center h-lvh">
           <img

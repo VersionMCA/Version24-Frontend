@@ -6,31 +6,31 @@ function AboutUs() {
   const [text, setText] = useState('Version');
   return (
     <Layout>
-      <section className="bg-black min-h-lvh w-full text-white flex flex-col justify-center items-center xl:py-24 lg:px-36 2xl:px-96 px-10 py-16 overflow-hidden">
-        <div className="font-primary text-2xl xl:mb-0 mb-5 uppercase">
+      <section className="bg-black min-h-lvh w-full text-white flex flex-col justify-center items-center xl:pt-32 lg:px-36 2xl:px-96 px-10 pt-32 overflow-hidden">
+        <h2 className="font-primary text-2xl xl:mb-0 mb-5 uppercase">
           ABOUT US
-        </div>
+        </h2>
         <div className="flex flex-col justify-center h-full w-full items-center mx-10 about-us about-us__container lg:px-10 pb-60">
-          <div className="flex items-center justify-around xl:text-sm text-[0.6rem] h-10 w-9/12 xl:mt-5 lg:mt-2 mt-0 sm:mb-10 mb-5 xl:mx-40">
-            <div
+          <div className="flex items-center justify-around xl:text-sm text-[.8rem] h-10 w-9/12 xl:mt-5 lg:mt-2 mt-4 sm:mb-10 mb-5 xl:mx-40 sm:mt-0">
+            <h3
               aria-hidden
               onClick={() => setText('Version')}
               className={`cursor-pointer  hover:text-secondary hover:font-semibold transition-all ${text === 'Version' ? 'text-primary' : ''}`}
             >
               VERSION
-            </div>
-            <div
+            </h3>
+            <h3
               aria-hidden
               onClick={() => setText('GenSynth')}
               className={`cursor-pointer  hover:text-secondary hover:font-semibold transition-all ${text === 'GenSynth' ? 'text-primary' : ''}`}
             >
               GENSYNTH
-            </div>
+            </h3>
           </div>
           {text === 'Version' && (
-            <div className=" font-secondary text-justify xl:text-sm text-[0.6rem] max-[600px]:text-[0.5rem] flex flex-col justify-between gap-5 2xl:mx-64 max-[600px]:mx-10 max-[320px]:mx-2 max-[320px]:text-[0.4rem]">
+            <div className="font-secondary font-extralight text-justify xl:text-sm text-[0.8rem] flex flex-col justify-between gap-5 2xl:mx-64 mx-6 mt-2 max-[320px]:mx-2 max-[320px]:text-[0.4rem]">
               {' '}
-              <p>
+              <p className="lg:leading-6">
                 Embarking on its 31st edition, Version 2024, the{' '}
                 <span className="text-secondary">
                   annual All India MCA meet
@@ -40,7 +40,7 @@ function AboutUs() {
                 a platform for showcasing talent, fostering healthy competition,
                 and promoting creativity.
               </p>
-              <p>
+              <p className="lg:leading-6">
                 Beyond a mere contest, Version is an immersive experience
                 featuring coding challenges, hackathons, workshops, and
                 interactions with industry experts. As the star event for
@@ -48,7 +48,7 @@ function AboutUs() {
                 continues to be eagerly anticipated, drawing participants from
                 across India.
               </p>{' '}
-              <p>
+              <p className="lg:leading-6">
                 {' '}
                 Version 2024 promises to uphold its legacy of excellence,
                 offering participants a{' '}
@@ -61,9 +61,9 @@ function AboutUs() {
             </div>
           )}
           {text === 'GenSynth' && (
-            <div className=" font-secondary text-justify xl:text-sm text-[0.6rem] max-[600px]:text-[0.5rem] flex flex-col justify-between gap-5 2xl:mx-64 max-[600px]:mx-10 max-[320px]:mx-2 max-[320px]:text-[0.4rem]">
+            <div className="font-secondary font-extralight text-justify xl:text-sm text-[0.8rem] flex flex-col justify-between gap-5 2xl:mx-64 mx-6 mt-2 max-[320px]:mx-2 max-[320px]:text-[0.4rem]">
               {' '}
-              <p>
+              <p className="lg:leading-6">
                 Version 2024 is set to unveil its groundbreaking theme,
                 <span className="text-secondary">
                   {' '}
@@ -73,7 +73,7 @@ function AboutUs() {
                 &quot;synth,&quot; embodies the fusion of intelligence and
                 creative synthesis in the context of Generative AI.
               </p>
-              <p>
+              <p className="lg:leading-6">
                 It signifies the harmonious marriage of artificial
                 intelligence&apos;s ingenious capabilities with the concept of
                 synthesis, hinting at the{' '}
@@ -88,7 +88,7 @@ function AboutUs() {
                 focus on the convergence of artificial intelligence and
                 imaginative ingenuity.
               </p>{' '}
-              <p>
+              <p className="lg:leading-6">
                 {' '}
                 Get ready for a{' '}
                 <span className="text-secondary">
