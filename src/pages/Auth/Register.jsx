@@ -3,11 +3,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import Layout from '../../components/Layout/Layout';
 import FormContainer from './FormContainer';
 import InputBox from '../../components/InputBox/InputBox';
 import Button from '../../components/Button/Button';
-import { toast } from 'react-toastify';
 import toastStyle from '../../utilities/toastStyle';
 
 function Register() {
@@ -51,7 +51,6 @@ function Register() {
   };
 
   const handleNext = () => {
-    console.log('next');
     if (formNo === 1) {
       if (!email || !password || !confirmPassword) {
         toast.error('Please fill all the fields', toastStyle);
