@@ -1,0 +1,15 @@
+@import '../../styles/mixin.scss';
+@import '../../styles/variable.scss';
+
+.about-us {
+  background-position: top;
+  background-repeat: no-repeat;
+  &__container {
+    background-image: url('../../../res/aboutUs/AboutUs.svg');
+    background-size: contain;
+
+    @include respond(phone) {
+      background-image: url('../../../res/aboutUs/AboutUsMobile.svg');
+    }
+  }
+}

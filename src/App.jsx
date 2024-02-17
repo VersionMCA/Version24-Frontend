@@ -5,6 +5,7 @@ import Login from './pages/Auth/Login';
 
 import './styles/global.scss';
 import Register from './pages/Auth/Register';
+import AboutUs from './pages/AboutUs/AboutUs';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/about" element={<AboutUs />} />
       </Routes>
     </BrowserRouter>
   );
