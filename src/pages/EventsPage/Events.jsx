@@ -4,7 +4,6 @@ import EventThumbnail from '../../components/EventThumbnail/EventThumbnail';
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 import eventList from './EventList';
-import './EventsPage.scss';
 import arrowSvg from '../../assets/carouselArrow.svg';
 
 function Events() {
@@ -28,9 +27,6 @@ function Events() {
         `.thumbnail .thumbnail__item.active`
       );
 
-      const virtualIndex =
-        (newItemActive - firstThumbnailIndex + thumbnails.length) %
-        thumbnails.length;
       // remove active class from old active item
       if (itemActiveOld !== null) itemActiveOld.classList.remove(`active`);
       if (thumbnailActiveOld !== null)
@@ -38,34 +34,21 @@ function Events() {
 
       // add active class to new active item
       items[nextItem].classList.add(`active`);
-      thumbnails[virtualIndex].classList.add(`active`);
+      thumbnails[nextItem].classList.add(`active`);
+
+      const virtualIndex =
+        (newItemActive - firstThumbnailIndex + thumbnails.length) %
+        thumbnails.length;
 
       if (virtualIndex === thumbnails.length - 1) {
         const thumbnailParent = document.querySelector(`.thumbnail`);
         thumbnailParent.appendChild(thumbnailParent.firstChild);
 
         setFirstThumbnailIndex((firstThumbnailIndex + 1) % thumbnails.length);
-      } else if (virtualIndex === 0 && itemActiveOld !== null) {
-        const thumbnailParent = document.querySelector(`.thumbnail`);
-        thumbnailParent.prepend(thumbnailParent.lastChild);
-
-        setFirstThumbnailIndex(
-          (firstThumbnailIndex - 1 + thumbnails.length) % thumbnails.length
-        );
       }
     };
     showSlider(newItemActive);
   }, [firstThumbnailIndex, newItemActive]);
-
-  function moveLeft() {
-    setNewItemActive(firstThumbnailIndex);
-  }
-
-  function moveRight() {
-    setNewItemActive(
-      (firstThumbnailIndex + eventList.length - 1) % eventList.length
-    );
-  }
 
   return (
     <div>
@@ -85,33 +68,23 @@ function Events() {
             );
           })}
         </div>
-        <div className="thumbnailContainer">
-          <div
-            className="arrowContainer left"
-            aria-hidden="true"
-            onClick={moveLeft}
-          >
+        <div className="thumbnail">
+          <div className="arrowContainer left">
             <img src={arrowSvg} alt="leftArrow" />
           </div>
-          <div className="thumbnail">
-            {eventList.map((event) => {
-              return (
-                <EventThumbnail
-                  setNewItemActive={setNewItemActive}
-                  key={event.id}
-                  id={event.id - 1}
-                  imgLink={event.imgLink}
-                  name={event.name}
-                />
-              );
-            })}
-          </div>
-          <div
-            className="arrowContainer right"
-            aria-hidden="true"
-            onClick={moveRight}
-          >
-            <img src={arrowSvg} alt="rightArrow" />
+          {eventList.map((event) => {
+            return (
+              <EventThumbnail
+                setNewItemActive={setNewItemActive}
+                key={event.id}
+                id={event.id - 1}
+                imgLink={event.imgLink}
+                name={event.name}
+              />
+            );
+          })}
+          <div className="arrowContainer left">
+            <img src={arrowSvg} alt="leftArrow" />
           </div>
         </div>
       </div>
