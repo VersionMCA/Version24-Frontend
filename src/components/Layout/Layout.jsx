@@ -9,8 +9,9 @@ import Footer from '../Footer/Footer';
 export default function Layout({ children }) {
   return (
     <div>
-      <Navbar />
-      <main>{children}</main> <ToastContainer limit={1} autoClose={3000} />
+      <Navbar bgWhite={false} />
+      <main>{children}</main> 
+      <ToastContainer />
       <Footer />
     </div>
   );

@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import routes from './NavRoutes';
 import ScrambleText from './ScrambleText';
 
-export default function NavDesktop() {
+export default function NavDesktop({ bgWhite }) {
   ScrambleText();
 
   return (
@@ -13,7 +15,7 @@ export default function NavDesktop() {
           <li key={route.id} className="w-32 text-center">
             <Link
               to={route.href}
-              className="flex justify-center text-white gap-1 transition-all codedText"
+              className={`flex justify-center  ${bgWhite === true ? 'text-black' : 'text-white'} gap-1 transition-all codedText`}
             >
               {route.title}
             </Link>
