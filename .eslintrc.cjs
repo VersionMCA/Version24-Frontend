@@ -28,6 +28,7 @@ module.exports = {
   rules: {
     'linebreak-style': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
     'import/no-extraneous-dependencies': [
       'error',
       {

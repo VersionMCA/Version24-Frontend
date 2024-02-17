@@ -36,10 +36,10 @@
     // border: 2px solid #aaa;
     border-radius: 5px;
     z-index: 99;
-    max-width: 50rem;
+    max-width: fit-content;
     margin: auto;
-    margin-top: 5%;
-    padding: 4rem;
+    margin-top: 5rem;
+    // padding: 4rem;
     position: relative;
   }
 }

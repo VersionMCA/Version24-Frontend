@@ -7,7 +7,7 @@ export default function Button({ designType, onClick, children, onKeyDown }) {
   return (
     <div>
       <button
-        className={`${designType !== 'icon' ? 'px-8 py-2' : ''} button button__${designType} uppercase`}
+        className={`button button__${designType} uppercase`}
         type="submit"
         onClick={onClick}
         onKeyDown={onKeyDown}
