@@ -8,6 +8,7 @@ import ForgotPassword from './pages/Auth/ForgotPassword';
 
 import './styles/global.scss';
 import Register from './pages/Auth/Register';
+import AboutUs from './pages/AboutUs/AboutUs';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/teams" element={<TeamPage />} />
         <Route path="/forgotPassword" element={<ForgotPassword />} />
+        <Route path="/about" element={<AboutUs />} />
       </Routes>
     </BrowserRouter>
   );
