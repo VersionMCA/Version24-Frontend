@@ -5,9 +5,38 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'variable.module.scss';
+@import 'variable.scss';
+@import 'mixin.scss';
 
 body {
   font-family: $font-primary;
+}
+
+body,
+p,
+button,
+input,
+textarea,
+select {
   letter-spacing: 1.8px;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.toastMessage {
+  margin-bottom: 2rem;
+  font-family: $font-secondary;
+  font-weight: 500;
+  border-radius: 0;
+
+  @include respond(phone) {
+    padding: 0;
+    font-size: 0.8rem;
+    width: 80%;
+    margin-left: 10%;
+  }
 }

@@ -1,0 +1,32 @@
+@import '../../styles/variable.scss';
+
+.button {
+  outline: 0;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+
+  &__primary {
+    border: 1.5px solid $color-primary;
+    background-color: rgba(0, 0, 0, 0);
+
+    &::after {
+      content: '';
+      border: 1.5px solid $color-primary; // Replace <VALUE> with the desired color value
+      width: 100%;
+      z-index: 1;
+      position: absolute;
+      height: calc(100% + 1.5px);
+      bottom: 4px;
+      left: 4px;
+      transition: 0.2s;
+    }
+
+    &:hover::after {
+      bottom: 0px;
+      left: 0px;
+    }
+  }
+}

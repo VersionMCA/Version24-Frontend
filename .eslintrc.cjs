@@ -27,6 +27,7 @@ module.exports = {
   plugins: ['react', 'prettier'],
   rules: {
     'linebreak-style': 'off',
+    'jsx-a11y/label-has-associated-control': 'off',
     'import/no-extraneous-dependencies': [
       'error',
       {
