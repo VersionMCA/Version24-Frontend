@@ -9,34 +9,6 @@ import teamInfo from './teamInfo';
 // import Modal from '../../components/Modal.jsx/Modal';
 
 export default function TeamPage() {
-  // const [toggle, visible] = useModal();
-
-  /*
-  <Modal visible={visible} toggle={toggle}>
-        <div className="modal__content flex justify-center flex-col">
-          <h2 className="text-xl font-semibold mb-10">
-            Message From{' '}
-            <span className="text-primary">Head Of Department</span>
-          </h2>
-          <p className="font-secondary text-sm">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          </p>
-        </div>
-      </Modal>
-
-  */
-
   return (
     <>
       <Navbar />
@@ -56,7 +28,11 @@ export default function TeamPage() {
                 >
                   {team.members.map((teamMember) => {
                     return (
-                      <MemberCard key={teamMember.id} teamMember={teamMember} />
+                      <MemberCard
+                        key={teamMember.id}
+                        teamMember={teamMember}
+                        teamId={team.id}
+                      />
                     );
                   })}
                 </div>

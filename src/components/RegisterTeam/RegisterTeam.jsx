@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
-import Modal from '../Modal.jsx/Modal';
+import Modal from '../Modal/Modal';
 import useModal from '../../hooks/useModal';
 import FormContainer from '../../pages/Auth/FormContainer';
 import InputBox from '../InputBox/InputBox';
