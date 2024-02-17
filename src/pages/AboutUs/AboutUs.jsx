@@ -6,7 +6,7 @@ function AboutUs() {
   const [text, setText] = useState('Version');
   return (
     <Layout>
-      <section className="bg-black min-h-lvh w-full text-white flex flex-col justify-center items-center xl:py-24 lg:px-36 2xl:px-96 px-10 py-16 overflow-hidden">
+      <section className="bg-black min-h-lvh w-full text-white flex flex-col justify-center items-center xl:py-24 lg:px-36 min-[1600px]:px-80 min-[1900px]:px-96 px-10 py-16 overflow-hidden">
         <div className="font-primary text-2xl xl:mb-0 mb-5 uppercase">
           ABOUT US
         </div>
@@ -28,7 +28,7 @@ function AboutUs() {
             </div>
           </div>
           {text === 'Version' && (
-            <div className=" font-secondary text-justify xl:text-sm text-[0.6rem] max-[600px]:text-[0.5rem] flex flex-col justify-between gap-5 2xl:mx-64 max-[600px]:mx-10 max-[320px]:mx-2 max-[320px]:text-[0.4rem]">
+            <div className=" font-secondary text-justify xl:text-sm text-[0.6rem] max-[600px]:text-[0.5rem] flex flex-col justify-between gap-5 min-[2400px]:mx-64 min-[2100px]:mx-40 max-[600px]:mx-10 max-[320px]:mx-2 max-[320px]:text-[0.4rem]">
               {' '}
               <p>
                 Embarking on its 31st edition, Version 2024, the{' '}
@@ -61,7 +61,7 @@ function AboutUs() {
             </div>
           )}
           {text === 'GenSynth' && (
-            <div className=" font-secondary text-justify xl:text-sm text-[0.6rem] max-[600px]:text-[0.5rem] flex flex-col justify-between gap-5 2xl:mx-64 max-[600px]:mx-10 max-[320px]:mx-2 max-[320px]:text-[0.4rem]">
+            <div className=" font-secondary text-justify xl:text-sm text-[0.6rem] max-[600px]:text-[0.5rem] flex flex-col justify-between gap-5 min-[2400px]:mx-64 min-[2100px]:mx-40 max-[600px]:mx-10 max-[320px]:mx-2 max-[320px]:text-[0.4rem]">
               {' '}
               <p>
                 Version 2024 is set to unveil its groundbreaking theme,
