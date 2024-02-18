@@ -1,7 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toastStyle from '../../utilities/toastStyle';
 import Modal from '../Modal/Modal';
@@ -10,16 +9,17 @@ import FormContainer from '../../pages/Auth/FormContainer';
 import InputBox from '../InputBox/InputBox';
 import Button from '../Button/Button';
 import UserAddedItem from './UserAddedItem';
+import { useUser } from '../../contexts/UserContext';
 
 const BASE_URL = import.meta.env.URL;
 
-export default function RegisterTeam() {
+export default function RegisterTeam({ event }) {
+  const { user } = useUser();
+
   const [teamName, setTeamName] = useState('');
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState([user.email]);
   const [emailList, setEmailList] = useState([]);
   const [toggle, visible] = useModal();
-
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,8 +27,9 @@ export default function RegisterTeam() {
 
     try {
       const res = await axios.post(
-        `${BASE_URL}/registerTeam`,
+        `${BASE_URL}/register`, // Need to change the endpoint to registerForEvent on backend as well
         {
+          eventName: event.name,
           teamName,
           emailList,
         },
@@ -36,7 +37,7 @@ export default function RegisterTeam() {
       );
       if (res.data?.status === 'success') {
         toast.success(res.data.status, toastStyle);
-        navigate('/teams');
+        toggle();
       }
     } catch (error) {
       if (error.response?.status === 401) {
@@ -53,6 +54,10 @@ export default function RegisterTeam() {
   };
 
   const handleDeleteUser = (id) => {
+    if (id === user.email) {
+      toast.error('You cannot remove yourself', toastStyle);
+      return;
+    }
     setEmailList(() => emailList.filter((_, index) => index !== id));
   };
 
