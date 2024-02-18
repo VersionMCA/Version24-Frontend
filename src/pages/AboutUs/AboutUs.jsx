@@ -6,8 +6,8 @@ function AboutUs() {
   const [text, setText] = useState('Version');
   return (
     <Layout>
-      <section className="bg-black min-h-lvh w-full text-white flex flex-col justify-center items-center xl:pt-32 lg:px-36 2xl:px-96 px-10 pt-32 overflow-hidden">
-        <h2 className="font-primary text-2xl xl:mb-0 mb-5 uppercase">
+      <section className="bg-black min-h-lvh w-full text-white flex flex-col justify-center items-center xl:py-32 lg:px-36 min-[1600px]:px-80 min-[1900px]:px-96 px-10 pt-32 overflow-hidden">
+        <div className="font-primary text-2xl xl:mb-0 mb-5 uppercase">
           ABOUT US
         </h2>
         <div className="flex flex-col justify-center h-full w-full items-center mx-10 about-us about-us__container lg:px-10 pb-60">
@@ -28,7 +28,7 @@ function AboutUs() {
             </h3>
           </div>
           {text === 'Version' && (
-            <div className="font-secondary font-extralight text-justify xl:text-sm text-[0.8rem] flex flex-col justify-between gap-5 2xl:mx-64 mx-6 mt-2 max-[320px]:mx-2 max-[320px]:text-[0.4rem]">
+            <div className=" font-secondary font-extralight text-justify xl:text-sm text-[0.6rem] max-[600px]:text-[0.5rem] flex flex-col justify-between gap-5 min-[2400px]:mx-64 min-[2100px]:mx-40 max-[600px]:mx-6 max-[320px]:mx-2 max-[320px]:text-[0.4rem] mt-2">
               {' '}
               <p className="lg:leading-6">
                 Embarking on its 31st edition, Version 2024, the{' '}
@@ -61,7 +61,7 @@ function AboutUs() {
             </div>
           )}
           {text === 'GenSynth' && (
-            <div className="font-secondary font-extralight text-justify xl:text-sm text-[0.8rem] flex flex-col justify-between gap-5 2xl:mx-64 mx-6 mt-2 max-[320px]:mx-2 max-[320px]:text-[0.4rem]">
+          <div className=" font-secondary font-extralight text-justify xl:text-sm text-[0.6rem] max-[600px]:text-[0.5rem] flex flex-col justify-between gap-5 min-[2400px]:mx-64 min-[2100px]:mx-40 max-[600px]:mx-6 max-[320px]:mx-2 max-[320px]:text-[0.4rem] mt-2">
               {' '}
               <p className="lg:leading-6">
                 Version 2024 is set to unveil its groundbreaking theme,
