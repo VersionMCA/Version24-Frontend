@@ -7,13 +7,16 @@ import FormContainer from './FormContainer';
 import InputBox from '../../components/InputBox/InputBox';
 import Button from '../../components/Button/Button';
 import toastStyle from '../../utilities/toastStyle';
+import { useUser } from '../../contexts/UserContext';
 
-const BASE_URL = import.meta.env.URL;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export default function ResetPassword() {
   const [otp, setOtp] = useState(undefined);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  const { userEmail } = useUser();
 
   const navigate = useNavigate();
 
@@ -30,6 +33,7 @@ export default function ResetPassword() {
         `${BASE_URL}/verifyotp`,
         {
           otp,
+          email: userEmail,
         },
         { withCredentials: true }
       );
@@ -38,6 +42,7 @@ export default function ResetPassword() {
         otpRef.current.disabled = true;
       }
     } catch (error) {
+      // console.log(error);
       if (error.response?.status === 401) {
         toast.error('Invalid OTP', toastStyle);
       } else toast.error('Something went wrong', toastStyle);

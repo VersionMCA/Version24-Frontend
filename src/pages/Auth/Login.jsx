@@ -11,7 +11,7 @@ import './Auth.scss';
 import FormContainer from './FormContainer';
 import toastStyle from '../../utilities/toastStyle';
 
-const BASE_URL = import.meta.env.URL;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -36,11 +36,18 @@ function Login() {
         { ...data },
         { withCredentials: true }
       );
+
       if (res.data?.status === 'success') {
         toast.success(res.data.status, toastStyle);
+        const userData = await axios.get(`${BASE_URL}/user`, {
+          withCredentials: true,
+        });
+
+        localStorage.setItem('userInfo', JSON.stringify(userData.data.user));
         navigate('/');
       }
     } catch (error) {
+      console.log(error);
       if (error.response?.status === 401) {
         toast.error('Invalid credentials', toastStyle);
       } else {

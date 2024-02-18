@@ -4,8 +4,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import routes from './NavRoutes';
 import ScrambleText from './ScrambleText';
+import { useUser } from '../../contexts/UserContext';
 
 export default function NavDesktop({ bgWhite }) {
+  const { user, logout } = useUser();
+
   ScrambleText();
 
   return (
@@ -13,12 +16,22 @@ export default function NavDesktop({ bgWhite }) {
       {routes.map((route) => {
         return (
           <li key={route.id} className="w-32 text-center">
-            <Link
-              to={route.href}
-              className={`flex justify-center  ${bgWhite === true ? 'text-black' : 'text-white'} gap-1 transition-all codedText`}
-            >
-              {route.title}
-            </Link>
+            {route.title === 'Login' && user ? (
+              <span
+                className={`flex justify-center cursor-pointer ${bgWhite === true ? 'text-black' : 'text-white'} gap-1 transition-all codedText`}
+                onClick={logout}
+                role="button"
+              >
+                Logout
+              </span>
+            ) : (
+              <Link
+                to={route.href}
+                className={`flex justify-center  ${bgWhite === true ? 'text-black' : 'text-white'} gap-1 transition-all codedText`}
+              >
+                {route.title}
+              </Link>
+            )}
           </li>
         );
       })}

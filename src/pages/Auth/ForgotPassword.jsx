@@ -7,11 +7,13 @@ import FormContainer from './FormContainer';
 import InputBox from '../../components/InputBox/InputBox';
 import Button from '../../components/Button/Button';
 import toastStyle from '../../utilities/toastStyle';
+import { useUser } from '../../contexts/UserContext';
 
-const BASE_URL = import.meta.env.URL;
-
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 export default function Login() {
   const [email, setEmail] = useState('');
+
+  const { setUserEmail } = useUser();
 
   const navigate = useNavigate();
 
@@ -32,9 +34,11 @@ export default function Login() {
       );
       if (res.data?.status === 'success') {
         toast.success(res.data.status, toastStyle);
+        setUserEmail(email);
         navigate('/resetPassword');
       }
     } catch (error) {
+      // console.log(error);
       toast.error('Something went wrong', toastStyle);
     }
   };
