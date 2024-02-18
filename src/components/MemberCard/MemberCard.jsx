@@ -52,7 +52,7 @@ export default function MemberCard({ teamMember, teamId }) {
           )}
         </div>
         <img
-          src="/member/radhe.jpg"
+          src={`/member/${teamMember.image}`}
           alt="person"
           className="grayscale h-72 w-[230px] object-cover p-6 group-hover:opacity-30 transition-opacity"
         />

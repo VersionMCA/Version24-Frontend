@@ -11,12 +11,15 @@ import './Auth.scss';
 import FormContainer from './FormContainer';
 import toastStyle from '../../utilities/toastStyle';
 
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     if (!email || !password) {
       toast.error('Please fill all the fields', toastStyle);
       return;
@@ -29,15 +32,22 @@ function Login() {
 
     try {
       const res = await axios.post(
-        `${__URL__}/login`,
+        `${BASE_URL}/login`,
         { ...data },
         { withCredentials: true }
       );
+
       if (res.data?.status === 'success') {
         toast.success(res.data.status, toastStyle);
+        const userData = await axios.get(`${BASE_URL}/user`, {
+          withCredentials: true,
+        });
+
+        localStorage.setItem('userInfo', JSON.stringify(userData.data.user));
         navigate('/');
       }
     } catch (error) {
+      console.log(error);
       if (error.response?.status === 401) {
         toast.error('Invalid credentials', toastStyle);
       } else {
@@ -51,7 +61,7 @@ function Login() {
       <FormContainer title="Login" prefixTitle="Version">
         <form
           className="text-white p-10 md:p-20 flex flex-col form form__auth form__auth--login md:mt-6"
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={handleSubmit}
         >
           <InputBox
             type="email"
@@ -77,7 +87,7 @@ function Login() {
             >
               Forgot Password?
             </Link>
-            <Button designType="primary" type="submit" onClick={handleSubmit}>
+            <Button designType="primary" type="submit">
               LOGIN
             </Button>
           </div>

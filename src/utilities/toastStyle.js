@@ -2,7 +2,7 @@ const toastStyle = {
   position: 'bottom-center',
   className: 'toast',
   bodyClassName: 'toast__body',
-  progressClassName: 'toast__body__progress',
+  progressClassName: 'toast__progress',
   closeButton: false,
 };
 

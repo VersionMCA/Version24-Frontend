@@ -6,7 +6,7 @@ const teamInfo = [
       {
         id: '201',
         name: 'Dr. Michael Arock',
-        image: '/radhe.jpg',
+        image: '/michael-sir.jpg',
         designation: 'HOD',
         github: '',
         linkedin: '',
@@ -15,7 +15,7 @@ const teamInfo = [
       {
         id: '202',
         name: 'Dr.(Mrs.) S. Sangeetha',
-        image: '/radhe.jpg',
+        image: '/sangeetha-mam.jpg',
         designation: 'Staff Advisor',
         github: '',
         linkedin: '',
