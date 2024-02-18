@@ -11,7 +11,7 @@ export default function Layout({ children, noBgBlack }) {
     <div>
       <Navbar noBgBlack={noBgBlack} />
       <main>{children}</main>
-      <ToastContainer limit={1} autoClose={2000} />
+      <ToastContainer limit={1} autoClose={100000} />
       <Footer />
     </div>
   );

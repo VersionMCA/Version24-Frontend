@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 export default function InputBox({ type, inputId, value, label, onChange }) {
   return (
     <div className="flex flex-col mb-7">
-      <label htmlFor="email" className="uppercase mb-2 font-medium">
-        {label}
+      <label htmlFor="email" className="uppercase mb-2 font-normal">
+        {label}*
       </label>
       <input
         type={type}

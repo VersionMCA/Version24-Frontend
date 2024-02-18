@@ -1,19 +1,43 @@
 import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import axios from 'axios';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Layout from '../../components/Layout/Layout';
 import FormContainer from './FormContainer';
 import InputBox from '../../components/InputBox/InputBox';
 import Button from '../../components/Button/Button';
+import toastStyle from '../../utilities/toastStyle';
+
+const BASE_URL = import.meta.env.URL;
 
 export default function Login() {
   const [email, setEmail] = useState('');
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-  }
+
+    if (!email) {
+      toast.error('Please fill the email', toastStyle);
+    }
+
+    try {
+      const res = await axios.post(
+        `${BASE_URL}/generateotp`,
+        {
+          email,
+        },
+        { withCredentials: true }
+      );
+      if (res.data?.status === 'success') {
+        toast.success(res.data.status, toastStyle);
+        navigate('/resetPassword');
+      }
+    } catch (error) {
+      toast.error('Something went wrong', toastStyle);
+    }
+  };
 
   return (
     <Layout>

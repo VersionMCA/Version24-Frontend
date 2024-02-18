@@ -20,7 +20,11 @@ function Register() {
 
   const navigate = useNavigate();
 
-  const handleSubmit = async () => {
+  const BASE_URL = import.meta.env.URL;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     if (!email || !password || !fullName || !phoneNumber || !college) {
       toast.error('Please fill all the fields', toastStyle);
       return;
@@ -36,7 +40,7 @@ function Register() {
 
     try {
       const res = await axios.post(
-        `${__URL__}/signup`,
+        `${BASE_URL}/signup`,
         { ...data },
         { withCredentials: true }
       );
@@ -74,7 +78,7 @@ function Register() {
       <FormContainer title="Register" prefixTitle="Version">
         <form
           className="text-white p-10 md:p-20 flex flex-col form form__auth form__auth--register "
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={handleSubmit}
         >
           {formNo === 1 && (
             <>
@@ -170,11 +174,7 @@ function Register() {
                     />
                   </Button>
                 </div>
-                <Button
-                  designType="primary"
-                  type="submit"
-                  onClick={handleSubmit}
-                >
+                <Button designType="primary" type="submit">
                   Register
                 </Button>
               </div>

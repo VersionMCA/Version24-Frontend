@@ -50,10 +50,9 @@ input[type='number']::-webkit-outer-spin-button {
   border: 1px solid var(--toastify-icon-color-error);
   &___body {
     padding: 0;
-
-    &__progress {
-      display: none;
-    }
+  }
+  &__progress {
+    display: none;
   }
 
   @include respond(phone) {
