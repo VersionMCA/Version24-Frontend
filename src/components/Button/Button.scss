@@ -38,3 +38,103 @@
     background-color: $color-primary !important;
   }
 }
+
+.button__tertiary {
+  position: relative;
+  background: #444;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  // border: 1px solid #444;
+  background-color: $color-primary !important;
+  letter-spacing: 0.1rem;
+  font-size: 1rem;
+  padding: 1rem 3rem;
+  transition: 0.2s;
+}
+
+.button__tertiary:hover {
+  letter-spacing: 0.2rem;
+  padding: 1.1rem 3.1rem;
+  background: $color-primary;
+  color: $color-primary;
+  // box-shadow: 0 0 35px $color-primary;
+  animation: box 3s infinite;
+}
+
+.button__tertiary::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background: #272822;
+}
+
+.button__tertiary span {
+  position: relative;
+  z-index: 1;
+}
+.button__tertiary i {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.button__tertiary i::before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 4px;
+  left: 80%;
+  top: -2px;
+  border: 2px solid $color-primary;
+  background: #272822;
+  transition: 0.2s;
+}
+
+.button__tertiary:hover i::before {
+  width: 15px;
+  left: 20%;
+  animation: move 3s infinite;
+}
+
+.button__tertiary i::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 4px;
+  left: 20%;
+  bottom: -2px;
+  border: 2px solid $color-primary;
+  background: #272822;
+  transition: 0.2s;
+}
+
+.button__tertiary:hover i::after {
+  width: 15px;
+  left: 80%;
+  animation: move 3s infinite;
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes box {
+  0% {
+    box-shadow: #27272c;
+  }
+  50% {
+    box-shadow: 0 0 25px $color-primary;
+  }
+  100% {
+    box-shadow: #27272c;
+  }
+}
