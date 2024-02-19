@@ -1,21 +1,52 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import axios from 'axios';
+import toastStyle from '../../utilities/toastStyle';
 import Modal from '../Modal/Modal';
 import useModal from '../../hooks/useModal';
 import FormContainer from '../../pages/Auth/FormContainer';
 import InputBox from '../InputBox/InputBox';
 import Button from '../Button/Button';
 import UserAddedItem from './UserAddedItem';
+import { useUser } from '../../contexts/UserContext';
 
-export default function RegisterTeam() {
+const BASE_URL = import.meta.env.URL;
+
+export default function RegisterTeam({ event }) {
+  const { user } = useUser();
+
   const [teamName, setTeamName] = useState('');
-  const [email, setEmail] = useState('');
-
+  const [email, setEmail] = useState([user.email]);
   const [emailList, setEmailList] = useState([]);
-
   const [toggle, visible] = useModal();
 
-  const handleSubmit = async () => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!teamName || emailList.length === 0) return;
+
+    try {
+      const res = await axios.post(
+        `${BASE_URL}/register`, // Need to change the endpoint to registerForEvent on backend as well
+        {
+          eventName: event.name,
+          teamName,
+          emailList,
+        },
+        { withCredentials: true }
+      );
+      if (res.data?.status === 'success') {
+        toast.success(res.data.status, toastStyle);
+        toggle();
+      }
+    } catch (error) {
+      if (error.response?.status === 401) {
+        toast.error('Invalid credentials', toastStyle);
+      } else {
+        toast.error('Something went wrong', toastStyle);
+      }
+    }
+  };
 
   const handleAddUser = () => {
     setEmailList(() => [...emailList, email]);
@@ -23,6 +54,10 @@ export default function RegisterTeam() {
   };
 
   const handleDeleteUser = (id) => {
+    if (id === user.email) {
+      toast.error('You cannot remove yourself', toastStyle);
+      return;
+    }
     setEmailList(() => emailList.filter((_, index) => index !== id));
   };
 
@@ -43,10 +78,10 @@ export default function RegisterTeam() {
               isRequired
             />
             <div className="flex flex-col mb-7">
-              <label htmlFor="email" className="uppercase mb-2 font-medium">
-                Add Email
+              <label htmlFor="email" className="uppercase mb-2 font-normal">
+                Add Members (Email)*
               </label>
-              <div className="flex  w-80">
+              <div className="flex w-80">
                 <input
                   type="email"
                   id="userEmail"

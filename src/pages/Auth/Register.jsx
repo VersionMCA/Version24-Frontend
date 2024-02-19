@@ -9,6 +9,8 @@ import InputBox from '../../components/InputBox/InputBox';
 import Button from '../../components/Button/Button';
 import toastStyle from '../../utilities/toastStyle';
 
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,7 +22,9 @@ function Register() {
 
   const navigate = useNavigate();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     if (!email || !password || !fullName || !phoneNumber || !college) {
       toast.error('Please fill all the fields', toastStyle);
       return;
@@ -29,17 +33,23 @@ function Register() {
     const data = {
       email,
       password,
-      fullName,
-      phoneNumber,
-      college,
+      name: fullName,
+      mobile: phoneNumber,
+
+      university: college,
+
+      /**
+       * ! Need to remove this, placeholder
+       */ rollno: '090',
     };
 
     try {
       const res = await axios.post(
-        `${__URL__}/signup`,
+        `${BASE_URL}/signup`,
         { ...data },
         { withCredentials: true }
       );
+
       if (res.data?.status === 'success') {
         toast.success(res.data.status, toastStyle);
         navigate('/');
@@ -56,8 +66,8 @@ function Register() {
         return;
       }
 
-      if (password.length < 6) {
-        toast.error('Password should be atleast 6 characters long', toastStyle);
+      if (password.length < 8) {
+        toast.error('Password should be atleast 8 characters long', toastStyle);
         return;
       }
 
@@ -74,7 +84,7 @@ function Register() {
       <FormContainer title="Register" prefixTitle="Version">
         <form
           className="text-white p-10 md:p-20 flex flex-col form form__auth form__auth--register "
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={handleSubmit}
         >
           {formNo === 1 && (
             <>
@@ -170,11 +180,7 @@ function Register() {
                     />
                   </Button>
                 </div>
-                <Button
-                  designType="primary"
-                  type="submit"
-                  onClick={handleSubmit}
-                >
+                <Button designType="primary" type="submit">
                   Register
                 </Button>
               </div>

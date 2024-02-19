@@ -46,14 +46,13 @@ input[type='number']::-webkit-outer-spin-button {
   background-color: rgba(0, 0, 0, 0.85);
   border-radius: 0;
   color: #fff;
-  background: transparent;
-  border: 1px solid var(--toastify-icon-color-error);
+  // background: var(--toastify-background-color-error);
+  // border: 1px solid var(--toastify-icon-color-error);
   &___body {
     padding: 0;
-
-    &__progress {
-      display: none;
-    }
+  }
+  &__progress {
+    visibility: hidden;
   }
 
   @include respond(phone) {

@@ -4,10 +4,13 @@ import React, { useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Squash as Hamburger } from 'hamburger-react';
 import routes from './NavRoutes';
+import { useUser } from '../../contexts/UserContext';
 
 export default function NavMobile() {
   const [isOpen, setOpen] = useState(false);
   const ref = useRef(null);
+
+  const { user } = useUser();
 
   useClickAway(ref, () => setOpen(false));
 
@@ -38,13 +41,23 @@ export default function NavMobile() {
                     key={route.title}
                     className="w-full p-[0.08rem] rounded-xl bg-gradient-to-tr from-neutral-800 via-neutral-950 to-neutral-700"
                   >
-                    <Link
-                      onClick={() => setOpen((prev) => !prev)}
-                      className="flex items-center justify-between w-full p-4 bg-neutral-950 codedText"
-                      to={route.href}
-                    >
-                      <span className="flex gap-1">{route.title}</span>
-                    </Link>
+                    {route.title === 'Login' && user ? (
+                      <span
+                        onClick={() => setOpen((prev) => !prev)}
+                        className="flex items-center justify-between w-full p-4 bg-neutral-950 codedText"
+                        role="button"
+                      >
+                        Logout
+                      </span>
+                    ) : (
+                      <Link
+                        onClick={() => setOpen((prev) => !prev)}
+                        className="flex items-center justify-between w-full p-4 bg-neutral-950 codedText"
+                        to={route.href}
+                      >
+                        <span className="flex gap-1">{route.title}</span>
+                      </Link>
+                    )}
                   </motion.li>
                 );
               })}

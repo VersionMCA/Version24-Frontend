@@ -6,6 +6,21 @@ $clr: #0ff0fc;
   overflow: hidden;
   opacity: 0;
   transition: 0.5s;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.95)
+    );
+  }
+
   img {
     width: 100%;
     height: 100%;
@@ -15,7 +30,8 @@ $clr: #0ff0fc;
     position: absolute;
     left: 10%;
     top: 15%;
-    width: 800px;
+    width: 70rem;
+    text-align: justify;
     max-width: 85%;
     z-index: 1;
     p:nth-child(1) {
