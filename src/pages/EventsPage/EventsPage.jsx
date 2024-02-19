@@ -91,7 +91,7 @@ function Events() {
             aria-hidden="true"
             onClick={moveLeft}
           >
-            <img src={arrowSvg} alt="leftArrow" />
+            <img src={arrowSvg} alt="leftArrow" className="h-12" />
           </div>
           <div className="thumbnail">
             {eventList.map((event) => {
@@ -111,7 +111,7 @@ function Events() {
             aria-hidden="true"
             onClick={moveRight}
           >
-            <img src={arrowSvg} alt="rightArrow" />
+            <img src={arrowSvg} alt="rightArrow" className="h-12" />
           </div>
         </div>
       </div>

@@ -34,7 +34,7 @@ $clr: #0ff0fc;
     text-align: justify;
     max-width: 85%;
     z-index: 1;
-    p:nth-child(1) {
+    &__date {
       text-transform: uppercase;
       letter-spacing: 10px;
     }

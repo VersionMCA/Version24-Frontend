@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import toastStyle from '../../utilities/toastStyle';
 import Modal from '../Modal/Modal';
-import useModal from '../../hooks/useModal';
 import FormContainer from '../../pages/Auth/FormContainer';
 import InputBox from '../InputBox/InputBox';
 import Button from '../Button/Button';
@@ -13,13 +12,12 @@ import { useUser } from '../../contexts/UserContext';
 
 const BASE_URL = import.meta.env.URL;
 
-export default function RegisterTeam({ event }) {
+export default function RegisterTeam({ event, toggle, visible }) {
   const { user } = useUser();
 
   const [teamName, setTeamName] = useState('');
-  const [email, setEmail] = useState([user.email]);
+  const [email, setEmail] = useState([user?.email]);
   const [emailList, setEmailList] = useState([]);
-  const [toggle, visible] = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
