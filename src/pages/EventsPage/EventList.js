@@ -45,7 +45,7 @@ const eventList = [
     date: '21st March 2024',
     imgLink: `./src/assets/img2.jpg`,
     content:
-      'The gaming event of Version’24. The game Zombie Apocalypse is a third person shooter PC game developed by our second year MCA student, Rishabh Jain. In order to win, you must achieve a score higher than the other players on the leaderboard, finishing the objectives in the least amount of time',
+      'The gaming event of Version’24. The game Zombie Apocalypse is a third person shooter PC game developed by our second year MCA student, Rishabh Jain. \nIn order to win, you must achieve a score higher than the other players on the leaderboard, finishing the objectives in the least amount of time',
   },
   {
     id: 7,
@@ -77,7 +77,7 @@ const eventList = [
     date: '21st March 2024',
     imgLink: `./src/assets/img2.jpg`,
     content:
-      " It is a 3-member team event where each team member will serve one of the below three roles: 1. Constructor: Builds the castle using cups for defense. 2. Bombardier: Throws balls at opponent's castles to destroy them. 3. Supply Maven: Collects and supplies balls to the Bombardier for strategic attacks. Teams battle to defend and attack castles using provided balls. The team with the most intact castle levels at the end wins",
+      " It is a 3-member team event where each team member will serve one of the below three roles: \n1. Constructor: Builds the castle using cups for defense. \n2. Bombardier: Throws balls at opponent's castles to destroy them. \n3. Supply Maven: Collects and supplies balls to the Bombardier for strategic attacks. Teams battle to defend and attack castles using provided balls. The team with the most intact castle levels at the end wins",
   },
   {
     id: 11,
@@ -85,7 +85,7 @@ const eventList = [
     date: '21st March 2024',
     imgLink: `./src/assets/img2.jpg`,
     content:
-      '  An unique digital treasure hunting experience 1. Treasure hunters embark on three sequential routes, each displayed       on a map. 2. Each route contains multiple pointers with clues indicating vital information about associated cities and their answers. 3. Routes require specific types of answers for progression. 4. Additional clues can be obtained by expending points. 5. Upon completing each route, participants must answer a corresponding question',
+      'An unique digital treasure hunting experience. \n1. Treasure hunters embark on three sequential routes, each displayed       on a map. \n2. Each route contains multiple pointers with clues indicating vital information about associated cities and their answers. \n3. Routes require specific types of answers for progression. \n4. Additional clues can be obtained by expending points. \n5. Upon completing each route, participants must answer a corresponding question',
   },
   {
     id: 12,

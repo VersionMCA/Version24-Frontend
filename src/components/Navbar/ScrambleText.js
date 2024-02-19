@@ -15,6 +15,7 @@ function randChar() {
 export default function ScrambleText() {
   useEffect(() => {
     document.querySelectorAll('.codedText').forEach((t) => {
+      const originalText = t.innerHTML;
       const arr1 = t.innerHTML.split('');
       const arr2 = [];
       arr1.forEach(function (char, i) {
@@ -51,6 +52,8 @@ export default function ScrambleText() {
             },
           }
         );
+        console.log(originalText);
+        t.innerHTML = originalText;
       };
     });
   });

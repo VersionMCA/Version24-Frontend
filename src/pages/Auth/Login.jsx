@@ -47,7 +47,7 @@ function Login() {
         navigate('/');
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       if (error.response?.status === 401) {
         toast.error('Invalid credentials', toastStyle);
       } else {
