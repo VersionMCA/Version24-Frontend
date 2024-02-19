@@ -15,12 +15,12 @@ function randChar() {
 export default function ScrambleText() {
   useEffect(() => {
     document.querySelectorAll('.codedText').forEach((t) => {
+      const originalText = t.innerHTML;
       const arr1 = t.innerHTML.split('');
       const arr2 = [];
       arr1.forEach(function (char, i) {
         arr2[i] = randChar();
       }); // fill arr2 with random characters
-      const originalText = t.innerHTML;
       t.onpointerover = () => {
         const tl = gsap.timeline();
         let step = 0;
@@ -52,6 +52,7 @@ export default function ScrambleText() {
             },
           }
         );
+        console.log(originalText);
         t.innerHTML = originalText;
       };
     });
