@@ -24,7 +24,7 @@ export default function TeamPage() {
                   {team.header}
                 </h3>
                 <div
-                  className={`grid sm:grid-cols-2 m-auto w-fit gap-x-48 ${team.id !== '101' ? 'grid-cols-1 md:grid-cols-3 2xl:grid-cols-4 gap-x-20 gap-y-32 px-24' : ''}`}
+                  className={`grid sm:grid-cols-2 m-auto w-fit gap-x-48 ${team.id !== '101' ? 'grid-cols-1 md:grid-cols-3  gap-x-20 gap-y-32 px-24' : ''}`}
                 >
                   {team.members.map((teamMember) => {
                     return (
