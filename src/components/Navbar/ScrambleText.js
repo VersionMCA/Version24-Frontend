@@ -20,6 +20,7 @@ export default function ScrambleText() {
       arr1.forEach(function (char, i) {
         arr2[i] = randChar();
       }); // fill arr2 with random characters
+      const originalText = t.innerHTML;
       t.onpointerover = () => {
         const tl = gsap.timeline();
         let step = 0;
@@ -51,6 +52,7 @@ export default function ScrambleText() {
             },
           }
         );
+        t.innerHTML = originalText;
       };
     });
   });
