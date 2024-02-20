@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
@@ -20,44 +20,10 @@ export default function ResetPassword() {
 
   const navigate = useNavigate();
 
-  const otpRef = useRef();
-
-  const handleVerifyOtp = async () => {
-    if (!otp) {
-      toast.error('Please fill the OTP', toastStyle);
-      return;
-    }
-
-    try {
-      const res = await axios.post(
-        `${BASE_URL}/verifyotp`,
-        {
-          otp,
-          email: userEmail,
-        },
-        { withCredentials: true }
-      );
-      if (res.data?.status === 'success') {
-        toast.success(res.data.status, toastStyle);
-        otpRef.current.disabled = true;
-      }
-    } catch (error) {
-      // console.log(error);
-      if (error.response?.status === 401) {
-        toast.error('Invalid OTP', toastStyle);
-      } else toast.error('Something went wrong', toastStyle);
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (otpRef.current.disabled === false) {
-      toast.error('Please verify the OTP', toastStyle);
-      return;
-    }
-
-    if (!password || !confirmPassword) {
+    if (!otp || !password || !confirmPassword) {
       toast.error('Please fill all the fields', toastStyle);
       return;
     }
@@ -74,18 +40,23 @@ export default function ResetPassword() {
 
     try {
       const res = await axios.post(
-        `${BASE_URL}/resetPassword`,
+        `${BASE_URL}/resetpassword`,
         {
           password,
+          email: userEmail,
+          otp,
         },
         { withCredentials: true }
       );
       if (res.data?.status === 'success') {
-        toast.success(res.data.status, toastStyle);
-        navigate('/resetPassword');
+        toast.success(res.data.message, toastStyle);
+        setTimeout(() => {
+          navigate('/login');
+        }, 2000);
       }
     } catch (error) {
-      toast.error('Something went wrong', toastStyle);
+      // console.log(error);
+      toast.error(error.response.data.error, toastStyle);
     }
   };
 
@@ -96,28 +67,13 @@ export default function ResetPassword() {
           className="text-white p-10 md:p-20 flex flex-col form form__auth md:mt-6 form__auth--resetPass"
           onSubmit={handleSubmit}
         >
-          <div className="flex flex-col mb-7">
-            <label htmlFor="email" className="uppercase mb-2 font-normal">
-              OTP*
-            </label>
-            <div className="flex w-80">
-              <input
-                type="otp"
-                id="otp"
-                ref={otpRef}
-                value={otp}
-                onChange={(e) => setOtp(e.target.value)}
-                className="bg-[rgba(52,152,219,0.25)] w-full outline-none text-white px-3 py-2 focus:ring-2 tracking-widest"
-              />
-              <Button
-                designType="secondary"
-                type="button"
-                onClick={handleVerifyOtp}
-              >
-                <span className="text-sm font-semibold">Verify</span>
-              </Button>
-            </div>
-          </div>
+          <InputBox
+            type="text"
+            inputId="otp"
+            onChange={setOtp}
+            value={otp}
+            label="OTP"
+          />
 
           <InputBox
             type="password"

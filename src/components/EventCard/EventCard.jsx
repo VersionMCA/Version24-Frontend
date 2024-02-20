@@ -13,28 +13,25 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 function EventCard({ name, teamSize, date, content, imgLink }) {
   const [toggle, visible] = useModal();
 
-  const { user } = useUser();
+  const { user, updateUserInfo } = useUser();
 
   const registerForEvent = async () => {
     try {
       const res = await axios.post(
-        `${BASE_URL}/register`, // Need to change the endpoint to registerForEvent on backend as well
+        `${BASE_URL}/registerevent`,
         {
           eventName: name,
-          email: user.email,
+          emails: [user.email],
         },
         { withCredentials: true }
       );
+      toast.success(res.data.status, toastStyle);
       if (res.data?.status === 'success') {
-        toast.success(res.data.status, toastStyle);
-        toggle();
+        toast.success(res.data.message, toastStyle);
+        updateUserInfo(res.data.user);
       }
     } catch (error) {
-      if (error.response?.status === 401) {
-        toast.error('Invalid credentials', toastStyle);
-      } else {
-        toast.error('Something went wrong', toastStyle);
-      }
+      toast.error(error.response.data.error, toastStyle);
     }
   };
 
@@ -52,26 +49,34 @@ function EventCard({ name, teamSize, date, content, imgLink }) {
     registerForEvent();
   };
 
+  const registeredEventList = user?.event?.map((event) => event.eventName);
+
   const newContent = content.split('\n').map((str, i) => <p key={i}>{str}</p>);
   return (
     <div className="eventCard__item">
       <img src={imgLink} alt={name} />
       <div className="content">
         <p className="font-primary content__date">{date}</p>
-        <h2 className="font-primary">{name}</h2>
-        <div className="[&>*]:font-extralight [&>*]:font-xs [&>*]:tracking-normal">
+        <h2 className="font-primary content__name">{name}</h2>
+        <div className="[&>*]:font-extralight [&>*]:font-xs [&>*]:tracking-normal content__info">
           {newContent}
         </div>
         <RegisterTeam toggle={toggle} visible={visible} />
         <div className="btn-container font-primary font-light mt-10">
-          <Button
-            designType="tertiary"
-            className="btn-register"
-            onClick={isItTeamEvent}
-          >
-            <span>Register</span>
-            <i />
-          </Button>
+          {registeredEventList?.includes(name) ? (
+            <span className="text-primary font-semibold">
+              Already Registered
+            </span>
+          ) : (
+            <Button
+              designType="tertiary"
+              className="btn-register"
+              onClick={isItTeamEvent}
+            >
+              <span>Register</span>
+              <i />
+            </Button>
+          )}
         </div>
       </div>
     </div>

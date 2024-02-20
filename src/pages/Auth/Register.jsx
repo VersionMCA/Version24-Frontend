@@ -8,6 +8,7 @@ import FormContainer from './FormContainer';
 import InputBox from '../../components/InputBox/InputBox';
 import Button from '../../components/Button/Button';
 import toastStyle from '../../utilities/toastStyle';
+import { useUser } from '../../contexts/UserContext';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
@@ -20,6 +21,8 @@ function Register() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [college, setCollege] = useState('');
   const [rollNo, setRollNo] = useState('');
+
+  const { updateUserInfo } = useUser();
 
   const navigate = useNavigate();
 
@@ -39,9 +42,7 @@ function Register() {
 
       university: college,
 
-      /**
-       * ! Need to remove this, placeholder
-       */ rollno: '090',
+      rollno: rollNo,
     };
 
     try {
@@ -52,11 +53,14 @@ function Register() {
       );
 
       if (res.data?.status === 'success') {
-        toast.success(res.data.status, toastStyle);
-        navigate('/');
+        toast.success(res.data.message, toastStyle);
+        updateUserInfo(res.data.user);
+        setTimeout(() => {
+          navigate('/');
+        }, 2000);
       }
     } catch (error) {
-      toast.error('Something went wrong', toastStyle);
+      toast.error(error.response.data.error, toastStyle);
     }
   };
 

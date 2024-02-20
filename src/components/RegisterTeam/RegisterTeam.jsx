@@ -13,7 +13,7 @@ import { useUser } from '../../contexts/UserContext';
 const BASE_URL = import.meta.env.URL;
 
 export default function RegisterTeam({ event, toggle, visible }) {
-  const { user } = useUser();
+  const { user, updateUserInfo } = useUser();
 
   const [teamName, setTeamName] = useState('');
   const [email, setEmail] = useState([user?.email]);
@@ -34,15 +34,12 @@ export default function RegisterTeam({ event, toggle, visible }) {
         { withCredentials: true }
       );
       if (res.data?.status === 'success') {
-        toast.success(res.data.status, toastStyle);
+        toast.success(res.data.message, toastStyle);
+        updateUserInfo(res.data.user);
         toggle();
       }
     } catch (error) {
-      if (error.response?.status === 401) {
-        toast.error('Invalid credentials', toastStyle);
-      } else {
-        toast.error('Something went wrong', toastStyle);
-      }
+      toast.error(error.response.data.error, toastStyle);
     }
   };
 
