@@ -50,11 +50,13 @@
   transition: 0.2s;
   border: 2px solid #fff;
   letter-spacing: 0.12rem;
+  margin: 0.05rem;
 }
 
 .button__tertiary:hover {
   letter-spacing: 0.14rem;
   padding: 0.61rem 2.01rem;
+  margin: 0;
   animation: box 3s infinite;
 }
 

@@ -27,7 +27,7 @@ export default function TeamPage() {
         <Navbar />
         <section className="bg-black bg-opacity-75 min-h-lvh py-36 section__teams">
           <motion.div
-            initial={{ opacity: 0, translateX: -50, translateY: -50 }}
+            initial={{ opacity: 0, translateX: 0, translateY: -50 }}
             animate={{ opacity: 1, translateX: 0, translateY: 0 }}
             transition={{ duration: 0.2 }}
           >
@@ -40,7 +40,7 @@ export default function TeamPage() {
               return (
                 <div key={team.id}>
                   <motion.div
-                    initial={{ opacity: 0, translateX: -50, translateY: -50 }}
+                    initial={{ opacity: 0, translateX: 0, translateY: -50 }}
                     animate={{ opacity: 1, translateX: 0, translateY: 0 }}
                     transition={{ duration: 0.3 }}
                   >

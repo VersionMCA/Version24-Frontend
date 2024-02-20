@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import RightSideNav from '../../components/SideNav/RightSideNav';
 import VersionTimer from '../../components/VersionTimer/VersionTimer';
@@ -7,9 +8,13 @@ import TransitionAnimation from '../../components/TransitionAnimation/Transition
 
 import './HomePage.scss';
 import Layout from '../../components/Layout/Layout';
+import LeftSideNav from '../../components/SideNav/LeftSideNav';
+import Button from '../../components/Button/Button';
 
 export default function HomePage() {
   const [displayHome, setDisplayHome] = useState(false);
+
+  const navigate = useNavigate();
 
   setTimeout(() => {
     setDisplayHome(true);
@@ -23,23 +28,36 @@ export default function HomePage() {
     >
       <Layout noBgBlack>
         <div className="bg-black bg-opacity-75 h-lvh homeContainer">
-          <div className="flex items-center justify-center h-lvh">
-            <motion.div
-              initial={{
-                opacity: 0,
-                translateX: 100,
-                translateY: -100,
-              }}
-              animate={{ opacity: 1, translateX: 0, translateY: 0 }}
-              transition={{ duration: 1.2 }}
-            >
+          {' '}
+          <motion.div
+            initial={{
+              opacity: 0,
+              translateX: 0,
+              translateY: -100,
+            }}
+            animate={{ opacity: 1, translateX: 0, translateY: 0 }}
+            transition={{ duration: 1.2 }}
+          >
+            <div className="flex items-center justify-center h-lvh flex-col">
               <img
                 src="../../../public/res/home_hero_img.png"
                 alt="Hero Element"
                 className="md:h-72 h-40"
               />
-            </motion.div>
-          </div>
+
+              <div className="mt-9">
+                <Button
+                  designType="tertiary"
+                  className="btn-register"
+                  onClick={() => navigate('/about')}
+                >
+                  <span>Enter</span>
+                  <i />
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+          <LeftSideNav />
           <RightSideNav />
           <motion.div
             initial={{

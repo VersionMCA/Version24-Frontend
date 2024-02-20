@@ -20,7 +20,9 @@ function AboutUs() {
     >
       <Layout>
         <section className="about-us bg-black min-h-lvh w-full text-white flex flex-col justify-center items-center xl:py-32 lg:px-36 min-[1600px]:px-80 min-[1900px]:px-96 px-10 pt-16 overflow-hidden">
-          <h2 className="font-primary text-2xl mb-5 uppercase">ABOUT US</h2>
+          <h2 className="font-primary text-2xl mb-5 uppercase font-bold tracking-[5px]">
+            ABOUT US
+          </h2>
           <div className="flex flex-col justify-center h-full w-full items-center mx-10 about-us about-us__container lg:px-10 pb-60 max-[600px]:px-28 max-[550px]:px-24 max-[480px]:px-6 max-[340px]:px-4">
             <div className="flex items-center justify-around xl:text-base [&>*]:font-medium max-[600px]:text-sm h-10 w-9/12 xl:mt-7 lg:mt-2 mt-4 mb-5 md:mb-3 sm:mb-1 min-[601px]:mb-0 xl:mx-40 2xl:mb-8 sm:mt-0 min-[601px]:mt-0 md:mt-2">
               <h3
