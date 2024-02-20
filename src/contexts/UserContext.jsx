@@ -11,8 +11,9 @@ function UserProvider({ children }) {
 
   const navigate = useNavigate();
 
-  const login = (u) => {
-    setUser(u);
+  const updateUserInfo = (userInfo) => {
+    localStorage.setItem('userInfo', JSON.stringify(userInfo));
+    setUser(userInfo);
   };
 
   const logout = () => {
@@ -34,7 +35,7 @@ function UserProvider({ children }) {
   return (
     <UserContext.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
-      value={{ user, login, logout, userEmail, setUserEmail }}
+      value={{ user, updateUserInfo, logout, userEmail, setUserEmail }}
     >
       {children}
     </UserContext.Provider>

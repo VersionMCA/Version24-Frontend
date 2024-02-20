@@ -11,6 +11,7 @@ import InputBox from '../../components/InputBox/InputBox';
 import './Auth.scss';
 import FormContainer from './FormContainer';
 import toastStyle from '../../utilities/toastStyle';
+import { useUser } from '../../contexts/UserContext';
 import TransitionAnimation from '../../components/TransitionAnimation/TransitionAnimation';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -20,6 +21,8 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+
+  const { updateUserInfo } = useUser();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,21 +44,14 @@ function Login() {
       );
 
       if (res.data?.status === 'success') {
-        toast.success(res.data.status, toastStyle);
-        const userData = await axios.get(`${BASE_URL}/user`, {
-          withCredentials: true,
-        });
-
-        localStorage.setItem('userInfo', JSON.stringify(userData.data.user));
-        navigate('/');
+        toast.success(res.data.message, toastStyle);
+        updateUserInfo(res.data.user);
+        setTimeout(() => {
+          navigate('/');
+        }, 2000);
       }
     } catch (error) {
-      // console.log(error);
-      if (error.response?.status === 401) {
-        toast.error('Invalid credentials', toastStyle);
-      } else {
-        toast.error('Something went wrong', toastStyle);
-      }
+      toast.error(error.response.data.error, toastStyle);
     }
   };
 
@@ -72,7 +68,7 @@ function Login() {
       <Layout>
         <FormContainer title="Login" prefixTitle="Version">
           <form
-            className="text-white p-10 md:p-20 flex flex-col form form__auth form__auth--login md:mt-6"
+            className="text-white p-10 md:p-20 flex flex-col form form__auth form__auth--login md:mt-3"
             onSubmit={handleSubmit}
           >
             <InputBox

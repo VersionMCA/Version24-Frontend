@@ -1,11 +1,55 @@
 import React from 'react';
+import axios from 'axios';
 import './EventCard.scss';
+import { toast } from 'react-toastify';
 import Button from '../Button/Button';
 import RegisterTeam from '../RegisterTeam/RegisterTeam';
 import useModal from '../../hooks/useModal';
+import { useUser } from '../../contexts/UserContext';
+import toastStyle from '../../utilities/toastStyle';
 
-function EventCard({ name, date, content, imgLink }) {
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+function EventCard({ name, teamSize, date, content, imgLink }) {
   const [toggle, visible] = useModal();
+
+  const { user, updateUserInfo } = useUser();
+
+  const registerForEvent = async () => {
+    try {
+      const res = await axios.post(
+        `${BASE_URL}/registerevent`,
+        {
+          eventName: name,
+          emails: [user.email],
+        },
+        { withCredentials: true }
+      );
+      toast.success(res.data.status, toastStyle);
+      if (res.data?.status === 'success') {
+        toast.success(res.data.message, toastStyle);
+        updateUserInfo(res.data.user);
+      }
+    } catch (error) {
+      toast.error(error.response.data.error, toastStyle);
+    }
+  };
+
+  const isItTeamEvent = () => {
+    if (!user) {
+      toast.error('Please login to register', toastStyle);
+      return;
+    }
+
+    if (teamSize > 1) {
+      toggle();
+      return;
+    }
+
+    registerForEvent();
+  };
+
+  const registeredEventList = user?.event?.map((event) => event.eventName);
 
   const newContent = content.split('\n').map((str, i) => <p key={i}>{str}</p>);
   return (
@@ -13,20 +57,26 @@ function EventCard({ name, date, content, imgLink }) {
       <img src={imgLink} alt={name} />
       <div className="content">
         <p className="font-primary content__date">{date}</p>
-        <h2 className="font-primary">{name}</h2>
-        <div className="[&>*]:font-extralight [&>*]:font-xs [&>*]:tracking-normal">
+        <h2 className="font-primary content__name">{name}</h2>
+        <div className="[&>*]:font-extralight [&>*]:font-xs [&>*]:tracking-normal content__info">
           {newContent}
         </div>
         <RegisterTeam toggle={toggle} visible={visible} />
         <div className="btn-container font-primary font-light mt-10">
-          <Button
-            designType="tertiary"
-            className="btn-register"
-            onClick={toggle}
-          >
-            <span>Register</span>
-            <i />
-          </Button>
+          {registeredEventList?.includes(name) ? (
+            <span className="text-primary font-semibold">
+              Already Registered
+            </span>
+          ) : (
+            <Button
+              designType="tertiary"
+              className="btn-register"
+              onClick={isItTeamEvent}
+            >
+              <span>Register</span>
+              <i />
+            </Button>
+          )}
         </div>
       </div>
     </div>

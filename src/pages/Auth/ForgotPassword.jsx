@@ -35,13 +35,12 @@ export default function Login() {
         { withCredentials: true }
       );
       if (res.data?.status === 'success') {
-        toast.success(res.data.status, toastStyle);
+        toast.success(res.data.message, toastStyle);
         setUserEmail(email);
         navigate('/resetPassword');
       }
     } catch (error) {
-      // console.log(error);
-      toast.error('Something went wrong', toastStyle);
+      toast.error(error.response.data.error, toastStyle);
     }
   };
 

@@ -52,7 +52,6 @@ export default function ScrambleText() {
             },
           }
         );
-        console.log(originalText);
         t.innerHTML = originalText;
       };
     });
