@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import Layout from '../../components/Layout/Layout';
@@ -8,10 +9,12 @@ import InputBox from '../../components/InputBox/InputBox';
 import Button from '../../components/Button/Button';
 import toastStyle from '../../utilities/toastStyle';
 import { useUser } from '../../contexts/UserContext';
+import TransitionAnimation from '../../components/TransitionAnimation/TransitionAnimation';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export default function ResetPassword() {
+  const [displayResetPassword, setDisplayResetPassword] = useState(false);
   const [otp, setOtp] = useState(undefined);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -61,43 +64,55 @@ export default function ResetPassword() {
     }
   };
 
-  return (
-    <Layout>
-      <FormContainer title="Password" prefixTitle="Forget">
-        <form
-          className="text-white p-10 md:p-20 flex flex-col form form__auth md:mt-6 form__auth--resetPass"
-          onSubmit={handleSubmit}
-        >
-          <InputBox
-            type="text"
-            inputId="otp"
-            onChange={setOtp}
-            value={otp}
-            label="OTP"
-          />
+  setTimeout(() => {
+    setDisplayResetPassword(true);
+  }, 500);
 
-          <InputBox
-            type="password"
-            inputId="password"
-            onChange={setPassword}
-            value={password}
-            label="Password"
-          />
-          <InputBox
-            type="password"
-            inputId="confirmPassword"
-            onChange={setConfirmPassword}
-            value={confirmPassword}
-            label="Confirm Password"
-          />
+  return displayResetPassword ? (
+    <motion.div
+      initial={{ opacity: 0.7 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <Layout>
+        <FormContainer title="Password" prefixTitle="Forget">
+          <form
+            className="text-white p-10 md:p-20 flex flex-col form form__auth md:mt-6 form__auth--resetPass"
+            onSubmit={handleSubmit}
+          >
+            <InputBox
+              type="text"
+              inputId="otp"
+              onChange={setOtp}
+              value={otp}
+              label="OTP"
+            />
 
-          <div className="flex justify-end mt-2">
-            <Button designType="primary" type="submit">
-              Reset Password
-            </Button>
-          </div>
-        </form>
-      </FormContainer>
-    </Layout>
+            <InputBox
+              type="password"
+              inputId="password"
+              onChange={setPassword}
+              value={password}
+              label="Password"
+            />
+            <InputBox
+              type="password"
+              inputId="confirmPassword"
+              onChange={setConfirmPassword}
+              value={confirmPassword}
+              label="Confirm Password"
+            />
+
+            <div className="flex justify-end mt-2">
+              <Button designType="primary" type="submit">
+                Reset Password
+              </Button>
+            </div>
+          </form>
+        </FormContainer>
+      </Layout>
+    </motion.div>
+  ) : (
+    <TransitionAnimation />
   );
 }

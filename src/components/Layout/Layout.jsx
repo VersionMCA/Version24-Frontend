@@ -8,7 +8,7 @@ import Footer from '../Footer/Footer';
 
 export default function Layout({ children, noBgBlack }) {
   return (
-    <div>
+    <div className="!overflow-y-hidden">
       <Navbar noBgBlack={noBgBlack} />
       <main>{children}</main>
       <ToastContainer limit={1} autoClose={2000} />
