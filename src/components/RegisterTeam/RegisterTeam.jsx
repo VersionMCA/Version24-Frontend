@@ -10,14 +10,16 @@ import Button from '../Button/Button';
 import UserAddedItem from './UserAddedItem';
 import { useUser } from '../../contexts/UserContext';
 
-const BASE_URL = import.meta.env.URL;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-export default function RegisterTeam({ event, toggle, visible }) {
+export default function RegisterTeam({ eventName, toggle, visible }) {
   const { user, updateUserInfo } = useUser();
 
   const [teamName, setTeamName] = useState('');
-  const [email, setEmail] = useState([user?.email]);
+  const [email, setEmail] = useState();
   const [emailList, setEmailList] = useState([]);
+
+  if (user && !emailList.includes(user.email)) setEmailList([user.email]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,21 +27,29 @@ export default function RegisterTeam({ event, toggle, visible }) {
 
     try {
       const res = await axios.post(
-        `${BASE_URL}/register`, // Need to change the endpoint to registerForEvent on backend as well
+        `${BASE_URL}/registerevent`,
         {
-          eventName: event.name,
+          eventName,
           teamName,
-          emailList,
+          emails: emailList,
         },
         { withCredentials: true }
       );
       if (res.data?.status === 'success') {
-        toast.success(res.data.message, toastStyle);
-        updateUserInfo(res.data.user);
+        toast.success(
+          res.data.message || 'Registered Successfully',
+          toastStyle
+        );
+
+        setTimeout(() => {
+          updateUserInfo(res.data.user);
+        }, 2000);
+
         toggle();
       }
     } catch (error) {
-      toast.error(error.response.data.error, toastStyle);
+      const msg = error.response.data.message || error.response.data.error;
+      toast.error(msg, toastStyle);
     }
   };
 
@@ -48,12 +58,12 @@ export default function RegisterTeam({ event, toggle, visible }) {
     setEmail('');
   };
 
-  const handleDeleteUser = (id) => {
-    if (id === user.email) {
+  const handleDeleteUser = (em) => {
+    if (em === user.email) {
       toast.error('You cannot remove yourself', toastStyle);
       return;
     }
-    setEmailList(() => emailList.filter((_, index) => index !== id));
+    setEmailList(() => emailList.filter((el) => el !== em));
   };
 
   return (
@@ -100,7 +110,6 @@ export default function RegisterTeam({ event, toggle, visible }) {
                   <UserAddedItem
                     email={emailItem}
                     key={index}
-                    id={index}
                     handleDeleteUser={handleDeleteUser}
                   />
                 );

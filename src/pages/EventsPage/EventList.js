@@ -60,6 +60,7 @@ const eventList = [
     name: ' DevDay',
     date: '21st March 2024',
     imgLink: `./src/assets/img2.jpg`,
+    teamSize: 2,
     content:
       "It is a team event where participants will be given some problem statements (basically some dev work) which they have to build. It won't be really difficult and won't be really easy as well. This will consist of some basic features, then some extra features can be added which will give some brownie points. 3-4 such questions can be given and they have to get as many points as possible. Team size : at max 2 members",
   },
@@ -67,6 +68,7 @@ const eventList = [
     id: 9,
     name: 'Heads Up',
     date: '21st March 2024',
+    teamSize: 5,
     imgLink: `./src/assets/img2.jpg`,
     content:
       'Teams of 4-5 players, one with a phone near their forehead, try to guess words their teammates convey without speaking. Non-verbal clues determine success, with the team conveying the most words winning the challenge.',
@@ -76,6 +78,7 @@ const eventList = [
     name: 'Cupocalyse Combat',
     date: '21st March 2024',
     imgLink: `./src/assets/img2.jpg`,
+    teamSize: 3,
     content:
       " It is a 3-member team event where each team member will serve one of the below three roles: \n1. Constructor: Builds the castle using cups for defense. \n2. Bombardier: Throws balls at opponent's castles to destroy them. \n3. Supply Maven: Collects and supplies balls to the Bombardier for strategic attacks. Teams battle to defend and attack castles using provided balls. The team with the most intact castle levels at the end wins",
   },

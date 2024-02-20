@@ -80,6 +80,7 @@ function Events() {
                   imgLink={event.imgLink}
                   name={event.name}
                   date={event.date}
+                  teamSize={event?.teamSize}
                 />
               );
             })}
