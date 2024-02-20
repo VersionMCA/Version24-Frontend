@@ -65,7 +65,7 @@ function AboutUs() {
             </div>
           )}
           {text === 'GenSynth' && (
-            <div className=" font-secondary font-extralight text-justify xl:text-base  text-[0.75rem] max-[767px]:text-[0.5rem] min-[601px]:px-10 flex flex-col justify-between gap-5 max-[639px]:gap-2 min-[2400px]:mx-64 min-[2100px]:mx-40 max-[600px]:mx-6 max-[320px]:mx-2 max-[320px]:text-[0.4rem] mt-2 sm:mt-0 min-[601px]:mt-0 sm:px-10">
+            <div className=" font-secondary font-extralight text-justify xl:text-base text-[0.75rem] min-[601px]:max-[767px]:text-[0.5rem]  min-[601px]:px-10 flex flex-col justify-between gap-5 max-[639px]:gap-2 min-[2400px]:mx-64 min-[2100px]:mx-40 max-[600px]:mx-6 max-[320px]:mx-2 max-[320px]:text-[0.4rem] mt-2 sm:mt-0 min-[601px]:mt-0 sm:px-10">
               {' '}
               <p className="xl:leading-6">
                 Version 2024 is set to unveil its groundbreaking theme,
