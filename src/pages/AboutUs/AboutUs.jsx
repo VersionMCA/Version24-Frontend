@@ -1,107 +1,123 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import './AboutUs.scss';
 import Layout from '../../components/Layout/Layout';
+import TransitionAnimation from '../../components/TransitionAnimation/TransitionAnimation';
 
 function AboutUs() {
   const [text, setText] = useState('Version');
-  return (
-    <Layout>
-      <section className="bg-black min-h-lvh w-full text-white flex flex-col justify-center items-center xl:py-32 lg:px-36 min-[1600px]:px-80 min-[1900px]:px-96 px-10 pt-32 overflow-hidden">
-        <h2 className="font-primary text-2xl xl:mb-0 mb-5 uppercase">
-          ABOUT US
-        </h2>
-        <div className="flex flex-col justify-center h-full w-full items-center mx-10 about-us about-us__container lg:px-10 pb-60">
-          <div className="flex items-center justify-around xl:text-sm text-[.8rem] h-10 w-9/12 xl:mt-5 lg:mt-2 mt-4 sm:mb-10 mb-5 xl:mx-40 sm:mt-0">
-            <h3
-              aria-hidden
-              onClick={() => setText('Version')}
-              className={`cursor-pointer  hover:text-secondary hover:font-semibold transition-all ${text === 'Version' ? 'text-primary' : ''}`}
-            >
-              VERSION
-            </h3>
-            <h3
-              aria-hidden
-              onClick={() => setText('GenSynth')}
-              className={`cursor-pointer  hover:text-secondary hover:font-semibold transition-all ${text === 'GenSynth' ? 'text-primary' : ''}`}
-            >
-              GENSYNTH
-            </h3>
-          </div>
-          {text === 'Version' && (
-            <div className=" font-secondary font-extralight text-justify xl:text-sm text-[0.6rem] max-[600px]:text-[0.5rem] flex flex-col justify-between gap-5 min-[2400px]:mx-64 min-[2100px]:mx-40 max-[600px]:mx-6 max-[320px]:mx-2 max-[320px]:text-[0.4rem] mt-2">
-              {' '}
-              <p className="lg:leading-6">
-                Embarking on its 31st edition, Version 2024, the{' '}
-                <span className="text-secondary">
-                  annual All India MCA meet
-                </span>{' '}
-                hosted by the students of NIT Trichy, stands as the pinnacle
-                event for MCA students nationwide. Since 1991, Version has been
-                a platform for showcasing talent, fostering healthy competition,
-                and promoting creativity.
-              </p>
-              <p className="lg:leading-6">
-                Beyond a mere contest, Version is an immersive experience
-                featuring coding challenges, hackathons, workshops, and
-                interactions with industry experts. As the star event for
-                <span className="text-secondary"> MCA at NIT Trichy</span>, it
-                continues to be eagerly anticipated, drawing participants from
-                across India.
-              </p>{' '}
-              <p className="lg:leading-6">
-                {' '}
-                Version 2024 promises to uphold its legacy of excellence,
-                offering participants a{' '}
-                <span className="text-secondary"> unique opportunity</span> to
-                push boundaries, forge connections, and leave an indelible mark
-                on the landscape of MCA events. Get ready to celebrate
-                innovation, talent, and camaraderie at the grand stage of
-                Version 2024.
-              </p>
+  const [displayAboutUs, setAboutUs] = useState(false);
+
+  setTimeout(() => {
+    setAboutUs(true);
+  }, 1000);
+
+  return displayAboutUs ? (
+    <motion.div
+      initial={{ opacity: 0.7 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <Layout>
+        <section className="bg-black min-h-lvh w-full text-white flex flex-col justify-center items-center xl:py-32 lg:px-36 min-[1600px]:px-80 min-[1900px]:px-96 px-10 pt-32 overflow-hidden">
+          <h2 className="font-primary text-2xl xl:mb-0 mb-5 uppercase">
+            ABOUT US
+          </h2>
+          <div className="flex flex-col justify-center h-full w-full items-center mx-10 about-us about-us__container lg:px-10 pb-60">
+            <div className="flex items-center justify-around xl:text-sm text-[.8rem] h-10 w-9/12 xl:mt-5 lg:mt-2 mt-4 sm:mb-10 mb-5 xl:mx-40 sm:mt-0">
+              <h3
+                aria-hidden
+                onClick={() => setText('Version')}
+                className={`cursor-pointer  hover:text-secondary hover:font-semibold transition-all ${text === 'Version' ? 'text-primary' : ''}`}
+              >
+                VERSION
+              </h3>
+              <h3
+                aria-hidden
+                onClick={() => setText('GenSynth')}
+                className={`cursor-pointer  hover:text-secondary hover:font-semibold transition-all ${text === 'GenSynth' ? 'text-primary' : ''}`}
+              >
+                GENSYNTH
+              </h3>
             </div>
-          )}
-          {text === 'GenSynth' && (
-            <div className=" font-secondary font-extralight text-justify xl:text-sm text-[0.6rem] max-[600px]:text-[0.5rem] flex flex-col justify-between gap-5 min-[2400px]:mx-64 min-[2100px]:mx-40 max-[600px]:mx-6 max-[320px]:mx-2 max-[320px]:text-[0.4rem] mt-2">
-              {' '}
-              <p className="lg:leading-6">
-                Version 2024 is set to unveil its groundbreaking theme,
-                <span className="text-secondary">
+            {text === 'Version' && (
+              <div className=" font-secondary font-extralight text-justify xl:text-sm text-[0.6rem] max-[600px]:text-[0.5rem] flex flex-col justify-between gap-5 min-[2400px]:mx-64 min-[2100px]:mx-40 max-[600px]:mx-6 max-[320px]:mx-2 max-[320px]:text-[0.4rem] mt-2">
+                {' '}
+                <p className="lg:leading-6">
+                  Embarking on its 31st edition, Version 2024, the{' '}
+                  <span className="text-secondary">
+                    annual All India MCA meet
+                  </span>{' '}
+                  hosted by the students of NIT Trichy, stands as the pinnacle
+                  event for MCA students nationwide. Since 1991, Version has
+                  been a platform for showcasing talent, fostering healthy
+                  competition, and promoting creativity.
+                </p>
+                <p className="lg:leading-6">
+                  Beyond a mere contest, Version is an immersive experience
+                  featuring coding challenges, hackathons, workshops, and
+                  interactions with industry experts. As the star event for
+                  <span className="text-secondary"> MCA at NIT Trichy</span>, it
+                  continues to be eagerly anticipated, drawing participants from
+                  across India.
+                </p>{' '}
+                <p className="lg:leading-6">
                   {' '}
-                  &quot;Gensynth: Synthesized Brilliance of Gen AI.&quot;
-                </span>{' '}
-                Gensynth, a clever portmanteau of &quot;genius&quot; and
-                &quot;synth,&quot; embodies the fusion of intelligence and
-                creative synthesis in the context of Generative AI.
-              </p>
-              <p className="lg:leading-6">
-                It signifies the harmonious marriage of artificial
-                intelligence&apos;s ingenious capabilities with the concept of
-                synthesis, hinting at the{' '}
-                <span className="text-secondary">
-                  generation of innovative and intelligent outputs
-                </span>
-                . This theme underscores the event&apos;s dedication to
-                exploring the symbiotic relationship between AI and creativity.
-                In simpler terms, &quot;Gensynth&quot; conveys the idea of smart
-                and creative technology coming together to create something
-                entirely new, reflecting the essence of Version 2024&apos;s
-                focus on the convergence of artificial intelligence and
-                imaginative ingenuity.
-              </p>{' '}
-              <p className="lg:leading-6">
+                  Version 2024 promises to uphold its legacy of excellence,
+                  offering participants a{' '}
+                  <span className="text-secondary"> unique opportunity</span> to
+                  push boundaries, forge connections, and leave an indelible
+                  mark on the landscape of MCA events. Get ready to celebrate
+                  innovation, talent, and camaraderie at the grand stage of
+                  Version 2024.
+                </p>
+              </div>
+            )}
+            {text === 'GenSynth' && (
+              <div className=" font-secondary font-extralight text-justify xl:text-sm text-[0.6rem] max-[600px]:text-[0.5rem] flex flex-col justify-between gap-5 min-[2400px]:mx-64 min-[2100px]:mx-40 max-[600px]:mx-6 max-[320px]:mx-2 max-[320px]:text-[0.4rem] mt-2">
                 {' '}
-                Get ready for a{' '}
-                <span className="text-secondary">
-                  transformative experience
-                </span>{' '}
-                at Gensynth as we delve into the boundless possibilities of
-                Generative AI.
-              </p>
-            </div>
-          )}
-        </div>
-      </section>
-    </Layout>
+                <p className="lg:leading-6">
+                  Version 2024 is set to unveil its groundbreaking theme,
+                  <span className="text-secondary">
+                    {' '}
+                    &quot;Gensynth: Synthesized Brilliance of Gen AI.&quot;
+                  </span>{' '}
+                  Gensynth, a clever portmanteau of &quot;genius&quot; and
+                  &quot;synth,&quot; embodies the fusion of intelligence and
+                  creative synthesis in the context of Generative AI.
+                </p>
+                <p className="lg:leading-6">
+                  It signifies the harmonious marriage of artificial
+                  intelligence&apos;s ingenious capabilities with the concept of
+                  synthesis, hinting at the{' '}
+                  <span className="text-secondary">
+                    generation of innovative and intelligent outputs
+                  </span>
+                  . This theme underscores the event&apos;s dedication to
+                  exploring the symbiotic relationship between AI and
+                  creativity. In simpler terms, &quot;Gensynth&quot; conveys the
+                  idea of smart and creative technology coming together to
+                  create something entirely new, reflecting the essence of
+                  Version 2024&apos;s focus on the convergence of artificial
+                  intelligence and imaginative ingenuity.
+                </p>{' '}
+                <p className="lg:leading-6">
+                  {' '}
+                  Get ready for a{' '}
+                  <span className="text-secondary">
+                    transformative experience
+                  </span>{' '}
+                  at Gensynth as we delve into the boundless possibilities of
+                  Generative AI.
+                </p>
+              </div>
+            )}
+          </div>
+        </section>
+      </Layout>
+    </motion.div>
+  ) : (
+    <TransitionAnimation />
   );
 }
 

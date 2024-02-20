@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react';
+/* eslint-disable prettier/prettier */
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import EventCard from '../../components/EventCard/EventCard';
 import EventThumbnail from '../../components/EventThumbnail/EventThumbnail';
 import Navbar from '../../components/Navbar/Navbar';
@@ -6,8 +8,10 @@ import Footer from '../../components/Footer/Footer';
 import eventList from './EventList';
 import './EventsPage.scss';
 import arrowSvg from '../../assets/carouselArrow.svg';
+import TransitionAnimation from '../../components/TransitionAnimation/TransitionAnimation';
 
 function Events() {
+  const [displayEvents, setDisplayEvents] = useState(false);
   const [newItemActive, setNewItemActive] = React.useState(0);
   const [firstThumbnailIndex, setFirstThumbnailIndex] = React.useState(0);
 
@@ -54,8 +58,9 @@ function Events() {
         );
       }
     };
-    showSlider(newItemActive);
-  }, [firstThumbnailIndex, newItemActive]);
+
+    if (displayEvents) showSlider(newItemActive);
+  }, [firstThumbnailIndex, newItemActive, displayEvents]);
 
   function moveLeft() {
     setNewItemActive(firstThumbnailIndex);
@@ -67,56 +72,68 @@ function Events() {
     );
   }
 
-  return (
-    <div>
-      <Navbar />
-      <div className="event__slider font-secondary">
-        <div className="allEvents">
-          {eventList.map((event) => {
-            return (
-              <EventCard
-                key={event.id}
-                id={event.id}
-                content={event.content}
-                imgLink={event.imgLink}
-                name={event.name}
-                date={event.date}
-              />
-            );
-          })}
-        </div>
-        <div className="thumbnailContainer">
-          <div
-            className="arrowContainer left"
-            aria-hidden="true"
-            onClick={moveLeft}
-          >
-            <img src={arrowSvg} alt="leftArrow" className="h-12" />
-          </div>
-          <div className="thumbnail">
+  setTimeout(() => {
+    setDisplayEvents(true);
+  }, 1000);
+
+  return displayEvents ? (
+    <motion.div
+      initial={{ opacity: 0.7 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div>
+        <Navbar />
+        <div className="event__slider font-secondary">
+          <div className="allEvents">
             {eventList.map((event) => {
               return (
-                <EventThumbnail
-                  setNewItemActive={setNewItemActive}
+                <EventCard
                   key={event.id}
-                  id={event.id - 1}
+                  id={event.id}
+                  content={event.content}
                   imgLink={event.imgLink}
                   name={event.name}
+                  date={event.date}
                 />
               );
             })}
           </div>
-          <div
-            className="arrowContainer right"
-            aria-hidden="true"
-            onClick={moveRight}
-          >
-            <img src={arrowSvg} alt="rightArrow" className="h-12" />
+          <div className="thumbnailContainer">
+            <div
+              className="arrowContainer left"
+              aria-hidden="true"
+              onClick={moveLeft}
+            >
+              <img src={arrowSvg} alt="leftArrow" className="h-12" />
+            </div>
+            <div className="thumbnail">
+              {eventList.map((event) => {
+                return (
+                  <EventThumbnail
+                    setNewItemActive={setNewItemActive}
+                    key={event.id}
+                    id={event.id - 1}
+                    imgLink={event.imgLink}
+                    name={event.name}
+                  />
+                );
+              })}
+            </div>
+            <div
+              className="arrowContainer right"
+              aria-hidden="true"
+              onClick={moveRight}
+            >
+              <img src={arrowSvg} alt="rightArrow" className="h-12" />
+            </div>
           </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </motion.div>
+  ) : (
+    <TransitionAnimation />
   );
 }
 
