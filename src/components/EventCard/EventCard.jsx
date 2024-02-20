@@ -25,13 +25,14 @@ function EventCard({ name, teamSize, date, content, imgLink }) {
         },
         { withCredentials: true }
       );
-      toast.success(res.data.status, toastStyle);
+
       if (res.data?.status === 'success') {
         toast.success(res.data.message, toastStyle);
         updateUserInfo(res.data.user);
       }
     } catch (error) {
-      toast.error(error.response.data.error, toastStyle);
+      const msg = error.response.data.message || error.response.data.error;
+      toast.error(msg, toastStyle);
     }
   };
 
@@ -61,12 +62,10 @@ function EventCard({ name, teamSize, date, content, imgLink }) {
         <div className="[&>*]:font-extralight [&>*]:font-xs [&>*]:tracking-normal content__info">
           {newContent}
         </div>
-        <RegisterTeam toggle={toggle} visible={visible} />
+        <RegisterTeam toggle={toggle} visible={visible} eventName={name} />
         <div className="btn-container font-primary font-light mt-10">
           {registeredEventList?.includes(name) ? (
-            <span className="text-primary font-semibold">
-              Already Registered
-            </span>
+            <span className="text-primary font-semibold">Registered</span>
           ) : (
             <Button
               designType="tertiary"
