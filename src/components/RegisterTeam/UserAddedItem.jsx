@@ -2,13 +2,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function UserAddedItem({ email, id, handleDeleteUser }) {
+function UserAddedItem({ email, handleDeleteUser }) {
   return (
     <li className="flex flex-row border-2 border-primary border-solid p-2 rounded-md items-center">
       <span>{email.split('@')[0]}</span>
       <span
         className="ml-2 cursor-pointer"
-        onClick={() => handleDeleteUser(id)}
+        onClick={() => handleDeleteUser(email)}
         role="button"
       >
         <img
@@ -23,7 +23,6 @@ function UserAddedItem({ email, id, handleDeleteUser }) {
 
 UserAddedItem.propTypes = {
   email: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
   handleDeleteUser: PropTypes.func.isRequired,
 };
 

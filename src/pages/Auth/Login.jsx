@@ -51,7 +51,8 @@ function Login() {
         }, 2000);
       }
     } catch (error) {
-      toast.error(error.response.data.error, toastStyle);
+      const msg = error.response.data.message || error.response.data.error;
+      toast.error(msg, toastStyle);
     }
   };
 
