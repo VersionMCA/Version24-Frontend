@@ -19,6 +19,7 @@ function Register() {
   const [fullName, setfullName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [college, setCollege] = useState('');
+  const [rollNo, setRollNo] = useState('');
 
   const navigate = useNavigate();
 
@@ -75,15 +76,22 @@ function Register() {
         toast.error('Passwords do not match', toastStyle);
         return;
       }
-      setFormNo(2);
     }
+
+    if (formNo === 2) {
+      if (!college || !rollNo) {
+        toast.error('Please fill all the fields', toastStyle);
+        return;
+      }
+    }
+    setFormNo(formNo + 1);
   };
 
   return (
     <Layout>
       <FormContainer title="Register" prefixTitle="Version">
         <form
-          className="text-white p-10 md:p-20 flex flex-col form form__auth form__auth--register "
+          className={`text-white p-10 md:p-20 flex flex-col form form__auth form__auth--register ${formNo > 1 ? 'md:mt-6' : ''}`}
           onSubmit={handleSubmit}
         >
           {formNo === 1 && (
@@ -151,6 +159,53 @@ function Register() {
                 label="College"
                 value={college}
               />
+
+              <InputBox
+                type="text"
+                inputId="rollNo"
+                onChange={setRollNo}
+                value={rollNo}
+                label="College Roll No"
+              />
+
+              <div className="flex mt-1 justify-between items-center">
+                <div className="flex">
+                  <Button
+                    type="button"
+                    onClick={() => setFormNo(formNo - 1)}
+                    designType="icon"
+                  >
+                    <img
+                      src="../../../public/res/authPage/next.svg"
+                      alt="next"
+                      className="h-11 mt-2 rotate-180"
+                    />
+                  </Button>
+                </div>
+
+                <div className="flex justify-end">
+                  <Button
+                    type="button"
+                    onClick={handleNext}
+                    designType="icon"
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        handleNext();
+                      }
+                    }}
+                  >
+                    <img
+                      src="../../../public/res/authPage/next.svg"
+                      alt="next"
+                      className="h-11 mt-2"
+                    />
+                  </Button>
+                </div>
+              </div>
+            </>
+          )}
+          {formNo === 3 && (
+            <>
               <InputBox
                 type="text"
                 inputId="fullName"
@@ -170,7 +225,7 @@ function Register() {
                 <div className="flex">
                   <Button
                     type="button"
-                    onClick={() => setFormNo(1)}
+                    onClick={() => setFormNo(2)}
                     designType="icon"
                   >
                     <img

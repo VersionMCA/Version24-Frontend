@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import EventCard from '../../components/EventCard/EventCard';
 import EventThumbnail from '../../components/EventThumbnail/EventThumbnail';
-import Navbar from '../../components/Navbar/Navbar';
-import Footer from '../../components/Footer/Footer';
 import eventList from './EventList';
 import './EventsPage.scss';
 import arrowSvg from '../../assets/carouselArrow.svg';
+import Layout from '../../components/Layout/Layout';
 
 function Events() {
   const [newItemActive, setNewItemActive] = React.useState(0);
@@ -68,55 +67,55 @@ function Events() {
   }
 
   return (
-    <div>
-      <Navbar />
-      <div className="event__slider font-secondary">
-        <div className="allEvents">
-          {eventList.map((event) => {
-            return (
-              <EventCard
-                key={event.id}
-                id={event.id}
-                content={event.content}
-                imgLink={event.imgLink}
-                name={event.name}
-                date={event.date}
-              />
-            );
-          })}
-        </div>
-        <div className="thumbnailContainer">
-          <div
-            className="arrowContainer left"
-            aria-hidden="true"
-            onClick={moveLeft}
-          >
-            <img src={arrowSvg} alt="leftArrow" className="h-12" />
-          </div>
-          <div className="thumbnail">
+    <Layout>
+      <div>
+        <div className="event__slider font-secondary">
+          <div className="allEvents">
             {eventList.map((event) => {
               return (
-                <EventThumbnail
-                  setNewItemActive={setNewItemActive}
+                <EventCard
                   key={event.id}
-                  id={event.id - 1}
+                  id={event.id}
+                  content={event.content}
                   imgLink={event.imgLink}
                   name={event.name}
+                  date={event.date}
                 />
               );
             })}
           </div>
-          <div
-            className="arrowContainer right"
-            aria-hidden="true"
-            onClick={moveRight}
-          >
-            <img src={arrowSvg} alt="rightArrow" className="h-12" />
+          <div className="thumbnailContainer">
+            <div
+              className="arrowContainer left"
+              aria-hidden="true"
+              onClick={moveLeft}
+            >
+              <img src={arrowSvg} alt="leftArrow" className="h-12" />
+            </div>
+            <div className="thumbnail">
+              {eventList.map((event) => {
+                return (
+                  <EventThumbnail
+                    setNewItemActive={setNewItemActive}
+                    key={event.id}
+                    id={event.id - 1}
+                    imgLink={event.imgLink}
+                    name={event.name}
+                  />
+                );
+              })}
+            </div>
+            <div
+              className="arrowContainer right"
+              aria-hidden="true"
+              onClick={moveRight}
+            >
+              <img src={arrowSvg} alt="rightArrow" className="h-12" />
+            </div>
           </div>
         </div>
       </div>
-      <Footer />
-    </div>
+    </Layout>
   );
 }
 

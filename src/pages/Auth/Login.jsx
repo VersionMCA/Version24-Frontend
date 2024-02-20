@@ -60,7 +60,7 @@ function Login() {
     <Layout>
       <FormContainer title="Login" prefixTitle="Version">
         <form
-          className="text-white p-10 md:p-20 flex flex-col form form__auth form__auth--login md:mt-6"
+          className="text-white p-10 md:p-20 flex flex-col form form__auth form__auth--login md:mt-3"
           onSubmit={handleSubmit}
         >
           <InputBox
