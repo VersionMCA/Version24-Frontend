@@ -6,7 +6,7 @@ function AboutUs() {
   const [text, setText] = useState('Version');
   return (
     <Layout>
-      <section className="bg-black min-h-lvh w-full text-white flex flex-col justify-center items-center xl:py-32 lg:px-36 min-[1600px]:px-80 min-[1900px]:px-96 px-10 pt-16 overflow-hidden">
+      <section className="about-us bg-black min-h-lvh w-full text-white flex flex-col justify-center items-center xl:py-32 lg:px-36 min-[1600px]:px-80 min-[1900px]:px-96 px-10 pt-16 overflow-hidden">
         <h2 className="font-primary text-2xl xl:mb-0 mb-5 uppercase">
           ABOUT US
         </h2>
@@ -32,7 +32,7 @@ function AboutUs() {
               {' '}
               <p className="xl:leading-6">
                 Embarking on its 31st edition, Version 2024, the{' '}
-                <span className="text-secondary">
+                <span className="text-primary font-semibold">
                   annual All India MCA meet
                 </span>{' '}
                 hosted by the students of NIT Trichy, stands as the pinnacle
@@ -44,17 +44,23 @@ function AboutUs() {
                 Beyond a mere contest, Version is an immersive experience
                 featuring coding challenges, hackathons, workshops, and
                 interactions with industry experts. As the star event for
-                <span className="text-secondary"> MCA at NIT Trichy</span>, it
-                continues to be eagerly anticipated, drawing participants from
-                across India.
+                <span className="text-primary font-semibold">
+                  {' '}
+                  MCA at NIT Trichy
+                </span>
+                , it continues to be eagerly anticipated, drawing participants
+                from across India.
               </p>{' '}
               <p className="xl:leading-6">
                 {' '}
                 Version 2024 promises to uphold its legacy of excellence,
                 offering participants a{' '}
-                <span className="text-secondary"> unique opportunity</span> to
-                push boundaries, forge connections, and leave an indelible mark
-                on the landscape of MCA events. Get ready to celebrate
+                <span className="text-primary font-semibold">
+                  {' '}
+                  unique opportunity
+                </span>{' '}
+                to push boundaries, forge connections, and leave an indelible
+                mark on the landscape of MCA events. Get ready to celebrate
                 innovation, talent, and camaraderie at the grand stage of
                 Version 2024.
               </p>
@@ -65,7 +71,7 @@ function AboutUs() {
               {' '}
               <p className="xl:leading-6">
                 Version 2024 is set to unveil its groundbreaking theme,
-                <span className="text-secondary">
+                <span className="text-primary font-semibold">
                   {' '}
                   &quot;Gensynth: Synthesized Brilliance of Gen AI.&quot;
                 </span>{' '}
@@ -77,7 +83,7 @@ function AboutUs() {
                 It signifies the harmonious marriage of artificial
                 intelligence&apos;s ingenious capabilities with the concept of
                 synthesis, hinting at the{' '}
-                <span className="text-secondary">
+                <span className="text-primary font-semibold">
                   generation of innovative and intelligent outputs
                 </span>
                 . This theme underscores the event&apos;s dedication to
@@ -91,7 +97,7 @@ function AboutUs() {
               <p className="xl:leading-6">
                 {' '}
                 Get ready for a{' '}
-                <span className="text-secondary">
+                <span className="text-primary font-semibold">
                   transformative experience
                 </span>{' '}
                 at Gensynth as we delve into the boundless possibilities of
