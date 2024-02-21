@@ -26,6 +26,10 @@
     overflow: auto;
     justify-content: flex-start;
     align-items: center;
+
+    @include respond(phone) {
+      gap: 5px;
+    }
   }
   .arrowContainer {
     cursor: pointer;

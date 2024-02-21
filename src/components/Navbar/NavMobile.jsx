@@ -6,7 +6,7 @@ import { Squash as Hamburger } from 'hamburger-react';
 import routes from './NavRoutes';
 import { useUser } from '../../contexts/UserContext';
 
-export default function NavMobile() {
+export default function NavMobile({ navBar }) {
   const [isOpen, setOpen] = useState(false);
   const ref = useRef(null);
 
@@ -14,9 +14,15 @@ export default function NavMobile() {
 
   useClickAway(ref, () => setOpen(false));
 
+  const toggleHamburger = () => {
+    setOpen(!isOpen);
+    if (!isOpen) navBar.current.classList.add('bg-neutral-950');
+    else navBar.current.classList.remove('bg-neutral-950');
+  };
+
   return (
     <div ref={ref} className="lg:hidden text-white">
-      <Hamburger toggled={isOpen} size={20} toggle={setOpen} />
+      <Hamburger toggled={isOpen} size={20} toggle={toggleHamburger} />
       <AnimatePresence>
         {isOpen && (
           <motion.div

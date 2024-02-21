@@ -63,7 +63,7 @@ function EventCard({ name, teamSize, date, content, imgLink }) {
           {newContent}
         </div>
         <RegisterTeam toggle={toggle} visible={visible} eventName={name} />
-        <div className="btn-container font-primary font-light mt-10">
+        <div className="btn-container font-primary font-light mt-4 md:mt-8">
           {registeredEventList?.includes(name) ? (
             <span className="text-primary font-semibold">Registered</span>
           ) : (

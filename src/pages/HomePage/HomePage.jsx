@@ -38,7 +38,7 @@ export default function HomePage() {
             animate={{ opacity: 1, translateX: 0, translateY: 0 }}
             transition={{ duration: 1.2 }}
           >
-            <div className="flex items-center justify-center h-lvh flex-col">
+            <div className="flex items-center justify-center h-lvh flex-col sm:mt-0 mt-[-10px]">
               <img
                 src="/res/home_hero_img.png"
                 alt="Hero Element"

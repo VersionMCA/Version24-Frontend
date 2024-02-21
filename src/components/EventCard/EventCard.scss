@@ -1,4 +1,5 @@
-$clr: #0ff0fc;
+@import '../../styles/mixin.scss';
+
 .eventCard__item {
   color: #fff;
   position: absolute;
@@ -32,12 +33,22 @@ $clr: #0ff0fc;
     left: 10%;
     top: 15%;
     width: 70rem;
-    text-align: justify;
     max-width: 85%;
     z-index: 1;
+
+    @include respond(phone) {
+      left: 5%;
+      top: 10%;
+      min-width: 90%;
+    }
+
     &__date {
       text-transform: uppercase;
       letter-spacing: 10px;
+
+      @include respond(phone) {
+        letter-spacing: 5px;
+      }
     }
     h2 {
       font-size: 5rem;
@@ -106,6 +117,6 @@ $clr: #0ff0fc;
 
 @media screen and (max-width: 540px) {
   .eventCard__item .content h2 {
-    font-size: 40px;
+    font-size: 30px;
   }
 }

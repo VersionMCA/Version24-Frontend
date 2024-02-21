@@ -15,7 +15,7 @@ export default function TeamPage() {
 
   setTimeout(() => {
     setDisplayTeam(true);
-  }, 2000);
+  }, 1000);
 
   return displayTeam ? (
     <motion.div
