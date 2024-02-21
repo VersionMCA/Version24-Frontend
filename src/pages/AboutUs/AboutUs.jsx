@@ -19,7 +19,7 @@ function AboutUs() {
       transition={{ duration: 0.5 }}
     >
       <Layout>
-        <section className="about-us bg-black min-h-lvh w-full text-white flex flex-col justify-center items-center xl:py-32 lg:px-36 min-[1600px]:px-80 min-[1900px]:px-96 px-4 pt-16 overflow-hidden">
+        <section className="about-us bg-black min-h-lvh w-full text-white flex flex-col justify-center items-center xl:pt-20 lg:px-36 min-[1600px]:px-80 min-[1900px]:px-96 px-4 pt-16 overflow-hidden">
           <h2 className="font-primary text-2xl mb-6 mt-8 uppercase font-bold tracking-[5px]">
             ABOUT US
           </h2>

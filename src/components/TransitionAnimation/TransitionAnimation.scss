@@ -1,4 +1,4 @@
-#transition-animation-container {
+.transition-animation-container {
   font-size: calc(16px + (24 - 16) * (100vw - 320px) / (1280 - 320));
   display: flex;
 }
@@ -7,7 +7,7 @@
   display: flex;
 }
 
-#transition-animation-container {
+.transition-animation-container {
   height: 100vh;
   line-height: 1.5;
   perspective: 40em;

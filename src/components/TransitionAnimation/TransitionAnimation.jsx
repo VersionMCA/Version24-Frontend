@@ -6,10 +6,7 @@ import Footer from '../Footer/Footer';
 
 export default function TransitionAnimation() {
   return (
-    <div
-      id="transition-animation-container"
-      className="font-primary text-secondary bg-black"
-    >
+    <div className="font-primary text-secondary bg-black transition-animation-container">
       <Navbar />
       <div className="preloader" translate="no">
         <div className="preloader__ring">
