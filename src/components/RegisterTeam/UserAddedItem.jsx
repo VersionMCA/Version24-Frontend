@@ -12,7 +12,7 @@ function UserAddedItem({ email, handleDeleteUser }) {
         role="button"
       >
         <img
-          src="../../../public/res/close.svg"
+          src="/res/close.svg"
           alt="close"
           className="h-3 hover:scale-110 transition-all"
         />

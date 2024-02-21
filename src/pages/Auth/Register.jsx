@@ -158,7 +158,7 @@ function Register() {
                       }}
                     >
                       <img
-                        src="../../../public/res/authPage/next.svg"
+                        src="/res/authPage/next.svg"
                         alt="next"
                         className="h-11 mt-2"
                       />
@@ -193,7 +193,7 @@ function Register() {
                       designType="icon"
                     >
                       <img
-                        src="../../../public/res/authPage/next.svg"
+                        src="/res/authPage/next.svg"
                         alt="next"
                         className="h-11 mt-2 rotate-180"
                       />
@@ -212,7 +212,7 @@ function Register() {
                       }}
                     >
                       <img
-                        src="../../../public/res/authPage/next.svg"
+                        src="/res/authPage/next.svg"
                         alt="next"
                         className="h-11 mt-2"
                       />
@@ -246,7 +246,7 @@ function Register() {
                       designType="icon"
                     >
                       <img
-                        src="../../../public/res/authPage/next.svg"
+                        src="/res/authPage/next.svg"
                         alt="next"
                         className="h-11 mt-2 rotate-180"
                       />

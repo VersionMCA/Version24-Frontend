@@ -6,7 +6,7 @@ import './Navbar.module.scss';
 import NavMobile from './NavMobile';
 import NavDesktop from './NavDesktop';
 
-import logo from '../../../public/res/logo.png';
+import logo from '/res/logo.png';
 
 export default function Navbar({ bgWhite, noBgBlack }) {
   return (

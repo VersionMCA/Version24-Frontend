@@ -16,8 +16,8 @@ function FormContainer({ children, title, prefixTitle, isModal }) {
 
   return (
     <section className="section section__auth min-h-lvh flex items-center justify-center md:justify-end pt-16 text-sm">
-      <div className=" flex flex-col items-center justify-center mt-5 md:mr-32">
-        <h1 className="text-white text-2xl lg:text-3xl font-bold tracking-[5px] md:tracking-[10px] mb-2 uppercase">
+      <div className=" flex flex-col items-center justify-center mt-[-8rem] sm:mt-5 md:mr-32">
+        <h1 className="text-white text-2xl lg:text-3xl font-bold tracking-[5px] md:tracking-[10px] mb-8 md:mb-2 uppercase">
           {prefixTitle} <span className="text-primary">{title}</span>
         </h1>
         {children}

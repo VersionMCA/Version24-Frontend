@@ -1,4 +1,11 @@
 @mixin respond($breakpoint) {
+  // For 1920px
+  @if $breakpoint == big-lap {
+    @media (min-width: 1600px) {
+      @content;
+    }
+  }
+
   // For 1366px
   @if $breakpoint == mini-lap {
     @media (max-width: 1366px) {
