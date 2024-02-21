@@ -11,6 +11,7 @@ import Register from './pages/Auth/Register';
 import AboutUs from './pages/AboutUs/AboutUs';
 import ResetPassword from './pages/Auth/ResetPassword';
 import { UserProvider } from './contexts/UserContext';
+import NotFound from './pages/NotFound/NotFound';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/forgotPassword" element={<ForgotPassword />} />
           <Route path="/resetPassword" element={<ResetPassword />} />
           <Route path="/about" element={<AboutUs />} />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       </UserProvider>
     </BrowserRouter>

@@ -1,3 +1,5 @@
+@import '../../styles/mixin.scss';
+
 .thumbnail__item {
   cursor: pointer;
   width: 150px;
@@ -14,6 +16,11 @@
     color: #fff;
     position: absolute;
     inset: auto 10px 10px 10px;
+  }
+
+  @include respond(phone) {
+    width: 100px;
+    height: 150px;
   }
 }
 .thumbnail__item.active {
