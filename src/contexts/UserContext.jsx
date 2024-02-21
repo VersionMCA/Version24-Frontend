@@ -1,0 +1,53 @@
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+const UserContext = createContext();
+
+function UserProvider({ children }) {
+  const [user, setUser] = useState(null);
+  // const [loading, setLoading] = useState(true);
+
+  const [userEmail, setUserEmail] = useState(''); // Need for reset password
+
+  const navigate = useNavigate();
+
+  const updateUserInfo = (userInfo) => {
+    localStorage.setItem('userInfo', JSON.stringify(userInfo));
+    setUser(userInfo);
+  };
+
+  const logout = () => {
+    localStorage.removeItem('userInfo');
+    setUser(null);
+    navigate('/login');
+  };
+
+  useEffect(() => {
+    const userInfo = localStorage.getItem('userInfo');
+    if (userInfo) {
+      setUser(JSON.parse(userInfo));
+    } else {
+      navigate();
+    }
+  }, [navigate]);
+  // adding navigate as a dependency to satisfy the eslint rule, otherwise its not required, as usually remains same
+
+  return (
+    <UserContext.Provider
+      // eslint-disable-next-line react/jsx-no-constructed-context-values
+      value={{ user, updateUserInfo, logout, userEmail, setUserEmail }}
+    >
+      {children}
+    </UserContext.Provider>
+  );
+}
+
+const useUser = () => {
+  const context = useContext(UserContext);
+  if (context === undefined) {
+    throw new Error('useUser must be used within a UserProvider');
+  }
+  return context;
+};
+
+export { useUser, UserProvider };

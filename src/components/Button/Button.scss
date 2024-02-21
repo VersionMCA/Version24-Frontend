@@ -1,0 +1,137 @@
+@import '../../styles/variable.scss';
+
+.button {
+  outline: 0;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+
+  &__primary {
+    border: 1.5px solid $color-primary;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 0.5rem 2rem;
+
+    &::after {
+      content: '';
+      border: 1.5px solid $color-primary; // Replace <VALUE> with the desired color value
+      width: 100%;
+      z-index: 1;
+      position: absolute;
+      height: calc(100% + 1.5px);
+      bottom: 4px;
+      left: 4px;
+      transition: 0.2s;
+    }
+
+    &:hover::after {
+      bottom: 0px;
+      left: 0px;
+    }
+  }
+
+  &__secondary {
+    padding: 0.5rem 0.8rem;
+    color: #000;
+    font-weight: 500;
+    background-color: $color-primary !important;
+  }
+}
+
+.button__tertiary {
+  position: relative;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-size: 1rem;
+  padding: 0.6rem 2rem;
+  transition: 0.2s;
+  border: 2px solid #fff;
+  letter-spacing: 0.12rem;
+  margin: 0.05rem;
+}
+
+.button__tertiary:hover {
+  letter-spacing: 0.14rem;
+  padding: 0.61rem 2.01rem;
+  margin: 0;
+  animation: box 3s infinite;
+}
+
+// .button__tertiary::before {
+//   content: '';
+//   position: absolute;
+//   inset: 2px;
+// }
+
+.button__tertiary span {
+  position: relative;
+  z-index: 1;
+}
+.button__tertiary i {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.button__tertiary i::before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 4px;
+  left: 80%;
+  top: -4px;
+  border: 2px solid #fff;
+  background: #272822;
+  transition: 0.2s;
+}
+
+.button__tertiary:hover i::before {
+  width: 15px;
+  left: 20%;
+  animation: move 3s infinite;
+}
+
+.button__tertiary i::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 4px;
+  left: 20%;
+  bottom: -4px;
+  border: 2px solid #fff;
+  background: #272822;
+  transition: 0.2s;
+}
+
+.button__tertiary:hover i::after {
+  width: 15px;
+  left: 80%;
+  animation: move 3s infinite;
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes box {
+  0% {
+    box-shadow: #27272c;
+  }
+  50% {
+    box-shadow: 0 0 25px #fff;
+  }
+  100% {
+    box-shadow: #27272c;
+  }
+}

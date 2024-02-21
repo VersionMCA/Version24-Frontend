@@ -1,8 +1,17 @@
-# React + Vite
+### Development Guidelines
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- **Branching Strategy**:
 
-Currently, two official plugins are available:
+  - **Dev Branch**: Use the `dev` branch for ongoing development.
+  - **Main Branch**: The `main` branch is reserved for production-ready code.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Create Feature Branches**: For each feature or bug fix, create a new branch using the following command:
+
+  ```bash
+  git checkout -b feature/your-feature
+
+  ```
+
+- **Avoid Hardcoded Values**: Ensure consistency and maintainability by avoiding hardcoded values for styles. Instead, use variables.
+
+- **Linting with Husky**: We are using Husky to enforce linting rules for code consistency. Before committing your changes, ensure that your code passes all linting checks set up by Husky.

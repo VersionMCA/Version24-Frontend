@@ -1,0 +1,56 @@
+@import '../../styles/mixin.scss';
+
+.event__slider {
+  height: 100vh;
+  //   margin-top: -90px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  .thumbnailContainer {
+    position: absolute;
+    bottom: 35px;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include respond(tab) {
+      width: 95%;
+    }
+  }
+  .thumbnail {
+    display: flex;
+    gap: 10px;
+    width: 630px;
+    height: 250px;
+    box-sizing: border-box;
+    overflow: auto;
+    justify-content: start;
+    align-items: center;
+  }
+  .arrowContainer {
+    cursor: pointer;
+    width: 100px;
+    @include respond(tab) {
+      display: none;
+    }
+  }
+  .arrowContainer.left {
+    width: 100px;
+    img {
+      rotate: 180deg;
+      max-width: none;
+      width: 100px;
+    }
+  }
+  .arrowContainer.right {
+    width: 100px;
+    img {
+      max-width: none;
+      width: 100px;
+    }
+  }
+
+  .thumbnail::-webkit-scrollbar {
+    width: 0;
+  }
+}

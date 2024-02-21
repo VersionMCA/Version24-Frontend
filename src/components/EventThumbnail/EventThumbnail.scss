@@ -1,0 +1,26 @@
+.thumbnail__item {
+  cursor: pointer;
+  width: 150px;
+  height: 220px;
+  filter: brightness(0.5);
+  transition: 0.5s;
+  flex-shrink: 0;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .content {
+    color: #fff;
+    position: absolute;
+    inset: auto 10px 10px 10px;
+  }
+}
+.thumbnail__item.active {
+  filter: brightness(1.25);
+}
+@media screen and (max-width: 678px) {
+  .thumbnail__item .content h2 {
+    font-size: 60px;
+  }
+}

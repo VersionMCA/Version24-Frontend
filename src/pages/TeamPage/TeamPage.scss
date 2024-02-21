@@ -1,0 +1,15 @@
+.section {
+  &__teams {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.75)
+      ),
+      url('.../../../../../public/res/bg_teams.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+}
