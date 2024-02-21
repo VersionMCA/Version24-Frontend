@@ -40,7 +40,7 @@ export default function HomePage() {
           >
             <div className="flex items-center justify-center h-lvh flex-col">
               <img
-                src="../../../public/res/home_hero_img.png"
+                src="/res/home_hero_img.png"
                 alt="Hero Element"
                 className="md:h-72 h-40"
               />

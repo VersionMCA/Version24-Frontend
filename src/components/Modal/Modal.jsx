@@ -24,7 +24,7 @@ function Modal({ visible, toggle, children, restrictWidth }) {
         <div className="close absolute top-4 right-4 cursor-pointer">
           <Button designType="icon" onClick={toggle}>
             <img
-              src="../../../public/res/close.svg"
+              src="/res/close.svg"
               alt="close"
               className="h-4 hover:scale-125 transition-all"
             />

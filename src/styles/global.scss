@@ -18,6 +18,10 @@ html {
   @include respond(miniPhone) {
     font-size: 14px;
   }
+
+  @include respond(big-lap) {
+    font-size: 14px;
+  }
 }
 
 body {

@@ -5,7 +5,7 @@ import EventCard from '../../components/EventCard/EventCard';
 import EventThumbnail from '../../components/EventThumbnail/EventThumbnail';
 import eventList from './EventList';
 import './EventsPage.scss';
-import arrowSvg from '../../assets/carouselArrow.svg';
+import arrowSvg from '/res/carouselArrow.svg';
 import TransitionAnimation from '../../components/TransitionAnimation/TransitionAnimation';
 import Layout from '../../components/Layout/Layout';
 
@@ -107,7 +107,7 @@ function Events() {
               >
                 <img src={arrowSvg} alt="leftArrow" className="h-12" />
               </div>
-              <div className="thumbnail">
+              <div className="thumbnail font-primary">
                 {eventList.map((event) => {
                   return (
                     <EventThumbnail

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logoInsta from '../../../public/res/social/logo-insta.png';
-import logoLinkedIn from '../../../public/res/social/logo-linkedin.png';
-import logoYouTube from '../../../public/res/social/logo-youtube.png';
+import logoInsta from '/res/social/logo-insta.png';
+import logoLinkedIn from '/res/social/logo-linkedin.png';
+import logoYouTube from '/res/social/logo-youtube.png';
 
 export default function RightSideNav() {
   return (

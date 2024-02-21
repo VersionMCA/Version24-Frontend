@@ -4,19 +4,19 @@
 .about-us {
   background-repeat: no-repeat;
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url('.../../../../../res/aboutUs/about-us-background.jpg');
+    url('/res/aboutUs/about-us-background.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   backdrop-filter: blur(6px);
 
   &__container {
-    background-image: url('../../../res/aboutUs/AboutUs.svg');
+    background-image: url('/res/aboutUs/AboutUs.svg');
     background-position: top;
     background-size: contain;
     background-attachment: scroll;
     @include respond(phone) {
-      background-image: url('../../../res/aboutUs/AboutUsMobile.svg');
+      background-image: url('/res/aboutUs/AboutUsMobile.svg');
     }
   }
 }

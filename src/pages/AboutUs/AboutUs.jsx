@@ -19,8 +19,8 @@ function AboutUs() {
       transition={{ duration: 0.5 }}
     >
       <Layout>
-        <section className="about-us bg-black min-h-lvh w-full text-white flex flex-col justify-center items-center xl:py-32 lg:px-36 min-[1600px]:px-80 min-[1900px]:px-96 px-10 pt-16 overflow-hidden">
-          <h2 className="font-primary text-2xl mb-5 uppercase font-bold tracking-[5px]">
+        <section className="about-us bg-black min-h-lvh w-full text-white flex flex-col justify-center items-center xl:pt-20 lg:px-36 min-[1600px]:px-80 min-[1900px]:px-96 px-4 pt-16 overflow-hidden">
+          <h2 className="font-primary text-2xl mb-6 mt-8 uppercase font-bold tracking-[5px]">
             ABOUT US
           </h2>
           <div className="flex flex-col justify-center h-full w-full items-center mx-10 about-us about-us__container lg:px-10 pb-60 max-[600px]:px-28 max-[550px]:px-24 max-[480px]:px-6 max-[340px]:px-4">
@@ -41,7 +41,7 @@ function AboutUs() {
               </h3>
             </div>
             {text === 'Version' && (
-              <div className=" font-secondary font-extralight text-justify xl:text-base text-[0.75rem] min-[601px]:max-[767px]:text-[0.5rem]  min-[601px]:px-10 flex flex-col justify-between gap-5 max-[639px]:gap-2 min-[2400px]:mx-64 min-[2100px]:mx-40 max-[600px]:mx-6 max-[320px]:mx-2 max-[320px]:text-[0.4rem] mt-2 sm:mt-0 min-[601px]:mt-0 sm:px-10">
+              <div className=" font-secondary font-extralight text-justify xl:text-base text-[0.75rem] min-[340px]:text-[0.75rem]  min-[601px]:max-[767px]:text-[0.5rem]  min-[601px]:px-10 flex flex-col justify-between gap-5 max-[639px]:gap-2 min-[2400px]:mx-64 min-[2100px]:mx-40 max-[600px]:mx-6 max-[320px]:mx-2 max-[320px]:text-[0.4rem] mt-2 sm:mt-0 min-[601px]:mt-0 sm:px-10">
                 {' '}
                 <p className="xl:leading-6">
                   Embarking on its 31st edition, Version 2024, the{' '}
