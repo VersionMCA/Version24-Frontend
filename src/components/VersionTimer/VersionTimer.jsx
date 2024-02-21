@@ -51,8 +51,8 @@ export default function LeftSideNav() {
   }
 
   return (
-    <div className="text-white text-center font-medium text-2xl md:text-4xl fixed bottom-20 md:left-10 left-20 text-opacity-30">
-      <p>
+    <div className="text-white text-center font-medium text-2xl md:text-4xl fixed bottom-12 md:left-10 left-24 text-opacity-30 flex">
+      <p className="-mt-20 md:mt-0">
         {days} : {hours} : {minutes} : {seconds}
       </p>
     </div>
