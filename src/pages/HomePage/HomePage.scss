@@ -1,7 +1,11 @@
 @import '../../styles/mixin.scss';
 
 .homeContainer {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)),
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.99),
+      rgba(0, 0, 0, 0.2)
+    ),
     url('/res/bg_home.jpg');
 
   @include respond(phone) {
