@@ -12,7 +12,7 @@ import { useUser } from '../../contexts/UserContext';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-export default function RegisterTeam({ eventName, toggle, visible }) {
+export default function RegisterTeam({ eventName, toggle, visible, teamSize }) {
   const { user, updateUserInfo } = useUser();
 
   const [teamName, setTeamName] = useState('');
@@ -21,9 +21,23 @@ export default function RegisterTeam({ eventName, toggle, visible }) {
 
   if (user && !emailList.includes(user.email)) setEmailList([user.email]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!teamName || emailList.length === 0) return;
+  const handleSubmit = async () => {
+    if (!teamName) {
+      toast.error('Please fill the Team Name', toastStyle);
+      return;
+    }
+
+    if (!teamSize.includes(emailList.length)) {
+      toast.error(
+        `${
+          teamSize.length === 1
+            ? `This event needs exactly ${teamSize[0]} members.`
+            : `This event needs ${teamSize[0]} to ${teamSize[teamSize.length - 1]} members.`
+        }`,
+        toastStyle
+      );
+      return;
+    }
 
     try {
       const res = await axios.post(
@@ -54,6 +68,23 @@ export default function RegisterTeam({ eventName, toggle, visible }) {
   };
 
   const handleAddUser = () => {
+    if (!email || !email.includes('@') || !email.includes('.')) {
+      toast.error('Please enter a valid email', toastStyle);
+      return;
+    }
+    if (emailList.includes(email)) {
+      toast.error('User already added', toastStyle);
+      return;
+    }
+
+    if (emailList.length >= teamSize[teamSize.length - 1]) {
+      toast.error(
+        `This Event can have atmost ${teamSize[teamSize.length - 1]} members.`,
+        toastStyle
+      );
+      return;
+    }
+
     setEmailList(() => [...emailList, email]);
     setEmail('');
   };
@@ -69,7 +100,7 @@ export default function RegisterTeam({ eventName, toggle, visible }) {
   return (
     <Modal visible={visible} toggle={toggle}>
       <div className="modal__content flex justify-center flex-col p-10">
-        <FormContainer title="Registeration" prefixTitle="Team" isModal>
+        <FormContainer title="Registration" prefixTitle="Team" isModal>
           <form
             className="text-white  flex flex-col form form__regTeam mt-6 md:mt-8"
             onSubmit={(e) => e.preventDefault()}
@@ -88,7 +119,7 @@ export default function RegisterTeam({ eventName, toggle, visible }) {
               </label>
               <div className="flex w-80">
                 <input
-                  type="email"
+                  type="text"
                   id="userEmail"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -104,7 +135,7 @@ export default function RegisterTeam({ eventName, toggle, visible }) {
               </div>
             </div>
 
-            <ul className="flex flex-row mb-7 w-80 text-[10px] flex-wrap gap-2">
+            <ul className="flex flex-row mb-7 w-80 text-[.75rem] flex-wrap gap-2">
               {emailList.map((emailItem, index) => {
                 return (
                   <UserAddedItem

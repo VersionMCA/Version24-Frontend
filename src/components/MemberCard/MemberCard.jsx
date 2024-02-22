@@ -54,7 +54,7 @@ export default function MemberCard({ teamMember, teamId }) {
         <img
           src={`/member/${teamMember.image}`}
           alt="person"
-          className="grayscale h-72 w-[230px] object-cover p-6 group-hover:opacity-30 transition-opacity"
+          className="grayscale h-72 w-60 object-cover p-6 group-hover:opacity-30 transition-opacity"
         />
       </div>
       <h4 className="text-primary text-sm mt-[-40px]">{teamMember.name}</h4>

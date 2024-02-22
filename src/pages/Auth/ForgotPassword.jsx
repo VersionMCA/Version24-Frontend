@@ -22,8 +22,8 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email) {
-      toast.error('Please fill the email', toastStyle);
+    if (!email && email.includes('@') && email.includes('.')) {
+      toast.error('Please enter a valid email', toastStyle);
     }
 
     try {
@@ -62,7 +62,7 @@ export default function Login() {
             onSubmit={handleSubmit}
           >
             <InputBox
-              type="email"
+              type="text"
               inputId="userEmail"
               onChange={setEmail}
               label="Email"

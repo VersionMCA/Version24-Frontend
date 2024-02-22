@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React from 'react';
 import axios from 'axios';
 import './EventCard.scss';
@@ -7,6 +8,7 @@ import RegisterTeam from '../RegisterTeam/RegisterTeam';
 import useModal from '../../hooks/useModal';
 import { useUser } from '../../contexts/UserContext';
 import toastStyle from '../../utilities/toastStyle';
+import formatDate from '../../utilities/formatDate';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
@@ -38,11 +40,11 @@ function EventCard({ name, teamSize, date, content, imgLink }) {
 
   const isItTeamEvent = () => {
     if (!user) {
-      toast.error('Please login to register', toastStyle);
+      toast.error('Please login to register for the event', toastStyle);
       return;
     }
 
-    if (teamSize > 1) {
+    if (teamSize) {
       toggle();
       return;
     }
@@ -52,19 +54,31 @@ function EventCard({ name, teamSize, date, content, imgLink }) {
 
   const registeredEventList = user?.event?.map((event) => event.eventName);
 
+  const todaysDate = new Date();
+  const eventDate = new Date(date);
+
   const newContent = content.split('\n').map((str, i) => <p key={i}>{str}</p>);
   return (
     <div className="eventCard__item">
       <img src={imgLink} alt={name} />
       <div className="content">
-        <p className="font-primary content__date">{date}</p>
+        <p className="font-primary content__date">{formatDate(date)}</p>
         <h2 className="font-primary content__name">{name}</h2>
         <div className="[&>*]:font-extralight [&>*]:font-xs [&>*]:tracking-normal content__info">
           {newContent}
         </div>
-        <RegisterTeam toggle={toggle} visible={visible} eventName={name} />
+        <RegisterTeam
+          toggle={toggle}
+          visible={visible}
+          eventName={name}
+          teamSize={teamSize}
+        />
         <div className="btn-container font-primary font-light mt-4 md:mt-8">
-          {registeredEventList?.includes(name) ? (
+          {eventDate < todaysDate ? (
+            <span className="text-primary font-semibold">
+              This Event has finished.
+            </span>
+          ) : registeredEventList?.includes(name) ? (
             <span className="text-primary font-semibold">Registered</span>
           ) : (
             <Button

@@ -44,10 +44,10 @@
 
     &__date {
       text-transform: uppercase;
-      letter-spacing: 10px;
+      letter-spacing: 0.7rem;
 
       @include respond(phone) {
-        letter-spacing: 5px;
+        letter-spacing: 0.35rem;
       }
     }
     h2 {
@@ -111,12 +111,12 @@
 
 @media screen and (max-width: 670px) {
   .eventCard__item .content h2 {
-    font-size: 60px;
+    font-size: 4rem;
   }
 }
 
 @media screen and (max-width: 540px) {
   .eventCard__item .content h2 {
-    font-size: 30px;
+    font-size: 2rem;
   }
 }

@@ -3,13 +3,13 @@
 .homeContainer {
   background-image: linear-gradient(
       to right,
-      rgba(0, 0, 0, 0.99),
-      rgba(0, 0, 0, 0.2)
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.8)
     ),
-    url('/res/bg_home.jpg');
+    url('/res/bg_home.jpeg');
 
   @include respond(phone) {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)),
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.75)),
       url('/res/bg_home_mobile.jpg');
   }
 

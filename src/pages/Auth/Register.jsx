@@ -37,6 +37,11 @@ function Register() {
       return;
     }
 
+    if (!email.includes('@') || !email.includes('.')) {
+      toast.error('Please enter a valid email', toastStyle);
+      return;
+    }
+
     const data = {
       email,
       password,
@@ -114,7 +119,7 @@ function Register() {
             {formNo === 1 && (
               <>
                 <InputBox
-                  type="email"
+                  type="text"
                   inputId="userEmail"
                   onChange={setEmail}
                   label="Email"

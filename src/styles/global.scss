@@ -20,7 +20,11 @@ html {
   }
 
   @include respond(big-lap) {
-    font-size: 14px;
+    font-size: 17.5px;
+  }
+
+  @include respond(desktop) {
+    font-size: 19.5px;
   }
 }
 

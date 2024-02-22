@@ -33,7 +33,7 @@
   }
   .arrowContainer {
     cursor: pointer;
-    width: 100px;
+    width: 6rem;
     @include respond(tab) {
       display: none;
     }

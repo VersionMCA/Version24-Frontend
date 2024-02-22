@@ -31,7 +31,7 @@ export default function TeamPage() {
             animate={{ opacity: 1, translateX: 0, translateY: 0 }}
             transition={{ duration: 0.2 }}
           >
-            <h1 className="text-center text-white text-3xl mb-10 tracking-[5px] font-primary font-bold">
+            <h1 className="text-center text-white text-3xl mb-10 tracking-[.3rem] font-primary font-bold">
               MEET THE <span className="text-primary">TEAM</span>
             </h1>
           </motion.div>
