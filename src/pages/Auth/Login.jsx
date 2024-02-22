@@ -31,6 +31,11 @@ function Login() {
       return;
     }
 
+    if (!email.includes('@') || !email.includes('.')) {
+      toast.error('Please enter a valid email', toastStyle);
+      return;
+    }
+
     const data = {
       email,
       password,
@@ -73,7 +78,7 @@ function Login() {
             onSubmit={handleSubmit}
           >
             <InputBox
-              type="email"
+              type="text"
               inputId="userEmail"
               onChange={setEmail}
               label="Email"

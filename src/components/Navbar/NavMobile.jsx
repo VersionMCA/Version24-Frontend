@@ -10,7 +10,7 @@ export default function NavMobile({ navBar }) {
   const [isOpen, setOpen] = useState(false);
   const ref = useRef(null);
 
-  const { user } = useUser();
+  const { user, logout } = useUser();
 
   useClickAway(ref, () => setOpen(false));
 
@@ -49,7 +49,7 @@ export default function NavMobile({ navBar }) {
                   >
                     {route.title === 'Login' && user ? (
                       <span
-                        onClick={() => setOpen((prev) => !prev)}
+                        onClick={logout}
                         className="flex items-center justify-between w-full p-4 bg-neutral-950 codedText"
                         role="button"
                       >
