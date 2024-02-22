@@ -25,7 +25,7 @@ export default function LeftSideNav() {
   const [currTime, setCurrTime] = useState(new Date());
   const [timerFinished, setTimerFinished] = useState(false);
 
-  const { days, hours, minutes, seconds } = getTimeRemaining(
+  let { days, hours, minutes, seconds } = getTimeRemaining(
     versionDate,
     currTime
   );
@@ -43,16 +43,16 @@ export default function LeftSideNav() {
   }, [timerFinished]);
 
   if (timerFinished) {
-    return (
-      <div className="text-white text-center font-medium text-2xl md:text-4xl fixed bottom-20 md:left-10 left-20 text-opacity-30">
-        <p>00 : 00 : 00 : 00</p>
-      </div>
-    );
+    // eslint-disable-next-line no-multi-assign
+    days = hours = minutes = seconds = '00';
   }
 
   return (
-    <div className="text-white text-center font-medium text-2xl md:text-4xl fixed bottom-12 md:left-10 left-24 text-opacity-30 flex">
-      <p className="-mt-20 md:mt-0">
+    <div className="text-white font-medium text-2xl md:text-4xl fixed bottom-14 md:left-10 text-opacity-30 w-full md:text-left text-center">
+      <p className="flex flex-col md:w-max text-center">
+        <span className="tracking-[.2rem] mb-4 text-base uppercase">
+          Time Remaining For Version&apos;24
+        </span>
         {days} : {hours} : {minutes} : {seconds}
       </p>
     </div>

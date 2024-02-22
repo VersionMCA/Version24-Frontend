@@ -45,10 +45,10 @@ export default function HomePage() {
                 className="md:h-36 h-28"
               />
               <div className="text-white font-primary flex justify-center flex-col items-center mt-8">
-                <h1 className="text-5xl md:text-8xl font-black tracking-[.3rem] md:tracking-[.65rem] text-center uppercase">
+                <h1 className="text-5xl md:text-7xl font-black tracking-[.3rem] md:tracking-[.65rem] text-center uppercase">
                   Gensynth
                 </h1>
-                <p className="mt-4 font-semibold text-xs sm:text-base md:text-2xl tracking-[2.5px] md:tracking-[4px]">
+                <p className="mt-4 font-medium text-xs sm:text-base md:text-2xl tracking-[2px] md:tracking-[4px]">
                   SYNTHESIZED BRILLIANCE OF GEN-AI
                 </p>
               </div>
@@ -57,16 +57,11 @@ export default function HomePage() {
                 <Button
                   designType="tertiary"
                   className="btn-register"
-                  onClick={() => navigate('/about')}
+                  onClick={() => navigate('/events')}
                 >
                   <span>Enter</span>
                   <i />
                 </Button>
-              </div>
-              <div className="flex-row text-white items-center md:hidden flex mt-32">
-                <span className="w-20 h-[1px] bg-white flex" />
-                <p className="mx-2 font-medium">22/03</p>
-                <span className="w-20 h-[1px] bg-white flex" />
               </div>
             </div>
           </motion.div>
