@@ -104,7 +104,7 @@ export default function RegisterTeam({ eventName, toggle, visible }) {
               </div>
             </div>
 
-            <ul className="flex flex-row mb-7 w-80 text-[10px] flex-wrap gap-2">
+            <ul className="flex flex-row mb-7 w-80 text-[.75rem] flex-wrap gap-2">
               {emailList.map((emailItem, index) => {
                 return (
                   <UserAddedItem

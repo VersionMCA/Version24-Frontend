@@ -12,11 +12,16 @@
 
   &__container {
     background-image: url('/res/aboutUs/AboutUs.svg');
+    width: 90%;
     background-position: top;
     background-size: contain;
     background-attachment: scroll;
     @include respond(phone) {
       background-image: url('/res/aboutUs/AboutUsMobile.svg');
     }
+  }
+
+  @include respond(phone) {
+    width: 98%;
   }
 }

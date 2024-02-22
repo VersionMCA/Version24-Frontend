@@ -2,8 +2,8 @@
 
 .thumbnail__item {
   cursor: pointer;
-  width: 150px;
-  height: 220px;
+  width: 9.5rem;
+  height: 14rem;
   filter: brightness(0.5);
   transition: 0.5s;
   flex-shrink: 0;
@@ -19,8 +19,8 @@
   }
 
   @include respond(phone) {
-    width: 100px;
-    height: 150px;
+    width: 6.5rem;
+    height: 10rem;
   }
 }
 .thumbnail__item.active {
@@ -28,6 +28,6 @@
 }
 @media screen and (max-width: 678px) {
   .thumbnail__item .content h2 {
-    font-size: 60px;
+    font-size: 4rem;
   }
 }

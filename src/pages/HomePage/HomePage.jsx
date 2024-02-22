@@ -45,7 +45,7 @@ export default function HomePage() {
                 className="md:h-36 h-28"
               />
               <div className="text-white font-primary flex justify-center flex-col items-center mt-8">
-                <h1 className="text-5xl md:text-8xl font-black tracking-[5px] md:tracking-[10px] text-center uppercase">
+                <h1 className="text-5xl md:text-8xl font-black tracking-[.3rem] md:tracking-[.65rem] text-center uppercase">
                   Gensynth
                 </h1>
                 <p className="mt-4 font-semibold text-xs sm:text-base md:text-2xl tracking-[2.5px] md:tracking-[4px]">
