@@ -2,16 +2,11 @@
 
 .homeContainer {
   background-image: linear-gradient(
-      to right,
+      to bottom,
       rgba(0, 0, 0, 0.7),
       rgba(0, 0, 0, 0.8)
     ),
-    url('/res/bg_home.jpeg');
-
-  @include respond(phone) {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.75)),
-      url('/res/bg_home_mobile.jpg');
-  }
+    url('/res/bg_home2.jpg');
 
   background-size: cover;
   background-position: center;

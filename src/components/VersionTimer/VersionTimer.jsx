@@ -50,8 +50,8 @@ export default function LeftSideNav() {
   return (
     <div className="text-white font-medium text-2xl md:text-4xl fixed bottom-24 md:bottom-14 md:left-10 text-opacity-30 w-full md:text-left text-center">
       <p className="flex flex-col md:w-max text-center">
-        <span className="tracking-[.2rem] mb-4 text-base uppercase">
-          Time Remaining For Version&apos;24
+        <span className="tracking-[.2rem] mb-4 text-base uppercase md:w-[340px]">
+          Time Left For Version&apos;24
         </span>
         {days} : {hours} : {minutes} : {seconds}
       </p>
