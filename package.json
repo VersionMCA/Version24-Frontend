@@ -17,12 +17,14 @@
     "framer-motion": "^11.0.5",
     "gsap": "^3.12.5",
     "hamburger-react": "^2.5.0",
+    "loadable-image": "^3.1.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.0",
     "react-toastify": "^10.0.4",
     "react-use": "^17.5.0",
+    "transitions-kit": "^1.2.2",
     "vite": "^5.1.1"
   },
   "devDependencies": {

@@ -1,6 +1,8 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/prop-types */
 import React from 'react';
+import { AsyncImage } from 'loadable-image';
+import { Grow } from 'transitions-kit';
 
 import './MemberCard.scss'; // const [toggle, visible] = useModal();
 import Modal from '../Modal/Modal';
@@ -44,18 +46,22 @@ export default function MemberCard({ teamMember, teamId }) {
 
           {teamId === '101' && (
             <button
-              className="absolute top-32 z-10 text-xs font-semibold text-primary opacity-0 group-hover:opacity-100 hover:scale-110 transition-all"
+              className="absolute top-32 z-10 text-xs font-semibold text-primary opacity-0 group-hover:opacity-100 hover:scale-110 transition-all w-40"
               onClick={showModal}
             >
               Message from {teamMember.designation}
             </button>
           )}
         </div>
-        <img
-          src={`/member/${teamMember.image}`}
-          alt="person"
-          className="grayscale h-72 w-60 object-cover p-6 group-hover:opacity-30 transition-opacity"
-        />
+
+        <div className="grayscale h-72 w-60 object-cover p-6 group-hover:opacity-30 transition-opacity">
+          <AsyncImage
+            src={`/member/${teamMember.image}`}
+            Transition={Grow}
+            style={{ width: '100%', height: '100%' }}
+            loader={<div style={{ background: '#888' }} />}
+          />
+        </div>
       </div>
       <h4 className="text-primary text-sm mt-[-40px]">{teamMember.name}</h4>
       <h4 className="text-white text-sm pb-4 mt-[-30px]">
@@ -66,7 +72,7 @@ export default function MemberCard({ teamMember, teamId }) {
       </div>
       {teamId === '101' && (
         <Modal visible={visible} toggle={toggle} restrictWidth>
-          <div className="modal__content flex justify-center flex-col p-8 md:p-16">
+          <div className="modal__content flex justify-center flex-col p-16 md:p-16">
             <h2 className="text-xl font-semibold mb-10">
               Message From
               <span className="text-primary">{` ${teamMember.designation}`}</span>
