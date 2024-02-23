@@ -12,7 +12,7 @@ import Layout from '../../components/Layout/Layout';
 function Events() {
   const [displayEvents, setDisplayEvents] = useState(false);
   const [newItemActive, setNewItemActive] = React.useState(0);
-  const [firstThumbnailIndex, setFirstThumbnailIndex] = React.useState(0);
+  // const [firstThumbnailIndex, setFirstThumbnailIndex] = React.useState(0);
 
   useEffect(() => {
     const showSlider = (nextItem) => {
@@ -31,9 +31,9 @@ function Events() {
         `.thumbnail .thumbnail__item.active`
       );
 
-      const virtualIndex =
-        (newItemActive - firstThumbnailIndex + thumbnails.length) %
-        thumbnails.length;
+      // const virtualIndex =
+      //   (newItemActive - firstThumbnailIndex + thumbnails.length) %
+      //   thumbnails.length;
       // remove active class from old active item
       if (itemActiveOld !== null) itemActiveOld.classList.remove(`active`);
       if (thumbnailActiveOld !== null)
@@ -41,34 +41,33 @@ function Events() {
 
       // add active class to new active item
       items[nextItem].classList.add(`active`);
-      thumbnails[virtualIndex].classList.add(`active`);
+      thumbnails[nextItem].classList.add(`active`);
 
-      if (virtualIndex === thumbnails.length - 1) {
-        const thumbnailParent = document.querySelector(`.thumbnail`);
-        thumbnailParent.appendChild(thumbnailParent.firstChild);
+      // if (virtualIndex === thumbnails.length - 1) {
+      //   const thumbnailParent = document.querySelector(`.thumbnail`);
+      //   thumbnailParent.appendChild(thumbnailParent.firstChild);
 
-        setFirstThumbnailIndex((firstThumbnailIndex + 1) % thumbnails.length);
-      } else if (virtualIndex === 0 && itemActiveOld !== null) {
-        const thumbnailParent = document.querySelector(`.thumbnail`);
-        thumbnailParent.prepend(thumbnailParent.lastChild);
+      //   setFirstThumbnailIndex((firstThumbnailIndex + 1) % thumbnails.length);
+      // } else if (virtualIndex === 0 && itemActiveOld !== null) {
+      //   const thumbnailParent = document.querySelector(`.thumbnail`);
+      //   thumbnailParent.prepend(thumbnailParent.lastChild);
 
-        setFirstThumbnailIndex(
-          (firstThumbnailIndex - 1 + thumbnails.length) % thumbnails.length
-        );
-      }
+      //   setFirstThumbnailIndex(
+      //     (firstThumbnailIndex - 1 + thumbnails.length) % thumbnails.length
+      //   );
+      // }
     };
 
     if (displayEvents) showSlider(newItemActive);
-  }, [firstThumbnailIndex, newItemActive, displayEvents]);
+  }, [newItemActive, displayEvents]);
 
   function moveLeft() {
-    setNewItemActive(firstThumbnailIndex);
+    if (newItemActive > 0) setNewItemActive(newItemActive - 1);
   }
 
   function moveRight() {
-    setNewItemActive(
-      (firstThumbnailIndex + eventList.length - 1) % eventList.length
-    );
+    if (newItemActive < eventList.length - 1)
+      setNewItemActive(newItemActive + 1);
   }
 
   setTimeout(() => {
