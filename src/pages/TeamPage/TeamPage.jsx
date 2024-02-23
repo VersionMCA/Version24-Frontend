@@ -49,7 +49,7 @@ export default function TeamPage() {
                     </h3>
                   </motion.div>
                   <div
-                    className={`grid sm:grid-cols-2 m-auto w-fit md:gap-x-48 ${team.id !== '101' ? 'grid-cols-1 lg:grid-cols-3  gap-x-20 gap-y-8 md:gap-y-32 px-24' : 'gap-y-8'}`}
+                    className={`grid sm:grid-cols-2 m-auto w-fit md:gap-x-48 ${team.id !== '101' ? 'grid-cols-1 md:grid-cols-3  gap-x-20 gap-y-8 md:gap-y-32 px-24' : 'gap-y-8'}`}
                   >
                     {team.members.map((teamMember, i) => {
                       return (
