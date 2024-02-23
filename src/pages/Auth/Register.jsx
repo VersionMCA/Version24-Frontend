@@ -180,6 +180,7 @@ function Register() {
                   onChange={setCollege}
                   label="College"
                   value={college}
+                  note="Enter it as college name, location e.g Modern College, Pune"
                 />
 
                 <InputBox
