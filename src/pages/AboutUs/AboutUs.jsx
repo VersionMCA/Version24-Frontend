@@ -24,7 +24,7 @@ function AboutUs() {
             ABOUT US
           </h2>
           <div className="flex flex-col justify-center h-full w-full items-center mx-10 about-us about-us__container lg:px-10 pb-60 max-[600px]:px-28 max-[550px]:px-24 max-[480px]:px-6 max-[340px]:px-4">
-            <div className="flex items-center justify-around xl:text-base [&>*]:font-medium max-[600px]:text-sm h-10 w-9/12 xl:mt-7 lg:mt-2 mt-4 mb-5 md:mb-3 sm:mb-1 min-[601px]:mb-0 xl:mx-40 2xl:mb-8 sm:mt-0 min-[601px]:mt-0 md:mt-2">
+            <div className="flex items-center justify-around xl:text-base [&>*]:font-medium max-[600px]:text-sm h-10 w-9/12 xl:mt-4 lg:mt-2 mt-4 mb-5 xl:mb-1 md:mb-3 sm:mb-1 min-[601px]:mb-0 xl:mx-40 2xl:mb-8 2xl:mt-8 sm:mt-0 min-[601px]:mt-0 md:mt-2">
               <h3
                 aria-hidden
                 onClick={() => setText('Version')}
@@ -41,7 +41,7 @@ function AboutUs() {
               </h3>
             </div>
             {text === 'Version' && (
-              <div className=" font-secondary font-extralight text-justify xl:text-base text-[0.75rem] min-[340px]:text-[0.75rem]  min-[601px]:max-[767px]:text-[0.5rem]  min-[601px]:px-10 flex flex-col justify-between gap-5 max-[639px]:gap-2 min-[2400px]:mx-64 min-[2100px]:mx-40 max-[600px]:mx-3 max-[320px]:mx-2 max-[320px]:text-[0.4rem] mt-2 sm:mt-0 min-[601px]:mt-0 sm:px-10">
+              <div className=" font-secondary font-extralight text-justify xl:text-xs lg:text-[0.65rem] text-[0.75rem] lg:mt-1 min-[2000px]:mt-10 min-[340px]:text-[0.75rem]  min-[601px]:max-[767px]:text-[0.5rem]  min-[601px]:px-10 flex flex-col justify-between gap-3 max-[639px]:gap-2 min-[2400px]:mx-64 min-[2100px]:mx-40 2xl:text-base max-[600px]:mx-3 max-[320px]:mx-2 max-[320px]:text-[0.4rem] mt-2 sm:mt-0 min-[601px]:mt-0 sm:px-10">
                 {' '}
                 <p className="xl:leading-6">
                   Embarking on its 31st edition, Version 2024, the{' '}
@@ -80,7 +80,7 @@ function AboutUs() {
               </div>
             )}
             {text === 'GenSynth' && (
-              <div className=" font-secondary font-extralight text-justify xl:text-base text-[0.75rem] min-[601px]:max-[767px]:text-[0.5rem]  min-[601px]:px-10 flex flex-col justify-between gap-5 max-[639px]:gap-2 min-[2400px]:mx-64 min-[2100px]:mx-40 max-[600px]:mx-3 max-[320px]:mx-2 max-[320px]:text-[0.4rem] mt-2 sm:mt-0 min-[601px]:mt-0 sm:px-10">
+              <div className=" font-secondary font-extralight text-justify xl:text-xs lg:text-[0.65rem] text-[0.75rem] lg:mt-1 min-[2000px]:mt-10 min-[340px]:text-[0.75rem]  min-[601px]:max-[767px]:text-[0.5rem]  min-[601px]:px-10 flex flex-col justify-between gap-3 max-[639px]:gap-2 min-[2400px]:mx-64 min-[2100px]:mx-40 2xl:text-base max-[600px]:mx-3 max-[320px]:mx-2 max-[320px]:text-[0.4rem] mt-2 sm:mt-0 min-[601px]:mt-0 sm:px-10">
                 {' '}
                 <p className="xl:leading-6">
                   Version 2024 is set to unveil its groundbreaking theme,
