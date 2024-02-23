@@ -25,7 +25,7 @@ const eventList = [
   },
   {
     id: 4,
-    name: 'ImmerseCraft',
+    name: 'Immerse Craft',
     date: '2024-03-23',
     imgLink: `/res/events/immerseCraft-min.jpg`,
     content:
@@ -33,7 +33,7 @@ const eventList = [
   },
   {
     id: 5,
-    name: 'DecodeCraft',
+    name: 'Decode Craft',
     date: '2024-03-23',
     imgLink: `/res/events/decodeCraft-min.jpg`,
     content:
@@ -41,7 +41,7 @@ const eventList = [
   },
   {
     id: 6,
-    name: 'GameFiesta',
+    name: 'Game Fiesta',
     date: '2024-03-22',
     imgLink: `/res/events/gamefiesta-min.jpg`,
     content:

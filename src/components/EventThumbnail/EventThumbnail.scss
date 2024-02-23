@@ -16,6 +16,10 @@
     color: #fff;
     position: absolute;
     inset: auto 10px 10px 10px;
+
+    @include respond(phone) {
+      inset: auto 3px 5px 3px;
+    }
   }
 
   @include respond(phone) {

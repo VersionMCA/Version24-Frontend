@@ -24,7 +24,7 @@ function AboutUs() {
             ABOUT US
           </h2>
           <div className="flex flex-col justify-center h-full w-full items-center mx-10 about-us about-us__container lg:px-10 pb-60 max-[600px]:px-28 max-[550px]:px-24 max-[480px]:px-6 max-[340px]:px-4">
-            <div className="flex items-center justify-around xl:text-base [&>*]:font-medium max-[600px]:text-sm h-10 w-9/12 xl:mt-4 lg:mt-2 mt-4 mb-5 xl:mb-1 md:mb-3 sm:mb-1 min-[601px]:mb-0 xl:mx-40 2xl:mb-8 2xl:mt-8 sm:mt-0 min-[601px]:mt-0 md:mt-2">
+            <div className="flex items-center justify-around xl:text-base [&>*]:font-medium max-[600px]:text-sm h-10 w-9/12 xl:mt-4 lg:mt-2 mt-4 mb-5 xl:mb-1 md:mb-3 sm:mb-1 min-[601px]:mb-0 xl:mx-40 2xl:mb-8 2xl:mt-6 sm:mt-0 min-[601px]:mt-0 md:mt-2">
               <h3
                 aria-hidden
                 onClick={() => setText('Version')}
