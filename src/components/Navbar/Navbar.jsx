@@ -15,10 +15,10 @@ export default function Navbar({ bgWhite, noBgBlack }) {
       className={`fixed top-0 left-0 right-0 z-50  ${bgWhite === true ? 'bg-white' : ''} ${!noBgBlack ? 'md:bg-black md:bg-opacity-20' : ''}`}
     >
       <nav
-        className="container flex items-center justify-between py-2 lg:py-5 text-sm md:text-lg uppercase min-w-full"
+        className="container flex items-center justify-between py-2 lg:py-5 text-base md:text-lg uppercase min-w-full"
         ref={navBar}
       >
-        <Link to="/" className="pl-2 md:pl-10">
+        <Link to="/" className="pl-4 md:pl-10">
           <img src={logo} alt="logo" className="h-8 md:h-12" />
         </Link>
         <NavMobile navBar={navBar} />

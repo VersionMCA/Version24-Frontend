@@ -17,9 +17,6 @@ export default {
         primary: ['Orbitron', 'sans-serif'],
         secondary: ['Raleway', 'sans-serif'],
       },
-      backgroundImage: {
-        'login-bg': "url('/authPage/version-login-background.png')",
-      },
       borderColor: {
         primary: '#3498db',
       },
