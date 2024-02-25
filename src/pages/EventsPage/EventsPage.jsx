@@ -62,12 +62,23 @@ function Events() {
   }, [newItemActive, displayEvents]);
 
   function moveLeft() {
-    if (newItemActive > 0) setNewItemActive(newItemActive - 1);
+    const container = document.querySelector('.thumbnail');
+    const scrollAmount = container.clientWidth;
+    container.scrollBy({
+      top: 0,
+      left: -scrollAmount - 15,
+      behavior: 'smooth',
+    });
   }
 
   function moveRight() {
-    if (newItemActive < eventList.length - 1)
-      setNewItemActive(newItemActive + 1);
+    const container = document.querySelector('.thumbnail');
+    const scrollAmount = container.clientWidth;
+    container.scrollBy({
+      top: 0,
+      left: scrollAmount + 15,
+      behavior: 'smooth',
+    });
   }
 
   setTimeout(() => {
