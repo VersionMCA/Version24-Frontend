@@ -1,33 +1,36 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage/HomePage';
-import EventsPage from './pages/EventsPage/EventsPage';
-import Login from './pages/Auth/Login';
-import TeamPage from './pages/TeamPage/TeamPage';
-import ForgotPassword from './pages/Auth/ForgotPassword';
-
 import './styles/global.scss';
-import Register from './pages/Auth/Register';
-import AboutUs from './pages/AboutUs/AboutUs';
-import ResetPassword from './pages/Auth/ResetPassword';
 import { UserProvider } from './contexts/UserContext';
-import NotFound from './pages/NotFound/NotFound';
+import TransitionAnimation from './components/TransitionAnimation/TransitionAnimation';
+
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const EventsPage = lazy(() => import('./pages/EventsPage/EventsPage'));
+const Login = lazy(() => import('./pages/Auth/Login'));
+const TeamPage = lazy(() => import('./pages/TeamPage/TeamPage'));
+const ForgotPassword = lazy(() => import('./pages/Auth/ForgotPassword'));
+const Register = lazy(() => import('./pages/Auth/Register'));
+const AboutUs = lazy(() => import('./pages/AboutUs/AboutUs'));
+const ResetPassword = lazy(() => import('./pages/Auth/ResetPassword'));
+const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
 
 function App() {
   return (
     <BrowserRouter path="/">
       <UserProvider>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/events" element={<EventsPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/teams" element={<TeamPage />} />
-          <Route path="/forgotPassword" element={<ForgotPassword />} />
-          <Route path="/resetPassword" element={<ResetPassword />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/*" element={<NotFound />} />
-        </Routes>
+        <Suspense fallback={<TransitionAnimation />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/events" element={<EventsPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/teams" element={<TeamPage />} />
+            <Route path="/forgotPassword" element={<ForgotPassword />} />
+            <Route path="/resetPassword" element={<ResetPassword />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </UserProvider>
     </BrowserRouter>
   );

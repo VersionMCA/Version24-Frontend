@@ -64,7 +64,7 @@ function EventCard({ name, teamSize, date, content, imgLink }) {
       <div className="content">
         <p className="font-primary content__date">{formatDate(date)}</p>
         <h2 className="font-primary content__name">{name}</h2>
-        <div className="[&>*]:font-extralight [&>*]:font-xs [&>*]:tracking-normal content__info">
+        <div className="[&>*]:font-light [&>*]:font-xs [&>*]:tracking-normal content__info">
           {newContent}
         </div>
         <RegisterTeam

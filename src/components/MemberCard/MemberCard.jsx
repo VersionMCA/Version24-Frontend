@@ -1,10 +1,9 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/prop-types */
 import React from 'react';
-
-import './MemberCard.scss'; // const [toggle, visible] = useModal();
 import Modal from '../Modal/Modal';
 import useModal from '../../hooks/useModal';
+import './MemberCard.scss';
 
 // eslint-disable-next-line react/prop-types
 export default function MemberCard({ teamMember, teamId }) {
@@ -15,15 +14,15 @@ export default function MemberCard({ teamMember, teamId }) {
   };
 
   return (
-    <div className="relative bg-transparent flex flex-col flex-wrap items-center justify-around h-96 m-auto">
+    <div className="relative bg-transparent flex flex-col flex-wrap items-center justify-around h-96 m-auto memberCard">
       <div className="absolute top-0 left-0 h-16 w-16 border-l-[5px] border-t-[5px] border-primary">
         {}
       </div>
       <div className="relative group overflow-hidden transition-opacity duration-300">
-        <div className="flex flex-row justify-center items-center">
+        <div className="flex flex-row justify-center items-center memberCard__img__overlay m-6">
           {teamMember.github && (
             <a
-              className="absolute z-10 top-24 text-primary opacity-0 group-hover:opacity-100 hover:scale-110 transition-all"
+              className="absolute z-10 top-24 text-primary hover:scale-110 transition-all"
               href={teamMember.github}
               target="_blank"
               rel="noopener noreferrer"
@@ -33,7 +32,7 @@ export default function MemberCard({ teamMember, teamId }) {
           )}
           {teamMember.linkedin && (
             <a
-              className="absolute top-32 z-10 text-primary opacity-0 group-hover:opacity-100 hover:scale-110 transition-all"
+              className="absolute top-32 z-10 text-primary hover:scale-110 transition-all"
               href={teamMember.linkedin}
               target="_blank"
               rel="noopener noreferrer"
@@ -44,7 +43,7 @@ export default function MemberCard({ teamMember, teamId }) {
 
           {teamId === '101' && (
             <button
-              className="absolute top-32 z-10 text-xs font-semibold text-primary opacity-0 group-hover:opacity-100 hover:scale-110 transition-all"
+              className="absolute top-32 z-10 text-xs font-semibold text-primary hover:scale-110 transition-all"
               onClick={showModal}
             >
               Message from {teamMember.designation}
@@ -54,7 +53,7 @@ export default function MemberCard({ teamMember, teamId }) {
         <img
           src={`/member/${teamMember.image}`}
           alt="person"
-          className="grayscale h-72 w-60 object-cover p-6 group-hover:opacity-30 transition-opacity"
+          className="h-72 w-60 object-cover p-6 transition-opacity memberCard__img"
         />
       </div>
       <h4 className="text-primary text-sm mt-[-40px]">{teamMember.name}</h4>
