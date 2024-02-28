@@ -57,7 +57,7 @@ export default function TeamPage() {
                           key={teamMember.id}
                           initial={{
                             opacity: 0,
-                            translateX: -50,
+                            translateX: 0,
                             translateY: -50,
                           }}
                           animate={{ opacity: 1, translateX: 0, translateY: 0 }}
