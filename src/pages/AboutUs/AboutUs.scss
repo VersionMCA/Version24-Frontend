@@ -1,7 +1,7 @@
 @import '../../styles/mixin.scss';
 @import '../../styles/variable.scss';
 
-.about-us {
+.aboutUs {
   background-repeat: no-repeat;
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url('/res/aboutUs/about-us-background.jpg');
@@ -17,7 +17,19 @@
     background-size: contain;
     background-attachment: scroll;
     @include respond(phone) {
-      background-image: url('/res/aboutUs/AboutUsMobile.svg');
+      background-image: url('/res/aboutUs/aboutUsbg2.svg');
+    }
+  }
+
+  &__para {
+    @include respond(phone) {
+      overflow-y: scroll;
+      padding: 0 1rem;
+      height: 30rem;
+    }
+
+    @media screen and (max-width: 400px) {
+      height: 25rem;
     }
   }
 

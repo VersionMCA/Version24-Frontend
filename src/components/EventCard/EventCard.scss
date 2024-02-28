@@ -79,14 +79,14 @@
     animation: showContent 0.5s 0.7s ease-in-out 1 forwards;
   }
   .content__name {
-    animation-delay: 1s;
+    animation-delay: 0.5s;
   }
   .content__date {
-    animation-delay: 1.3s;
+    animation-delay: 0.7s;
   }
   .content__info,
   .btn-container {
-    animation-delay: 1.5s;
+    animation-delay: 1s;
   }
   .btn-container {
     display: flex;

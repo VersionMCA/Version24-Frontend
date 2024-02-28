@@ -1,4 +1,5 @@
 @import '../../styles/variable.scss';
+@import '../../styles/mixin.scss';
 
 .button {
   outline: 0;
@@ -42,22 +43,28 @@
 .button__tertiary {
   position: relative;
   color: #fff;
-  text-decoration: none;
   text-transform: uppercase;
-  letter-spacing: 0.1rem;
-  font-size: 1rem;
   padding: 0.6rem 2rem;
   transition: 0.2s;
   border: 2px solid #fff;
   letter-spacing: 0.12rem;
   margin: 0.01rem;
+
+  @include respond(phone) {
+    padding: 0.3rem 1.4rem;
+    font-size: 0.9rem;
+  }
 }
 
-.button__tertiary {
+.button__tertiary:hover {
   letter-spacing: 0.14rem;
   padding: 0.61rem 2.01rem;
   margin: 0;
   animation: box 3s infinite;
+
+  @include respond(phone) {
+    padding: 0.31rem 1.41rem;
+  }
 }
 
 // .button__tertiary::before {
@@ -86,6 +93,10 @@
   border: 2px solid #fff;
   background: #272822;
   transition: 0.2s;
+
+  @include respond(phone) {
+    top: -4.5px;
+  }
 }
 
 .button__tertiary:hover i::before {
