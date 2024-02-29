@@ -17,7 +17,7 @@ export default defineConfig((command, mode) => {
     server: {
       proxy: {
         '/api': {
-          target: 'http://innovac23.tech',
+          target: 'http://localhost:4000',
           changeOrigin: true,
           secure: false,
           ws: true,

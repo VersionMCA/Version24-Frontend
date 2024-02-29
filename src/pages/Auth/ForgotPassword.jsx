@@ -1,23 +1,19 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Layout from '../../components/Layout/Layout';
 import FormContainer from './FormContainer';
 import InputBox from '../../components/InputBox/InputBox';
 import Button from '../../components/Button/Button';
 import toastStyle from '../../utilities/toastStyle';
-import { useUser } from '../../contexts/UserContext';
 import TransitionAnimation from '../../components/TransitionAnimation/TransitionAnimation';
+import './Auth.scss';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 export default function Login() {
   const [email, setEmail] = useState('');
   const [displayForgotPassword, setDisplayForgotPassword] = useState(false);
-  const { setUserEmail } = useUser();
-
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,16 +24,17 @@ export default function Login() {
 
     try {
       const res = await axios.post(
-        `${BASE_URL}/generateotp`,
+        `${BASE_URL}/forgetpassword`,
         {
           email,
         },
         { withCredentials: true }
       );
       if (res.data?.status === 'success') {
-        toast.success(res.data.message, toastStyle);
-        setUserEmail(email);
-        navigate('/resetPassword');
+        toast.success(
+          'Please check your mail for the instructions',
+          toastStyle
+        );
       }
     } catch (error) {
       const msg = error.response.data.message || error.response.data.error;
@@ -71,7 +68,7 @@ export default function Login() {
             />
             <div className="flex justify-end">
               <Button designType="primary" type="submit">
-                Generate OTP
+                Reset
               </Button>
             </div>
           </form>

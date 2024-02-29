@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
@@ -10,7 +10,6 @@ import InputBox from '../../components/InputBox/InputBox';
 import Button from '../../components/Button/Button';
 import toastStyle from '../../utilities/toastStyle';
 import TransitionAnimation from '../../components/TransitionAnimation/TransitionAnimation';
-import { useUser } from '../../contexts/UserContext';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
@@ -24,10 +23,6 @@ function Register() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [college, setCollege] = useState('');
   const [rollNo, setRollNo] = useState('');
-
-  const { updateUserInfo } = useUser();
-
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,9 +42,7 @@ function Register() {
       password,
       name: fullName,
       mobile: phoneNumber,
-
       university: college,
-
       rollno: rollNo,
     };
 
@@ -62,10 +55,6 @@ function Register() {
 
       if (res.data?.status === 'success') {
         toast.success(res.data.message, toastStyle);
-        updateUserInfo(res.data.user);
-        setTimeout(() => {
-          navigate('/');
-        }, 2000);
       }
     } catch (error) {
       const msg = error.response.data.message || error.response.data.error;

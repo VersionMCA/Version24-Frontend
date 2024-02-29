@@ -12,6 +12,7 @@ const ForgotPassword = lazy(() => import('./pages/Auth/ForgotPassword'));
 const Register = lazy(() => import('./pages/Auth/Register'));
 const AboutUs = lazy(() => import('./pages/AboutUs/AboutUs'));
 const ResetPassword = lazy(() => import('./pages/Auth/ResetPassword'));
+const EmailConfirmed = lazy(() => import('./pages/Auth/EmailConfirmed'));
 const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
 
 function App() {
@@ -26,7 +27,15 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/teams" element={<TeamPage />} />
             <Route path="/forgotPassword" element={<ForgotPassword />} />
-            <Route path="/resetPassword" element={<ResetPassword />} />
+            <Route
+              path="/resetPassword/:resetToken"
+              element={<ResetPassword />}
+            />
+
+            <Route
+              path="/confirmEmail/:emailConfirmToken"
+              element={<EmailConfirmed />}
+            />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>

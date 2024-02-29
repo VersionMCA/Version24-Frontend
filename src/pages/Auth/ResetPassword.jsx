@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
 import axios from 'axios';
@@ -8,25 +8,24 @@ import FormContainer from './FormContainer';
 import InputBox from '../../components/InputBox/InputBox';
 import Button from '../../components/Button/Button';
 import toastStyle from '../../utilities/toastStyle';
-import { useUser } from '../../contexts/UserContext';
 import TransitionAnimation from '../../components/TransitionAnimation/TransitionAnimation';
+import './Auth.scss';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export default function ResetPassword() {
   const [displayResetPassword, setDisplayResetPassword] = useState(false);
-  const [otp, setOtp] = useState(undefined);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const { userEmail } = useUser();
+  const { resetToken } = useParams();
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!otp || !password || !confirmPassword) {
+    if (!password || !confirmPassword) {
       toast.error('Please fill all the fields', toastStyle);
       return;
     }
@@ -46,8 +45,7 @@ export default function ResetPassword() {
         `${BASE_URL}/resetpassword`,
         {
           password,
-          email: userEmail,
-          otp,
+          resetToken,
         },
         { withCredentials: true }
       );
@@ -75,18 +73,18 @@ export default function ResetPassword() {
       transition={{ duration: 0.5 }}
     >
       <Layout>
-        <FormContainer title="Password" prefixTitle="Forget">
+        <FormContainer title="Password" prefixTitle="Reset">
           <form
             className="text-white p-10 md:p-20 flex flex-col form form__auth md:mt-6 form__auth--resetPass"
             onSubmit={handleSubmit}
           >
-            <InputBox
+            {/* <InputBox
               type="text"
               inputId="otp"
               onChange={setOtp}
               value={otp}
               label="OTP"
-            />
+            /> */}
 
             <InputBox
               type="password"
@@ -105,7 +103,7 @@ export default function ResetPassword() {
 
             <div className="flex justify-end mt-2">
               <Button designType="primary" type="submit">
-                Reset Password
+                Submit
               </Button>
             </div>
           </form>
