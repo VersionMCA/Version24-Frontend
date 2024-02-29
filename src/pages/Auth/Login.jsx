@@ -60,8 +60,12 @@ function Login() {
         }
       }
     } catch (error) {
-      const msg = error.response.data.message || error.response.data.error;
-      toast.error(msg, toastStyle);
+      if (error.response.data?.tag === 'emailNotConfirmed') {
+        toggle();
+      } else {
+        const msg = error.response.data.message || error.response.data.error;
+        toast.error(msg, toastStyle);
+      }
     }
   };
 

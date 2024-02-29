@@ -65,7 +65,7 @@ export default function MemberCard({ teamMember, teamId }) {
       </div>
       {teamId === '101' && (
         <Modal visible={visible} toggle={toggle} restrictWidth>
-          <div className="modal__content flex justify-center flex-col p-8 md:p-16 mt-20 mb-8">
+          <div className="modal__content flex justify-center flex-col p-8 md:p-16">
             <h2 className="text-xl font-semibold mb-10">
               Message From
               <span className="text-primary">{` ${teamMember.designation}`}</span>

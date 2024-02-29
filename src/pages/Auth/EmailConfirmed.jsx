@@ -49,7 +49,7 @@ function EmailConfirmed() {
         <BlankPageNote
           heading1="Congratulations!!"
           heading2="Your account is active now."
-          para="Your email has been confirmed. You can now login."
+          para="You can now login now."
         />
       )}
 

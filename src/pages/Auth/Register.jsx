@@ -25,6 +25,16 @@ function Register() {
 
   const [toggle, visible] = useModal();
 
+  const resetFormFilds = () => {
+    setEmail('');
+    setPassword('');
+    setConfirmPassword('');
+    setfullName('');
+    setPhoneNumber('');
+    setCollege('');
+    setRollNo('');
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -55,8 +65,9 @@ function Register() {
       );
 
       if (res.data?.status === 'success') {
-        toast.success(res.data.message, toastStyle);
         toggle();
+        resetFormFilds();
+        setFormNo(1);
       }
     } catch (error) {
       const msg = error.response.data.message || error.response.data.error;
@@ -100,7 +111,6 @@ function Register() {
         <div className="modal__content flex justify-center flex-col p-4 md:p-6 mr-4 md:mr-10">
           <p className="text-base md:text-lg text-primary">
             We&apos;ve sent you mail. Please verify your email to continue.
-            {/* <span className="text-primary">{` ${teamMember.designation}`}</span> */}
           </p>
         </div>
       </Modal>
