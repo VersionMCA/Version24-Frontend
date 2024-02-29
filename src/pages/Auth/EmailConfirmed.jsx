@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -45,15 +46,13 @@ function EmailConfirmed() {
 
   return (
     <Layout>
-      {isEmailConfirmed && (
+      {isEmailConfirmed ? (
         <BlankPageNote
           heading1="Congratulations!!"
-          heading2="Your account is active now."
-          para="You can now login now."
+          heading2="Your account is active."
+          para="You can login now."
         />
-      )}
-
-      {displayMsg ? (
+      ) : displayMsg ? (
         <BlankPageNote
           heading2="Something went wrong!!"
           para="Please try again later."
