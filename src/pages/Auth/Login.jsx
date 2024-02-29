@@ -54,6 +54,10 @@ function Login() {
         setTimeout(() => {
           navigate('/');
         }, 2000);
+      } else if (res.data?.status === 'error') {
+        if (res.data?.tag === 'emailNotConfirmed') {
+          toast.error('Please confirm your email first', toastStyle);
+        }
       }
     } catch (error) {
       const msg = error.response.data.message || error.response.data.error;

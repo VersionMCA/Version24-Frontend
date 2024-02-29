@@ -7,8 +7,6 @@ function UserProvider({ children }) {
   const [user, setUser] = useState(null);
   // const [loading, setLoading] = useState(true);
 
-  const [userEmail, setUserEmail] = useState(''); // Need for reset password
-
   const navigate = useNavigate();
 
   const updateUserInfo = (userInfo) => {
@@ -35,7 +33,7 @@ function UserProvider({ children }) {
   return (
     <UserContext.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
-      value={{ user, updateUserInfo, logout, userEmail, setUserEmail }}
+      value={{ user, updateUserInfo, logout }}
     >
       {children}
     </UserContext.Provider>

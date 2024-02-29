@@ -87,7 +87,10 @@ function Events() {
             >
               <img src={arrowSvg} alt="leftArrow" className="h-12" />
             </div>
-            <div className="thumbnail font-primary" ref={Thumbnail}>
+            <div
+              className="thumbnail font-primary no-scrollbar"
+              ref={Thumbnail}
+            >
               {eventList.map((event) => {
                 return (
                   <EventThumbnail
