@@ -1,3 +1,5 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable no-restricted-globals */
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import MemberCard from '../../components/MemberCard/MemberCard';
@@ -48,8 +50,9 @@ export default function TeamPage() {
                       {team.header}
                     </h3>
                   </motion.div>
+                  {/* If team size is 5, means single head, if 4 then 2 head */}
                   <div
-                    className={`grid sm:grid-cols-2 m-auto w-fit md:gap-x-48 ${team.id !== '101' ? 'grid-cols-1 md:grid-cols-3  gap-x-20 gap-y-8 md:gap-y-32 px-24' : 'gap-y-8'}`}
+                    className={`grid sm:grid-cols-1 m-auto w-fit gap-x-48 ${team.id.length === 5 ? '' : team.id.length === 4 ? 'grid sm:grid-cols-2 m-auto w-fit md:gap-x-48' : 'grid-cols-1 md:grid-cols-3 gap-x-20 gap-y-8 md:gap-y-32 px-24'}`}
                   >
                     {team.members.map((teamMember, i) => {
                       return (

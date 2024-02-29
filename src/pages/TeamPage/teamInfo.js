@@ -1,6 +1,6 @@
 const teamInfo = [
   {
-    id: '101',
+    id: '1010',
     header: 'Head of the department & Staff Advisor',
     members: [
       {
@@ -23,9 +23,25 @@ const teamInfo = [
       },
     ],
   },
+
+  {
+    id: '10200',
+    header: 'Central Coordination Committee',
+    members: [
+      {
+        id: '300',
+        name: 'Abhilash Singh',
+        image: '/abhilash.jpg',
+        designation: 'Chairperson',
+        github: 'https://www.github.com',
+        linkedin: 'https://linkedin.com/',
+      },
+    ],
+  },
+
   {
     id: '102',
-    header: 'Central Execution Committee',
+    header: '',
     members: [
       {
         id: '301',
