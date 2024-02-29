@@ -63,5 +63,7 @@
   &__notCenter {
     margin-top: 5rem;
     margin-bottom: 2rem;
+    top: 0 !important;
+    transform: translateY(0%) !important;
   }
 }

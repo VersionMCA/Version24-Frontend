@@ -10,6 +10,8 @@ import Button from '../../components/Button/Button';
 import toastStyle from '../../utilities/toastStyle';
 import TransitionAnimation from '../../components/TransitionAnimation/TransitionAnimation';
 import './Auth.scss';
+import Modal from '../../components/Modal/Modal';
+import useModal from '../../hooks/useModal';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
@@ -17,6 +19,8 @@ export default function ResetPassword() {
   const [displayResetPassword, setDisplayResetPassword] = useState(false);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  const [toggle, visible] = useModal();
 
   const { resetToken } = useParams();
 
@@ -50,7 +54,7 @@ export default function ResetPassword() {
         { withCredentials: true }
       );
       if (res.data?.status === 'success') {
-        toast.success(res.data.message, toastStyle);
+        toggle();
         setTimeout(() => {
           navigate('/login');
         }, 2000);
@@ -73,6 +77,14 @@ export default function ResetPassword() {
       transition={{ duration: 0.5 }}
     >
       <Layout>
+        <Modal visible={visible} toggle={toggle} isAlert>
+          <div className="modal__content flex justify-center flex-col p-4 md:p-6 mr-4 md:mr-10">
+            <p className="text-base md:text-lg text-primary">
+              Password changed successfully.
+              {/* <span className="text-primary">{` ${teamMember.designation}`}</span> */}
+            </p>
+          </div>
+        </Modal>
         <FormContainer title="Password" prefixTitle="Reset">
           <form
             className="text-white p-10 md:p-20 flex flex-col form form__auth md:mt-6 form__auth--resetPass"
@@ -91,14 +103,14 @@ export default function ResetPassword() {
               inputId="password"
               onChange={setPassword}
               value={password}
-              label="Password"
+              label="New Password"
             />
             <InputBox
               type="password"
               inputId="confirmPassword"
               onChange={setConfirmPassword}
               value={confirmPassword}
-              label="Confirm Password"
+              label="Confirm New Password"
             />
 
             <div className="flex justify-end mt-2">
