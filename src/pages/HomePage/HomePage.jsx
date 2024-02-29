@@ -33,7 +33,7 @@ export default function HomePage() {
 
           <div className="md:mt-10 mt-20">
             <Button
-              designType="tertiary"
+              designType="tertiary homePageBtn"
               className="btn-register"
               onClick={() => navigate('/events')}
             >

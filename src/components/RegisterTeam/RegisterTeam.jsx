@@ -99,7 +99,7 @@ export default function RegisterTeam({ eventName, toggle, visible, teamSize }) {
 
   return (
     <Modal visible={visible} toggle={toggle}>
-      <div className="modal__content flex justify-center flex-col p-10">
+      <div className="modal__content flex justify-center flex-col p-10 mt-20 mb-8">
         <FormContainer title="Registration" prefixTitle="Team" isModal>
           <form
             className="text-white  flex flex-col form form__regTeam mt-6 md:mt-8"
