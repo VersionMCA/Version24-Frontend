@@ -67,7 +67,7 @@ export default function RegisterTeam({ eventName, toggle, visible, teamSize }) {
     }
   };
 
-  const handleAddUser = () => {
+  const handleAddUser = async () => {
     if (!email || !email.includes('@') || !email.includes('.')) {
       toast.error('Please enter a valid email', toastStyle);
       return;
@@ -85,8 +85,21 @@ export default function RegisterTeam({ eventName, toggle, visible, teamSize }) {
       return;
     }
 
-    setEmailList(() => [...emailList, email]);
-    setEmail('');
+    try {
+      const res = await axios.post(
+        `${BASE_URL}/checkuser`,
+        {
+          email,
+        },
+        { withCredentials: true }
+      );
+      if (res.data?.status === 'success') {
+        setEmailList(() => [...emailList, email]);
+        setEmail('');
+      }
+    } catch (error) {
+      toast.error(error.response.data.message, toastStyle);
+    }
   };
 
   const handleDeleteUser = (em) => {
