@@ -1,6 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React from 'react';
 import axios from 'axios';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import './EventCard.scss';
 import { toast } from 'react-toastify';
 import Button from '../Button/Button';
@@ -60,7 +61,7 @@ function EventCard({ name, teamSize, date, content, imgLink }) {
   const newContent = content.split('\n').map((str, i) => <p key={i}>{str}</p>);
   return (
     <div className="eventCard__item">
-      <img src={imgLink} alt={name} />
+      <LazyLoadImage src={imgLink} alt={name} />
       <div className="content">
         <p className="font-primary content__date">{formatDate(date)}</p>
         <h2 className="font-primary content__name">{name}</h2>
