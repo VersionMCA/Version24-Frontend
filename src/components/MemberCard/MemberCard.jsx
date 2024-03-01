@@ -14,7 +14,9 @@ export default function MemberCard({ teamMember, teamId }) {
   };
 
   return (
-    <div className="relative bg-transparent flex flex-col flex-wrap items-center justify-around h-96 m-auto memberCard">
+    <div
+      className={`relative bg-transparent flex flex-col flex-wrap items-center justify-around ${teamMember.designation ? 'h-96' : 'h-[23rem]'} m-auto memberCard`}
+    >
       <div className="absolute top-0 left-0 h-16 w-16 border-l-[5px] border-t-[5px] border-primary">
         {}
       </div>
@@ -41,7 +43,7 @@ export default function MemberCard({ teamMember, teamId }) {
             </a>
           )}
 
-          {teamId === '101' && (
+          {teamId === '1010' && (
             <button
               className="absolute top-32 z-10 text-xs font-semibold text-primary hover:scale-110 transition-all"
               onClick={showModal}
@@ -63,7 +65,7 @@ export default function MemberCard({ teamMember, teamId }) {
       <div className="absolute bottom-0 right-0 h-16 w-16 border-b-[5px] border-r-[5px] border-primary">
         {}
       </div>
-      {teamId === '101' && (
+      {teamId === '1010' && (
         <Modal visible={visible} toggle={toggle} restrictWidth notCenter>
           <div className="modal__content flex justify-center flex-col p-8 md:p-16">
             <h2 className="text-xl font-semibold mb-10">
