@@ -11,7 +11,6 @@ import { useUser } from '../../contexts/UserContext';
 
 export default function Navbar({ bgWhite, noBgBlack }) {
   const { loading } = useUser();
-  console.log(loading);
 
   const navBar = useRef();
   return (
