@@ -10,6 +10,7 @@ import Button from '../../components/Button/Button';
 import toastStyle from '../../utilities/toastStyle';
 import Modal from '../../components/Modal/Modal';
 import useModal from '../../hooks/useModal';
+import './Auth.scss';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
@@ -84,6 +85,11 @@ function Register() {
 
       if (password.length < 8) {
         toast.error('Password should be atleast 8 characters long', toastStyle);
+        return;
+      }
+
+      if (password.includes(' ')) {
+        toast.error('Password should not contain any spaces', toastStyle);
         return;
       }
 
@@ -242,7 +248,10 @@ function Register() {
               <InputBox
                 type="number"
                 inputId="phoneNumber"
-                onChange={setPhoneNumber}
+                onChange={(val) => {
+                  if (val.length > 10) return;
+                  setPhoneNumber(val);
+                }}
                 label="Phone Number"
                 value={phoneNumber}
               />

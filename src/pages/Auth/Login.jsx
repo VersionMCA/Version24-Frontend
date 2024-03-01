@@ -53,7 +53,7 @@ function Login() {
         updateUserInfo(res.data.user);
         setTimeout(() => {
           navigate('/');
-        }, 2000);
+        }, 1000);
       } else if (res.data?.status === 'error') {
         if (res.data?.tag === 'emailNotConfirmed') {
           toggle();

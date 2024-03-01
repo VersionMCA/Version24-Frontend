@@ -35,7 +35,12 @@ export default function ResetPassword() {
     }
 
     if (password.length < 6) {
-      toast.error('Password should be atleast 6 characters long', toastStyle);
+      toast.error('Password should be atleast 8 characters long', toastStyle);
+      return;
+    }
+
+    if (password.includes(' ')) {
+      toast.error('Password should not contain any spaces', toastStyle);
       return;
     }
 
@@ -57,7 +62,7 @@ export default function ResetPassword() {
         toggle();
         setTimeout(() => {
           navigate('/login');
-        }, 2000);
+        }, 1000);
       }
     } catch (error) {
       // console.log(error);
@@ -87,7 +92,7 @@ export default function ResetPassword() {
         </Modal>
         <FormContainer title="Password" prefixTitle="Reset">
           <form
-            className="text-white p-10 md:p-20 flex flex-col form form__auth md:mt-6 form__auth--resetPass"
+            className="text-white p-16 md:p-20 flex flex-col form form__auth md:mt-6 form__auth--resetPass"
             onSubmit={handleSubmit}
           >
             {/* <InputBox
