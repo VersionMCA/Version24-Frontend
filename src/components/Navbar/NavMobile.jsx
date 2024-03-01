@@ -21,7 +21,7 @@ export default function NavMobile({ navBar }) {
   };
 
   return (
-    <div ref={ref} className="lg:hidden text-white">
+    <div ref={ref} className="lg:hidden text-offWhite">
       <Hamburger toggled={isOpen} size={20} toggle={toggleHamburger} />
       <AnimatePresence>
         {isOpen && (

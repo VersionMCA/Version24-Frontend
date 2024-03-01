@@ -115,7 +115,7 @@ export default function RegisterTeam({ eventName, toggle, visible, teamSize }) {
       <div className="modal__content flex justify-center flex-col p-10">
         <FormContainer title="Registration" prefixTitle="Team" isModal>
           <form
-            className="text-white  flex flex-col form form__regTeam mt-6 md:mt-8"
+            className="text-offWhite  flex flex-col form form__regTeam mt-6 md:mt-8"
             onSubmit={(e) => e.preventDefault()}
           >
             <InputBox
@@ -136,7 +136,7 @@ export default function RegisterTeam({ eventName, toggle, visible, teamSize }) {
                   id="userEmail"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="bg-[rgba(52,152,219,0.25)] w-full outline-none text-white px-3 py-2 focus:ring-2 tracking-widest"
+                  className="bg-[rgba(52,152,219,0.25)] w-full outline-none text-offWhite px-3 py-2 focus:ring-2 tracking-widest"
                 />
                 <Button
                   designType="secondary"

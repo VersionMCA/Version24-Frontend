@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useRef } from 'react';
-
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link } from 'react-router-dom';
 import './Navbar.module.scss';
 import NavMobile from './NavMobile';
@@ -11,7 +11,6 @@ import { useUser } from '../../contexts/UserContext';
 
 export default function Navbar({ bgWhite, noBgBlack }) {
   const { loading } = useUser();
-  console.log(loading);
 
   const navBar = useRef();
   return (
@@ -23,7 +22,7 @@ export default function Navbar({ bgWhite, noBgBlack }) {
         ref={navBar}
       >
         <Link to="/" className="pl-4 md:pl-10">
-          <img src={logo} alt="logo" className="h-8 md:h-11" />
+          <LazyLoadImage src={logo} alt="logo" className="h-8 md:h-11" />
         </Link>
 
         {!loading && (

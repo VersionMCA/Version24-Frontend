@@ -7,7 +7,7 @@ function AboutUs() {
 
   return (
     <Layout>
-      <section className="aboutUs bg-black min-h-lvh w-full text-white flex flex-col justify-center items-center xl:pt-20 xl:px-36 px-4 pt-16 overflow-hidden">
+      <section className="aboutUs bg-black min-h-lvh w-full text-offWhite flex flex-col justify-center items-center xl:pt-20 xl:px-36 px-4 pt-16 overflow-hidden">
         <h2 className="font-primary text-2xl mb-6 mt-8 uppercase font-bold tracking-[5px]">
           ABOUT US
         </h2>

@@ -1,6 +1,7 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/prop-types */
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Modal from '../Modal/Modal';
 import useModal from '../../hooks/useModal';
 import './MemberCard.scss';
@@ -52,14 +53,14 @@ export default function MemberCard({ teamMember, teamId }) {
             </button>
           )}
         </div>
-        <img
+        <LazyLoadImage
           src={`/member/${teamMember.image}`}
           alt="person"
           className="h-72 w-60 object-cover p-6 transition-opacity memberCard__img"
         />
       </div>
       <h4 className="text-primary text-sm mt-[-40px]">{teamMember.name}</h4>
-      <h4 className="text-white text-sm pb-4 mt-[-30px]">
+      <h4 className="text-offWhite text-sm pb-4 mt-[-30px]">
         {teamMember.designation}
       </h4>
       <div className="absolute bottom-0 right-0 h-16 w-16 border-b-[5px] border-r-[5px] border-primary">
