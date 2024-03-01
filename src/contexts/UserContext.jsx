@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ls from 'localstorage-slim';
 
 const UserContext = createContext();
 
@@ -10,20 +11,22 @@ function UserProvider({ children }) {
   const navigate = useNavigate();
 
   const updateUserInfo = (userInfo) => {
-    localStorage.setItem('userInfo', JSON.stringify(userInfo));
+    ls.set('userInfo', userInfo, {
+      ttl: 60 * 60 * 24 * 10,
+    });
     setUser(userInfo);
   };
 
   const logout = () => {
-    localStorage.removeItem('userInfo');
+    ls.remove('userInfo');
     setUser(null);
     navigate('/login');
   };
 
   useEffect(() => {
-    const userInfo = localStorage.getItem('userInfo');
+    const userInfo = ls.get('userInfo');
     if (userInfo) {
-      setUser(JSON.parse(userInfo));
+      setUser(userInfo);
     } else {
       navigate();
     }
