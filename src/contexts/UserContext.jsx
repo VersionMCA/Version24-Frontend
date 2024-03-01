@@ -1,31 +1,54 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ls from 'localstorage-slim';
+import axios from 'axios';
+
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const UserContext = createContext();
 
 function UserProvider({ children }) {
   const [user, setUser] = useState(null);
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
 
   const updateUserInfo = (userInfo) => {
-    localStorage.setItem('userInfo', JSON.stringify(userInfo));
+    ls.set('userInfo', userInfo);
     setUser(userInfo);
   };
 
   const logout = () => {
-    localStorage.removeItem('userInfo');
+    ls.remove('userInfo');
     setUser(null);
     navigate('/login');
   };
 
   useEffect(() => {
-    const userInfo = localStorage.getItem('userInfo');
+    const userInfo = ls.get('userInfo');
+    const validateUser = async () => {
+      try {
+        setLoading(true);
+        // Check if cookie is still valid
+        const res = await axios.get(`${BASE_URL}/isauthenticated`, {
+          withCredentials: true,
+        });
+
+        if (res.data?.status === 'success') {
+          setUser(userInfo);
+        }
+      } catch (error) {
+        ls.remove('userInfo');
+        console.error('User not logged in', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     if (userInfo) {
-      setUser(JSON.parse(userInfo));
+      validateUser();
     } else {
-      navigate();
+      setLoading(false);
     }
   }, [navigate]);
   // adding navigate as a dependency to satisfy the eslint rule, otherwise its not required, as usually remains same
@@ -33,7 +56,7 @@ function UserProvider({ children }) {
   return (
     <UserContext.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
-      value={{ user, updateUserInfo, logout }}
+      value={{ user, updateUserInfo, logout, loading }}
     >
       {children}
     </UserContext.Provider>

@@ -18,7 +18,6 @@ export default function InputBox({
         type={type}
         id={inputId}
         value={value}
-        disabled
         onChange={(e) => onChange(e.target.value)}
         className="bg-[rgba(52,152,219,0.25)] w-80 outline-none text-white px-3 py-2 focus:ring-2 tracking-widest"
       />

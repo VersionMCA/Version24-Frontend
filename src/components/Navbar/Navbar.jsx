@@ -7,8 +7,12 @@ import NavMobile from './NavMobile';
 import NavDesktop from './NavDesktop';
 
 import logo from '/res/logo2.png';
+import { useUser } from '../../contexts/UserContext';
 
 export default function Navbar({ bgWhite, noBgBlack }) {
+  const { loading } = useUser();
+  console.log(loading);
+
   const navBar = useRef();
   return (
     <div
@@ -21,8 +25,13 @@ export default function Navbar({ bgWhite, noBgBlack }) {
         <Link to="/" className="pl-4 md:pl-10">
           <img src={logo} alt="logo" className="h-8 md:h-11" />
         </Link>
-        <NavMobile navBar={navBar} />
-        <NavDesktop bgWhite={bgWhite} />
+
+        {!loading && (
+          <>
+            <NavMobile navBar={navBar} />
+            <NavDesktop bgWhite={bgWhite} />
+          </>
+        )}
       </nav>
     </div>
   );

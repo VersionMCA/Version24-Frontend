@@ -146,3 +146,26 @@
     box-shadow: #27272c;
   }
 }
+
+.homePageBtn {
+  @include respond(phone) {
+    padding: 0.6rem 2rem;
+    font-size: 0.9rem;
+  }
+
+  & > button {
+    font-weight: 500;
+  }
+
+  &:hover {
+    @include respond(phone) {
+      padding: 0.61rem 2.01rem;
+    }
+  }
+
+  & i::before {
+    @include respond(phone) {
+      top: -4px;
+    }
+  }
+}

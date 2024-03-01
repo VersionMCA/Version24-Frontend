@@ -1,23 +1,26 @@
-.modal-pop {
-  background: #fff;
-  border: 2px solid #aaa;
-  border-radius: 5px;
-  z-index: 999;
-  max-width: 27rem;
-  margin: auto;
-  padding: 1em 2em 2em;
-  position: relative;
-}
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 99;
-  background-color: #000;
-  opacity: 0.75;
-}
+@import '../../styles/mixin.scss';
+@import '../../styles/variable.scss';
+
+// .modal-pop {
+//   background: #fff;
+//   border: 2px solid #aaa;
+//   border-radius: 5px;
+//   z-index: 999;
+//   max-width: 27rem;
+//   margin: auto;
+//   padding: 1em 2em 2em;
+//   position: relative;
+// }
+// .modal-overlay {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   z-index: 99;
+//   background-color: #000;
+//   opacity: 0.75;
+// }
 
 .modal {
   // display: none;
@@ -27,20 +30,40 @@
   width: 100%;
   height: 100%;
   z-index: 99;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   justify-content: center;
   align-items: center;
   overflow: auto;
   &__body {
-    background: #fff;
-    // border: 2px solid #aaa;
-    border-radius: 5px;
+    background: #111;
     z-index: 99;
-    max-width: fit-content;
+    max-width: max-content;
+    color: #fff;
     margin: auto;
-    margin-top: 5rem;
-    margin-bottom: 2rem;
     // padding: 4rem;
     position: relative;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    &--fixedWidth {
+      max-width: 75% !important;
+    }
+
+    @include respond(phone) {
+      max-width: 90%;
+    }
+
+    &--alertMsg {
+      background-color: rgba(0, 0, 0, 0.7);
+      border: 1px solid #aaa;
+    }
+  }
+
+  &__notCenter {
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+    top: 0 !important;
+    transform: translateY(0%) !important;
   }
 }

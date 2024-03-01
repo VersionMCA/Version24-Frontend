@@ -2,19 +2,19 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
 import Layout from '../../components/Layout/Layout';
 import FormContainer from './FormContainer';
 import InputBox from '../../components/InputBox/InputBox';
 import Button from '../../components/Button/Button';
 import toastStyle from '../../utilities/toastStyle';
-import TransitionAnimation from '../../components/TransitionAnimation/TransitionAnimation';
+import Modal from '../../components/Modal/Modal';
+import useModal from '../../hooks/useModal';
+import './Auth.scss';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 function Register() {
-  const [displayRegister, setDisplayRegister] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -23,6 +23,18 @@ function Register() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [college, setCollege] = useState('');
   const [rollNo, setRollNo] = useState('');
+
+  const [toggle, visible] = useModal();
+
+  const resetFormFilds = () => {
+    setEmail('');
+    setPassword('');
+    setConfirmPassword('');
+    setfullName('');
+    setPhoneNumber('');
+    setCollege('');
+    setRollNo('');
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,7 +66,9 @@ function Register() {
       );
 
       if (res.data?.status === 'success') {
-        toast.success(res.data.message, toastStyle);
+        toggle();
+        resetFormFilds();
+        setFormNo(1);
       }
     } catch (error) {
       const msg = error.response.data.message || error.response.data.error;
@@ -74,6 +88,11 @@ function Register() {
         return;
       }
 
+      if (password.includes(' ')) {
+        toast.error('Password should not contain any spaces', toastStyle);
+        return;
+      }
+
       if (password !== confirmPassword) {
         toast.error('Passwords do not match', toastStyle);
         return;
@@ -89,179 +108,177 @@ function Register() {
     setFormNo(formNo + 1);
   };
 
-  setTimeout(() => {
-    setDisplayRegister(true);
-  }, 500);
-
-  return displayRegister ? (
-    <motion.div
-      initial={{ opacity: 0.7 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <Layout>
-        <p className=" text-white text-center fixed xl:bottom-1/2 xl:left-1/4 bottom-20 left-0 border-2 border-red-700 p-2 md:p-5">
+  return (
+    <Layout>
+      {/* <p className=" text-white text-center fixed xl:bottom-1/2 xl:left-1/4 bottom-20 left-0 border-2 border-red-700 p-2 md:p-5">
           ! Registerations are not open for now.
-        </p>
-        <FormContainer title="Register" prefixTitle="Version">
-          <form
-            className={`text-white p-10 md:p-20 flex flex-col form form__auth form__auth--register ${formNo > 1 ? 'md:mt-6' : ''}`}
-            onSubmit={handleSubmit}
-          >
-            {formNo === 1 && (
-              <>
-                <InputBox
-                  type="text"
-                  inputId="userEmail"
-                  onChange={setEmail}
-                  label="Email"
-                  value={email}
-                />
+        </p> */}
+      <Modal visible={visible} toggle={toggle} isAlert>
+        <div className="modal__content flex justify-center flex-col p-4 md:p-6 mr-4 md:mr-10">
+          <p className="text-base md:text-lg text-primary">
+            We&apos;ve sent you mail. Please verify your email to continue.
+          </p>
+        </div>
+      </Modal>
+      <FormContainer title="Register" prefixTitle="Version">
+        <form
+          className={`text-white p-10 md:p-20 flex flex-col form form__auth form__auth--register ${formNo > 1 ? 'md:mt-6' : ''}`}
+          onSubmit={handleSubmit}
+        >
+          {formNo === 1 && (
+            <>
+              <InputBox
+                type="text"
+                inputId="userEmail"
+                onChange={setEmail}
+                label="Email"
+                value={email}
+              />
 
-                <InputBox
-                  type="password"
-                  inputId="password"
-                  onChange={setPassword}
-                  value={password}
-                  label="Password"
-                />
-                <InputBox
-                  type="password"
-                  inputId="confirmPassword"
-                  onChange={setConfirmPassword}
-                  value={confirmPassword}
-                  label="Confirm Password"
-                />
+              <InputBox
+                type="password"
+                inputId="password"
+                onChange={setPassword}
+                value={password}
+                label="Password"
+              />
+              <InputBox
+                type="password"
+                inputId="confirmPassword"
+                onChange={setConfirmPassword}
+                value={confirmPassword}
+                label="Confirm Password"
+              />
 
-                <div className="flex mt-1 justify-between items-center">
-                  <div className="tracking-normal">
-                    Have an Account?
-                    <Link
-                      to="/login"
-                      className="text-primary uppercase transition-all hover:font-semibold ml-1"
-                    >
-                      Login
-                    </Link>
-                  </div>
-                  <div className="flex justify-end">
-                    <Button
-                      type="button"
-                      onClick={handleNext}
-                      designType="icon"
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                          handleNext();
-                        }
-                      }}
-                    >
-                      <img
-                        src="/res/authPage/next.svg"
-                        alt="next"
-                        className="h-11 mt-2"
-                      />
-                    </Button>
-                  </div>
+              <div className="flex mt-1 justify-between items-center">
+                <div className="tracking-normal">
+                  Have an Account?
+                  <Link
+                    to="/login"
+                    className="text-primary uppercase transition-all hover:font-semibold ml-1"
+                  >
+                    Login
+                  </Link>
                 </div>
-              </>
-            )}
-            {formNo === 2 && (
-              <>
-                <InputBox
-                  type="text"
-                  inputId="college"
-                  onChange={setCollege}
-                  label="College"
-                  value={college}
-                  note="Enter it as college name, location e.g Modern College, Pune"
-                />
-
-                <InputBox
-                  type="text"
-                  inputId="rollNo"
-                  onChange={setRollNo}
-                  value={rollNo}
-                  label="College Roll No"
-                />
-
-                <div className="flex mt-1 justify-between items-center">
-                  <div className="flex">
-                    <Button
-                      type="button"
-                      onClick={() => setFormNo(formNo - 1)}
-                      designType="icon"
-                    >
-                      <img
-                        src="/res/authPage/next.svg"
-                        alt="next"
-                        className="h-11 mt-2 rotate-180"
-                      />
-                    </Button>
-                  </div>
-
-                  <div className="flex justify-end">
-                    <Button
-                      type="button"
-                      onClick={handleNext}
-                      designType="icon"
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                          handleNext();
-                        }
-                      }}
-                    >
-                      <img
-                        src="/res/authPage/next.svg"
-                        alt="next"
-                        className="h-11 mt-2"
-                      />
-                    </Button>
-                  </div>
-                </div>
-              </>
-            )}
-            {formNo === 3 && (
-              <>
-                <InputBox
-                  type="text"
-                  inputId="fullName"
-                  onChange={setfullName}
-                  label="Your Name"
-                  value={fullName}
-                />
-                <InputBox
-                  type="number"
-                  inputId="phoneNumber"
-                  onChange={setPhoneNumber}
-                  label="Phone Number"
-                  value={phoneNumber}
-                />
-
-                <div className="flex mt-1 justify-between items-center">
-                  <div className="flex">
-                    <Button
-                      type="button"
-                      onClick={() => setFormNo(2)}
-                      designType="icon"
-                    >
-                      <img
-                        src="/res/authPage/next.svg"
-                        alt="next"
-                        className="h-11 mt-2 rotate-180"
-                      />
-                    </Button>
-                  </div>
-                  <Button designType="primary" type="submit">
-                    Register
+                <div className="flex justify-end">
+                  <Button
+                    type="button"
+                    onClick={handleNext}
+                    designType="icon"
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        handleNext();
+                      }
+                    }}
+                  >
+                    <img
+                      src="/res/authPage/next.svg"
+                      alt="next"
+                      className="h-11 mt-2"
+                    />
                   </Button>
                 </div>
-              </>
-            )}
-          </form>
-        </FormContainer>
-      </Layout>
-    </motion.div>
-  ) : (
-    <TransitionAnimation />
+              </div>
+            </>
+          )}
+          {formNo === 2 && (
+            <>
+              <InputBox
+                type="text"
+                inputId="college"
+                onChange={setCollege}
+                label="College"
+                value={college}
+                note="Enter it as college name, location e.g Modern College, Pune"
+              />
+
+              <InputBox
+                type="text"
+                inputId="rollNo"
+                onChange={setRollNo}
+                value={rollNo}
+                label="College Roll No"
+              />
+
+              <div className="flex mt-1 justify-between items-center">
+                <div className="flex">
+                  <Button
+                    type="button"
+                    onClick={() => setFormNo(formNo - 1)}
+                    designType="icon"
+                  >
+                    <img
+                      src="/res/authPage/next.svg"
+                      alt="next"
+                      className="h-11 mt-2 rotate-180"
+                    />
+                  </Button>
+                </div>
+
+                <div className="flex justify-end">
+                  <Button
+                    type="button"
+                    onClick={handleNext}
+                    designType="icon"
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        handleNext();
+                      }
+                    }}
+                  >
+                    <img
+                      src="/res/authPage/next.svg"
+                      alt="next"
+                      className="h-11 mt-2"
+                    />
+                  </Button>
+                </div>
+              </div>
+            </>
+          )}
+          {formNo === 3 && (
+            <>
+              <InputBox
+                type="text"
+                inputId="fullName"
+                onChange={setfullName}
+                label="Your Name"
+                value={fullName}
+              />
+              <InputBox
+                type="number"
+                inputId="phoneNumber"
+                onChange={(val) => {
+                  if (val.length > 10) return;
+                  setPhoneNumber(val);
+                }}
+                label="Phone Number"
+                value={phoneNumber}
+              />
+
+              <div className="flex mt-1 justify-between items-center">
+                <div className="flex">
+                  <Button
+                    type="button"
+                    onClick={() => setFormNo(2)}
+                    designType="icon"
+                  >
+                    <img
+                      src="/res/authPage/next.svg"
+                      alt="next"
+                      className="h-11 mt-2 rotate-180"
+                    />
+                  </Button>
+                </div>
+                <Button designType="primary" type="submit">
+                  Register
+                </Button>
+              </div>
+            </>
+          )}
+        </form>
+      </FormContainer>
+    </Layout>
   );
 }
 
