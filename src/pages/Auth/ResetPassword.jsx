@@ -92,7 +92,7 @@ export default function ResetPassword() {
         </Modal>
         <FormContainer title="Password" prefixTitle="Reset">
           <form
-            className="text-white p-16 md:p-20 flex flex-col form form__auth md:mt-6 form__auth--resetPass"
+            className="text-offWhite p-16 md:p-20 flex flex-col form form__auth md:mt-6 form__auth--resetPass"
             onSubmit={handleSubmit}
           >
             {/* <InputBox

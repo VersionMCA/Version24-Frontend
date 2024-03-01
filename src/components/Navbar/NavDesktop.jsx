@@ -18,7 +18,7 @@ export default function NavDesktop({ bgWhite }) {
           <li key={route.id} className="w-32 text-center">
             {route.title === 'Login' && user ? (
               <span
-                className={`flex justify-center cursor-pointer ${bgWhite === true ? 'text-black' : 'text-white'} gap-1 transition-all codedText`}
+                className={`flex justify-center cursor-pointer ${bgWhite === true ? 'text-black' : 'text-offWhite'} gap-1 transition-all codedText`}
                 onClick={logout}
                 role="button"
               >
@@ -27,7 +27,7 @@ export default function NavDesktop({ bgWhite }) {
             ) : (
               <Link
                 to={route.href}
-                className={`flex justify-center  ${bgWhite === true ? 'text-black' : 'text-white'} gap-1 transition-all codedText`}
+                className={`flex justify-center  ${bgWhite === true ? 'text-black' : 'text-offWhite'} gap-1 transition-all codedText`}
               >
                 {route.title}
               </Link>

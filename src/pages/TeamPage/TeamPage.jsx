@@ -50,7 +50,7 @@ export default function TeamPage() {
             animate={{ opacity: 1, translateX: 0, translateY: 0 }}
             transition={{ duration: 0.2 }}
           >
-            <h1 className="text-center text-offWhite text-opacity-80 text-3xl md:text-4xl mb-10 tracking-[.3rem] font-primary font-bold">
+            <h1 className="text-center text-offWhite text-3xl md:text-4xl mb-10 tracking-[.3rem] font-primary font-bold">
               MEET THE <span className="text-primary">TEAM</span>
             </h1>
           </motion.div>
@@ -73,7 +73,7 @@ export default function TeamPage() {
                       animate={{ opacity: 1, translateX: 0, translateY: 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <h3 className="text-center text-offWhite text-opacity-80 text-lg md:text-2xl font-semibold tracking-[3px] uppercase font-primary my-20">
+                      <h3 className="text-center text-offWhite  text-lg md:text-2xl font-semibold tracking-[3px] uppercase font-primary my-20">
                         {team.header}
                       </h3>
                     </motion.div>

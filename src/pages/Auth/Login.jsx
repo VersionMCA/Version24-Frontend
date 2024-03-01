@@ -71,7 +71,7 @@ function Login() {
 
   return (
     <Layout>
-      {/* <p className=" text-white text-center fixed xl:bottom-1/2 xl:left-1/4  bottom-20 left-0 border-2 border-red-700 p-2 md:p-5">
+      {/* <p className=" text-offWhite text-center fixed xl:bottom-1/2 xl:left-1/4  bottom-20 left-0 border-2 border-red-700 p-2 md:p-5">
           ! Registerations are not open for now.
         </p> */}
       <Modal visible={visible} toggle={toggle} isAlert>
@@ -84,7 +84,7 @@ function Login() {
       </Modal>
       <FormContainer title="Login" prefixTitle="Version">
         <form
-          className="text-white p-10 md:p-20 flex flex-col form form__auth form__auth--login md:mt-3"
+          className="text-offWhite p-10 md:p-20 flex flex-col form form__auth form__auth--login md:mt-3"
           onSubmit={handleSubmit}
         >
           <InputBox

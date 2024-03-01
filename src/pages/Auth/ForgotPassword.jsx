@@ -65,7 +65,7 @@ export default function Login() {
         </Modal>
         <FormContainer title="Password" prefixTitle="Forget">
           <form
-            className="text-white p-10 md:p-20 flex flex-col form form__auth form__auth--forgetPass md:mt-6"
+            className="text-offWhite p-10 md:p-20 flex flex-col form form__auth form__auth--forgetPass md:mt-6"
             onSubmit={handleSubmit}
           >
             <InputBox

@@ -23,7 +23,7 @@ function Modal({
   const modalJsx = (
     <div className="modal">
       <div
-        className={`modal__body ${restrictWidth ? 'modal__body--fixedWidth' : ''} bg-neutral-950 text-white  
+        className={`modal__body ${restrictWidth ? 'modal__body--fixedWidth' : ''} bg-neutral-950 text-offWhite  
         ${notCenter ? 'modal__notCenter' : ''} ${isAlert ? 'modal__body--alertMsg' : ''}`}
         role="dialog"
         aria-modal="true"

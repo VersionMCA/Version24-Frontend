@@ -12,6 +12,7 @@ export default {
       colors: {
         primary: '#3498db',
         secondary: '#2f87c2',
+        offWhite: '#f9f9f9',
       },
       fontFamily: {
         primary: ['Orbitron', 'sans-serif'],
