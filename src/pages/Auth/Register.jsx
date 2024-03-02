@@ -23,7 +23,7 @@ function Register() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [college, setCollege] = useState('');
   const [rollNo, setRollNo] = useState('');
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [toggle, visible] = useModal();
 
   const resetFormFilds = () => {
@@ -59,6 +59,7 @@ function Register() {
     };
 
     try {
+      setIsSubmitting(true);
       const res = await axios.post(
         `${BASE_URL}/signup`,
         { ...data },
@@ -73,6 +74,8 @@ function Register() {
     } catch (error) {
       const msg = error.response.data.message || error.response.data.error;
       toast.error(msg, toastStyle);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -170,6 +173,7 @@ function Register() {
                         handleNext();
                       }
                     }}
+                    isSubmitting={isSubmitting}
                   >
                     <img
                       src="/res/authPage/next.svg"

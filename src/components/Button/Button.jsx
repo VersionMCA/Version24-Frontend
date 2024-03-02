@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 
 import './Button.scss';
 
-export default function Button({ designType, onClick, children, onKeyDown }) {
+export default function Button({
+  designType,
+  onClick,
+  children,
+  onKeyDown,
+  isSubmitting,
+}) {
   return (
     <div>
       <button
@@ -11,6 +17,7 @@ export default function Button({ designType, onClick, children, onKeyDown }) {
         type="submit"
         onClick={onClick}
         onKeyDown={onKeyDown}
+        disabled={isSubmitting}
       >
         {children}
       </button>
