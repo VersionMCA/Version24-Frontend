@@ -19,6 +19,7 @@ export default function ResetPassword() {
   const [displayResetPassword, setDisplayResetPassword] = useState(false);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [toggle, visible] = useModal();
 
@@ -50,6 +51,7 @@ export default function ResetPassword() {
     }
 
     try {
+      setIsSubmitting(true);
       const res = await axios.post(
         `${BASE_URL}/resetpassword`,
         {
@@ -68,6 +70,8 @@ export default function ResetPassword() {
       // console.log(error);
       const msg = error.response.data.message || error.response.data.error;
       toast.error(msg, toastStyle);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -119,7 +123,11 @@ export default function ResetPassword() {
             />
 
             <div className="flex justify-end mt-2">
-              <Button designType="primary" type="submit">
+              <Button
+                designType="primary"
+                type="submit"
+                isSubmitting={isSubmitting}
+              >
                 Submit
               </Button>
             </div>

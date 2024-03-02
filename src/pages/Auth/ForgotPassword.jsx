@@ -16,6 +16,7 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 export default function Login() {
   const [email, setEmail] = useState('');
   const [displayForgotPassword, setDisplayForgotPassword] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [toggle, visible] = useModal();
 
@@ -27,6 +28,7 @@ export default function Login() {
     }
 
     try {
+      setIsSubmitting(true);
       const res = await axios.post(
         `${BASE_URL}/forgetpassword`,
         {
@@ -41,6 +43,8 @@ export default function Login() {
     } catch (error) {
       const msg = error.response.data.message || error.response.data.error;
       toast.error(msg, toastStyle);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -77,7 +81,11 @@ export default function Login() {
               isRequired
             />
             <div className="flex justify-end">
-              <Button designType="primary" type="submit">
+              <Button
+                designType="primary"
+                type="submit"
+                isSubmitting={isSubmitting}
+              >
                 Reset
               </Button>
             </div>

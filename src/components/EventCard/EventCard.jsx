@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import './EventCard.scss';
@@ -18,8 +18,11 @@ function EventCard({ name, teamSize, date, content, imgLink }) {
 
   const { user, updateUserInfo } = useUser();
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const registerForEvent = async () => {
     try {
+      setIsSubmitting(true);
       const res = await axios.post(
         `${BASE_URL}/registerevent`,
         {
@@ -36,6 +39,8 @@ function EventCard({ name, teamSize, date, content, imgLink }) {
     } catch (error) {
       const msg = error.response.data.message || error.response.data.error;
       toast.error(msg, toastStyle);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -86,6 +91,7 @@ function EventCard({ name, teamSize, date, content, imgLink }) {
               designType="tertiary"
               className="btn-register"
               onClick={isItTeamEvent}
+              isSubmitting={isSubmitting}
             >
               <span>Register</span>
               <i />

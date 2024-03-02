@@ -18,6 +18,8 @@ export default function RegisterTeam({ eventName, toggle, visible, teamSize }) {
   const [teamName, setTeamName] = useState('');
   const [email, setEmail] = useState();
   const [emailList, setEmailList] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isAddingUser, setIsAddingUser] = useState(false);
 
   if (user && !emailList.includes(user.email)) setEmailList([user.email]);
 
@@ -40,6 +42,7 @@ export default function RegisterTeam({ eventName, toggle, visible, teamSize }) {
     }
 
     try {
+      setIsSubmitting(true);
       const res = await axios.post(
         `${BASE_URL}/registerevent`,
         {
@@ -64,6 +67,8 @@ export default function RegisterTeam({ eventName, toggle, visible, teamSize }) {
     } catch (error) {
       const msg = error.response.data.message || error.response.data.error;
       toast.error(msg, toastStyle);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -86,6 +91,7 @@ export default function RegisterTeam({ eventName, toggle, visible, teamSize }) {
     }
 
     try {
+      setIsAddingUser(true);
       const res = await axios.post(
         `${BASE_URL}/checkuser`,
         {
@@ -99,6 +105,8 @@ export default function RegisterTeam({ eventName, toggle, visible, teamSize }) {
       }
     } catch (error) {
       toast.error(error.response.data.message, toastStyle);
+    } finally {
+      setIsAddingUser(false);
     }
   };
 
@@ -142,6 +150,7 @@ export default function RegisterTeam({ eventName, toggle, visible, teamSize }) {
                   designType="secondary"
                   type="button"
                   onClick={handleAddUser}
+                  isSubmitting={isAddingUser}
                 >
                   Add
                 </Button>
@@ -161,7 +170,12 @@ export default function RegisterTeam({ eventName, toggle, visible, teamSize }) {
             </ul>
 
             <div className="flex mt-3 justify-center">
-              <Button designType="primary" type="submit" onClick={handleSubmit}>
+              <Button
+                designType="primary"
+                type="submit"
+                onClick={handleSubmit}
+                isSubmitting={isSubmitting}
+              >
                 Register
               </Button>
             </div>
