@@ -18,12 +18,13 @@ export default function InputBox({
         type={type}
         id={inputId}
         value={value}
-        disabled
         onChange={(e) => onChange(e.target.value)}
-        className="bg-[rgba(52,152,219,0.25)] w-80 outline-none text-white px-3 py-2 focus:ring-2 tracking-widest"
+        className="bg-[rgba(52,152,219,0.25)] w-80 outline-none text-offWhite px-3 py-2 focus:ring-2 tracking-widest"
       />
       {note ? (
-        <p className="w-80 mt-2 text-xs text-white text-opacity-65">{note}</p>
+        <p className="w-80 mt-2 text-xs text-offWhite text-opacity-65">
+          {note}
+        </p>
       ) : null}
     </div>
   );

@@ -1,4 +1,5 @@
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import './EventThumbnail.scss';
 
 function EventThumbnail({ id, imgLink, name, setNewItemActive }) {
@@ -9,7 +10,7 @@ function EventThumbnail({ id, imgLink, name, setNewItemActive }) {
       onClick={() => setNewItemActive(id)}
       aria-hidden="true"
     >
-      <img src={imgLink} alt={name} />
+      <LazyLoadImage src={imgLink} alt={name} />
       <div className="content">{name}</div>
     </div>
   );

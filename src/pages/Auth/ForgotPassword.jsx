@@ -9,11 +9,15 @@ import Button from '../../components/Button/Button';
 import toastStyle from '../../utilities/toastStyle';
 import TransitionAnimation from '../../components/TransitionAnimation/TransitionAnimation';
 import './Auth.scss';
+import useModal from '../../hooks/useModal';
+import Modal from '../../components/Modal/Modal';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 export default function Login() {
   const [email, setEmail] = useState('');
   const [displayForgotPassword, setDisplayForgotPassword] = useState(false);
+
+  const [toggle, visible] = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,10 +35,8 @@ export default function Login() {
         { withCredentials: true }
       );
       if (res.data?.status === 'success') {
-        toast.success(
-          'Please check your mail for the instructions',
-          toastStyle
-        );
+        toggle();
+        setEmail('');
       }
     } catch (error) {
       const msg = error.response.data.message || error.response.data.error;
@@ -53,9 +55,17 @@ export default function Login() {
       transition={{ duration: 0.5 }}
     >
       <Layout>
+        <Modal visible={visible} toggle={toggle} isAlert>
+          <div className="modal__content flex justify-center flex-col p-4 md:p-6 mr-4 md:mr-10">
+            <p className="text-base md:text-lg text-primary">
+              We&apos;ve sent you mail. Please check it for the instructions.
+              {/* <span className="text-primary">{` ${teamMember.designation}`}</span> */}
+            </p>
+          </div>
+        </Modal>
         <FormContainer title="Password" prefixTitle="Forget">
           <form
-            className="text-white p-10 md:p-20 flex flex-col form form__auth form__auth--forgetPass md:mt-6"
+            className="text-offWhite p-10 md:p-20 flex flex-col form form__auth form__auth--forgetPass md:mt-6"
             onSubmit={handleSubmit}
           >
             <InputBox

@@ -22,7 +22,7 @@ export default function HomePage() {
             alt="Hero Element"
             className="md:h-36 h-28"
           />
-          <div className="text-white font-primary flex justify-center flex-col items-center mt-8">
+          <div className="text-offWhite font-primary flex justify-center flex-col items-center mt-8">
             <h1 className="text-5xl md:text-7xl font-black tracking-[.3rem] md:tracking-[.65rem] text-center uppercase">
               Gensynth
             </h1>
@@ -33,7 +33,7 @@ export default function HomePage() {
 
           <div className="md:mt-10 mt-20">
             <Button
-              designType="tertiary"
+              designType="tertiary homePageBtn"
               className="btn-register"
               onClick={() => navigate('/events')}
             >

@@ -4,7 +4,14 @@ import ReactDOM from 'react-dom';
 import './Modal.scss';
 import Button from '../Button/Button';
 
-function Modal({ visible, toggle, children, restrictWidth }) {
+function Modal({
+  visible,
+  toggle,
+  children,
+  restrictWidth,
+  notCenter,
+  isAlert,
+}) {
   useEffect(() => {
     if (visible) {
       document.body.style.overflow = 'hidden'; // Disable scrolling on the background
@@ -16,7 +23,8 @@ function Modal({ visible, toggle, children, restrictWidth }) {
   const modalJsx = (
     <div className="modal">
       <div
-        className={`modal__body ${restrictWidth ? 'max-w-[50rem]' : ''} bg-neutral-950 text-white`}
+        className={`modal__body ${restrictWidth ? 'modal__body--fixedWidth' : ''} bg-neutral-950 text-offWhite  
+        ${notCenter ? 'modal__notCenter' : ''} ${isAlert ? 'modal__body--alertMsg' : ''}`}
         role="dialog"
         aria-modal="true"
       >

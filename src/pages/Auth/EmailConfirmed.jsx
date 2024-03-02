@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -5,11 +6,14 @@ import { toast } from 'react-toastify';
 import Layout from '../../components/Layout/Layout';
 import toastStyle from '../../utilities/toastStyle';
 import BlankPageNote from '../../components/BlankPageNote/BlankPageNote';
+import TransitionAnimation from '../../components/TransitionAnimation/TransitionAnimation';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 function EmailConfirmed() {
   const { emailConfirmToken } = useParams();
+
+  const [displayMsg, setDisplayMsg] = useState(false);
 
   const [isEmailConfirmed, setIsEmailConfirmed] = useState(false);
 
@@ -36,20 +40,25 @@ function EmailConfirmed() {
     confirmEmail();
   });
 
+  setTimeout(() => {
+    setDisplayMsg(true);
+  }, 3000);
+
   return (
     <Layout>
       {isEmailConfirmed ? (
         <BlankPageNote
           heading1="Congratulations!!"
-          heading2="Your account is active now."
-          para="Your email has been confirmed. You can now login."
+          heading2="Your account is active."
+          para="You can login now."
+        />
+      ) : displayMsg ? (
+        <BlankPageNote
+          heading2="Something went wrong!!"
+          para="Please try again later."
         />
       ) : (
-        <BlankPageNote
-          heading1="Failed!!"
-          heading2=""
-          para="Your email has not been confirmed. Please try later."
-        />
+        <TransitionAnimation />
       )}
     </Layout>
   );

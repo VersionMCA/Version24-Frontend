@@ -7,11 +7,11 @@ function AboutUs() {
 
   return (
     <Layout>
-      <section className="aboutUs bg-black min-h-lvh w-full text-white flex flex-col justify-center items-center xl:pt-20 xl:px-36 px-4 pt-16 overflow-hidden">
+      <section className="aboutUs bg-black min-h-lvh w-full text-offWhite flex flex-col justify-center items-center xl:pt-20 xl:px-36 px-4 pt-16 overflow-hidden">
         <h2 className="font-primary text-2xl mb-6 mt-8 uppercase font-bold tracking-[5px]">
           ABOUT US
         </h2>
-        <div className="flex flex-col justify-center h-full w-full items-center mx-10 aboutUs aboutUs__container lg:px-10 pb-40 max-[600px]:px-8 max-[550px]:px-4 max-[480px]:px-0">
+        <div className="flex flex-col justify-center h-full w-full items-center mx-10 aboutUs aboutUs__container lg:px-10 pb-40 max-[600px]:px-8 max-[550px]:px-4 max-[480px]:px-0 lg:mb-20 min-[1800px]:mb-60">
           <div className="flex items-center justify-around xl:text-base [&>*]:font-medium max-[600px]:text-sm h-10 w-9/12 xl:mt-4 lg:mt-2 mt-2 mb-5 xl:mb-1 md:mb-3 sm:mb-1 min-[601px]:mb-0 xl:mx-40 2xl:mb-8 2xl:mt-6 sm:mt-0 min-[601px]:mt-0 md:mt-2">
             <h3
               aria-hidden
@@ -33,7 +33,7 @@ function AboutUs() {
               {' '}
               <p className="xl:leading-6">
                 Embarking on its 31st edition, Version 2024, the{' '}
-                <span className="text-primary font-semibold">
+                <span className="text-primary font-light">
                   annual All India MCA meet
                 </span>{' '}
                 hosted by the students of NIT Trichy, stands as the pinnacle
@@ -45,7 +45,7 @@ function AboutUs() {
                 Beyond a mere contest, Version is an immersive experience
                 featuring coding challenges, hackathons, workshops, and
                 interactions with industry experts. As the star event for
-                <span className="text-primary font-semibold">
+                <span className="text-primary font-light">
                   {' '}
                   MCA at NIT Trichy
                 </span>
@@ -56,7 +56,7 @@ function AboutUs() {
                 {' '}
                 Version 2024 promises to uphold its legacy of excellence,
                 offering participants a{' '}
-                <span className="text-primary font-semibold">
+                <span className="text-primary font-light">
                   {' '}
                   unique opportunity
                 </span>{' '}
@@ -72,7 +72,7 @@ function AboutUs() {
               {' '}
               <p className="xl:leading-6">
                 Version 2024 is set to unveil its groundbreaking theme,
-                <span className="text-primary font-semibold">
+                <span className="text-primary font-light">
                   {' '}
                   &quot;Gensynth: Synthesized Brilliance of Gen AI.&quot;
                 </span>{' '}
@@ -84,7 +84,7 @@ function AboutUs() {
                 It signifies the harmonious marriage of artificial
                 intelligence&apos;s ingenious capabilities with the concept of
                 synthesis, hinting at the{' '}
-                <span className="text-primary font-semibold">
+                <span className="text-primary font-light">
                   generation of innovative and intelligent outputs
                 </span>
                 . This theme underscores the event&apos;s dedication to
@@ -98,7 +98,7 @@ function AboutUs() {
               <p className="xl:leading-6">
                 {' '}
                 Get ready for a{' '}
-                <span className="text-primary font-semibold">
+                <span className="text-primary font-light">
                   transformative experience
                 </span>{' '}
                 at Gensynth as we delve into the boundless possibilities of
