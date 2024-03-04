@@ -116,6 +116,20 @@ const teamInfo = [
     members: [
       {
         id: '400',
+        name: 'Aayush Gupta',
+        image: '/aayush_senior.jpg',
+        designation: 'Chairperson',
+        github: 'https://github.com/',
+        linkedin: 'https://www.linkedin.com/',
+      },
+    ],
+  },
+  {
+    id: '10101',
+    header: '',
+    members: [
+      {
+        id: '416',
         name: 'Chakshu Verma',
         image: '/chakshu.jpg',
         designation: 'EEC Head',
@@ -255,6 +269,20 @@ const teamInfo = [
     header: 'Public Relations Committee',
     members: [
       {
+        id: '509',
+        name: 'Ashay Jain',
+        image: '/ashay.jpg',
+        designation: 'Chairperson',
+        github: 'https://github.com/',
+        linkedin: 'https://www.linkedin.com/',
+      },
+    ],
+  },
+  {
+    id: '10301',
+    header: '',
+    members: [
+      {
         id: '500',
         name: 'Aman Kumar Singh',
         image: '/aman.jpg',
@@ -333,11 +361,33 @@ const teamInfo = [
         github: 'https://github.com/',
         linkedin: 'https://www.linkedin.com/',
       },
+      {
+        id: '510',
+        name: 'Shivaraj G',
+        image: '/shivaraj.jpg',
+        designation: '',
+        github: 'https://github.com/',
+        linkedin: 'https://www.linkedin.com/in/shiva-raj-ab2145283/',
+      },
     ],
   },
   {
     id: '10400',
     header: 'Alumni Relations Committee',
+    members: [
+      {
+        id: '607',
+        name: 'Akash Dave',
+        image: '/akash.jpg',
+        designation: 'Chairperson',
+        github: 'https://github.com/',
+        linkedin: 'https://www.linkedin.com/',
+      },
+    ],
+  },
+  {
+    id: '10401',
+    header: '',
     members: [
       {
         id: '600',
@@ -401,11 +451,33 @@ const teamInfo = [
         github: 'https://github.com/deepakreswal021',
         linkedin: 'http://www.linkedin.com/in/deepak-reswal-1139b8253',
       },
+      {
+        id: '608',
+        name: 'Himanshu Gupta',
+        image: '/himanshu-gupta.jpg',
+        designation: '',
+        github: 'https://github.com/032himanshugupta',
+        linkedin: 'https://www.linkedin.com/in/himanshu-gupta-94247a155/',
+      },
+    ],
+  },
+  {
+    id: '10500',
+    header: 'Hospitality and Reception Committee',
+    members: [
+      {
+        id: '709',
+        name: 'Sumit Kushwaha',
+        image: '/sumit.jpg',
+        designation: 'Chairperson',
+        github: 'https://github.com/',
+        linkedin: 'https://www.linkedin.com/',
+      },
     ],
   },
   {
     id: '1050',
-    header: 'Hospitality and Reception Committee',
+    header: '',
     members: [
       {
         id: '700',
@@ -477,11 +549,33 @@ const teamInfo = [
         github: 'https://github.com/',
         linkedin: 'https://www.linkedin.com/',
       },
+      {
+        id: '710',
+        name: 'Rajesh',
+        image: '/rajesh.jpg',
+        designation: '',
+        github: 'https://github.com/',
+        linkedin: 'https://www.linkedin.com/',
+      },
     ],
   },
   {
     id: '10600',
     header: 'Printing and Publishing Committee',
+    members: [
+      {
+        id: '808',
+        name: 'Somesh Harsule',
+        image: '/somesh.jpg',
+        designation: 'Chairperson',
+        github: 'https://github.com/',
+        linkedin: 'https://www.linkedin.com/',
+      },
+    ],
+  },
+  {
+    id: '10601',
+    header: '',
     members: [
       {
         id: '800',
@@ -546,7 +640,7 @@ const teamInfo = [
         linkedin: 'https://www.linkedin.com/',
       },
       {
-        id: '806',
+        id: '807',
         name: 'Surandra Meena',
         image: '/surandra.jpg',
         designation: '',

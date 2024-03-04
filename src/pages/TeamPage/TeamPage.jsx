@@ -24,9 +24,10 @@ export default function TeamPage() {
   const teamIdx = useRef(0);
 
   const loadFunc = () => {
+    const newIdx = teamIdx.current + 1;
     teamIdx.current += 1;
     if (teamIdx.current < teamInfo.length) {
-      setItemsToLoad((arr) => [...arr, teamInfo[teamIdx.current]]);
+      setItemsToLoad((arr) => [...arr, teamInfo[newIdx]]);
     } else {
       setHasMoreItems(false);
     }
