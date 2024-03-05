@@ -80,7 +80,9 @@ function EventCard({ name, teamSize, date, content, imgLink }) {
           teamSize={teamSize}
         />
         <div className="btn-container font-primary font-light mt-4 md:mt-8">
-          {eventDate < todaysDate ? (
+          {name === 'Destinite' ? (
+            ''
+          ) : eventDate < todaysDate ? (
             <span className="text-primary font-semibold">
               This Event has finished.
             </span>

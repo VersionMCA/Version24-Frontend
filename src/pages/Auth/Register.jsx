@@ -173,7 +173,6 @@ function Register() {
                         handleNext();
                       }
                     }}
-                    isSubmitting={isSubmitting}
                   >
                     <img
                       src="/res/authPage/next.svg"
@@ -274,7 +273,11 @@ function Register() {
                     />
                   </Button>
                 </div>
-                <Button designType="primary" type="submit">
+                <Button
+                  designType="primary"
+                  type="submit"
+                  isSubmitting={isSubmitting}
+                >
                   Register
                 </Button>
               </div>
