@@ -45,7 +45,7 @@ const eventList = [
     date: '2024-03-22',
     imgLink: `/res/events/gamefiesta-min.jpg`,
     content:
-      '1. The gaming event of Version’24. The game Zombie Apocalypse is a third person shooter PC game . \n2. In order to win, you must achieve a score higher than the other players on the leaderboard, finishing the objectives in the least amount of time. \n3. The participants must bring their laptops in order to participate in the event.',
+      '1. The gaming event of Version’24. The game Zombie Apocalypse is a third person shooter PC game . \n2. In order to win, you must achieve a score higher than the other players on the leaderboard, finishing the objectives in the least amount of time.',
   },
   {
     id: 7,
