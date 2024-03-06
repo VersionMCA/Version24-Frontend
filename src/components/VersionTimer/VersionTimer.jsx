@@ -19,7 +19,7 @@ function getTimeRemaining(endTime, currTime) {
   };
 }
 
-const versionDate = new Date('2024-03-22T00:00:00');
+const versionDate = new Date('2024-03-21T00:00:00');
 
 export default function LeftSideNav() {
   const [currTime, setCurrTime] = useState(new Date());
