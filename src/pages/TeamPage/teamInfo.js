@@ -262,6 +262,14 @@ const teamInfo = [
         github: 'https://github.com/',
         linkedin: 'https://www.linkedin.com/',
       },
+      {
+        id: '417',
+        name: 'Sachin Kumar',
+        image: '/sachin.JPG',
+        designation: '',
+        github: 'https://github.com/Sachin-Kushwaha1',
+        linkedin: 'https://www.linkedin.com/in/sachin-kumar-a7110a183/',
+      },
     ],
   },
   {
