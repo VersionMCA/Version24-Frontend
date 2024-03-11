@@ -61,7 +61,7 @@ function Events() {
   }
 
   return (
-    <Layout>
+    <Layout noFooter>
       <div>
         <div className="event__slider font-secondary">
           <div className="allEvents">

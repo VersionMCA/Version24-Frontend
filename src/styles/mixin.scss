@@ -19,6 +19,12 @@
     }
   }
 
+  @if $breakpoint == minTab {
+    @media (min-width: 1000px) {
+      @content;
+    }
+  }
+
   // For 1000px
   @if $breakpoint == tab {
     @media (max-width: 1000px) {

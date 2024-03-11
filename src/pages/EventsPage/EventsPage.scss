@@ -1,14 +1,21 @@
 @import '../../styles/mixin.scss';
+@import '../../styles/variable.scss';
+
+.allEvents {
+  height: 100vh;
+  @include respond(minTab) {
+    height: 130vh;
+  }
+}
 
 .event__slider {
-  height: 100vh;
   //   margin-top: -90px;
   position: relative;
   display: flex;
   justify-content: center;
   .thumbnailContainer {
-    position: absolute;
-    bottom: 35px;
+    position: fixed;
+    bottom: 0px;
     z-index: 10;
     display: flex;
     justify-content: center;

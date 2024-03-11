@@ -31,7 +31,6 @@
   .content {
     position: absolute;
     left: 10%;
-    top: 15%;
     width: 70rem;
     max-width: 85%;
     z-index: 1;
@@ -40,6 +39,10 @@
       left: 5%;
       top: 10%;
       min-width: 90%;
+    }
+
+    @include respond(minTab) {
+      top: 120px;
     }
 
     &__date {

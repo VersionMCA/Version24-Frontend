@@ -6,13 +6,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 
-export default function Layout({ children, noBgBlack }) {
+export default function Layout({ children, noBgBlack, noFooter }) {
   return (
     <div className="!overflow-y-hidden">
       <Navbar noBgBlack={noBgBlack} />
       <main>{children}</main>
       <ToastContainer limit={1} autoClose={2000} />
-      <Footer />
+      {!noFooter && <Footer />}
     </div>
   );
 }
