@@ -56,7 +56,7 @@ export default function MemberCard({ teamMember, teamId }) {
         <LazyLoadImage
           src={`/member/${teamMember.image}`}
           alt="person"
-          className="h-72 w-60 object-cover p-6 transition-opacity memberCard__img"
+          className=" h-72 w-60 object-cover p-6 transition-opacity memberCard__img"
         />
       </div>
       <h4 className="text-primary text-sm mt-[-40px]">{teamMember.name}</h4>

@@ -145,7 +145,7 @@ const teamInfo = [
       {
         id: '401',
         name: 'Anuj Sharma',
-        image: '/anuj.jpeg',
+        image: '/anuj.jpg',
         designation: '',
         github: 'https://github.com/sanuj21',
         linkedin: 'https://www.linkedin.com/in/sanuj21',
