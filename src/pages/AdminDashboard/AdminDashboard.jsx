@@ -224,7 +224,7 @@ function AdminDashboard() {
   return (
     <Layout>
       <div className="tableWrapper">
-        <header className="tableHeader flex flex-col lg:flex-row justify-between items-center mb-5 gap-6 md:gap-0">
+        <header className="tableHeader flex flex-row justify-between items-center mb-5 gap-6 md:gap-0">
           <Button
             designType="secondary"
             onClick={handleEventRegistration}
@@ -250,9 +250,9 @@ function AdminDashboard() {
             customStyles={customStyles}
           />
 
-          <div className="mt-5 text-center mb-40">
+          <div className="mt-5 text-center">
             <select
-              className="px-6 py-3"
+              className="px-4 py-3"
               onChange={handleEventChange}
               ref={eventSelected}
             >

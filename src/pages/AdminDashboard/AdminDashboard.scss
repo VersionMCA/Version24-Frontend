@@ -8,13 +8,11 @@
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  padding: 0 10%;
-  padding-top: 10%;
-  height: 100vh;
+  padding: 10%;
+  min-height: 100vh;
 
   @include respond(phone) {
-    padding: 0 5%;
-    padding-top: 25%;
+    padding: 25% 5%;
   }
 }
 

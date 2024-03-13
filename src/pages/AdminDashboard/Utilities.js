@@ -15,7 +15,10 @@ function convertArrayOfObjectsToCSV(array) {
     keys.forEach((key) => {
       if (ctr > 0) result += columnDelimiter;
 
-      result += item[key];
+      if (key === 'university') {
+        const str = item[key].split(',').join(' ');
+        result += str;
+      } else result += item[key];
 
       ctr += 1;
     });
