@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Squash as Hamburger } from 'hamburger-react';
 import routes from './NavRoutes';
 import { useUser } from '../../contexts/UserContext';
+import adminRoutes from './AdminRoutes';
 
 export default function NavMobile({ navBar }) {
   const [isOpen, setOpen] = useState(false);
@@ -20,6 +21,8 @@ export default function NavMobile({ navBar }) {
     else navBar.current.classList.remove('bg-neutral-950');
   };
 
+  const customRoutes = user && user.role === 'admin' ? adminRoutes : routes;
+
   return (
     <div ref={ref} className="lg:hidden text-offWhite">
       <Hamburger toggled={isOpen} size={20} toggle={toggleHamburger} />
@@ -33,7 +36,7 @@ export default function NavMobile({ navBar }) {
             className="fixed left-0 shadow-4xl right-0 top-[3.5rem] p-5 pt-0 bg-neutral-950 border-b border-b-white/20"
           >
             <ul className="grid gap-2 pt-3">
-              {routes.map((route, idx) => {
+              {customRoutes.map((route, idx) => {
                 return (
                   <motion.li
                     initial={{ scale: 0, opacity: 0 }}
