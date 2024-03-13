@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
@@ -8,6 +8,7 @@ import './AdminDashboard.scss';
 import eventList from '../EventsPage/EventList';
 import Button from '../../components/Button/Button';
 import toastStyle from '../../utilities/toastStyle';
+import downloadCSV from './Utilities';
 
 // createTheme creates a new theme named solarized that overrides the build in dark theme
 
@@ -136,7 +137,8 @@ function AdminDashboard() {
 
         setUserData(res.data.data);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
+        toast.error(error.message, toastStyle);
       } finally {
         setIsLoading(false);
       }
@@ -206,11 +208,49 @@ function AdminDashboard() {
     }
   };
 
+  const exportData = useMemo(
+    () => (
+      <Button
+        onClick={() => downloadCSV(showUserData ? userData : eventData)}
+        designType="secondary"
+      >
+        <span>Export</span>
+        <i />
+      </Button>
+    ),
+    [showUserData, userData, eventData]
+  );
+
   return (
     <Layout>
       <div className="tableWrapper">
         <header className="tableHeader flex flex-col lg:flex-row justify-between items-center mb-5 gap-6 md:gap-0">
-          <div className="">
+          <Button
+            designType="secondary"
+            onClick={handleEventRegistration}
+            // isSubmitting={isSubmitting}
+          >
+            <span>Register</span>
+            <i />
+          </Button>
+
+          {exportData}
+        </header>
+        <section className="tableContainer mb-10">
+          <DataTable
+            columns={showUserData ? userColumns : eventColumns}
+            data={showUserData ? userData : eventData}
+            progressPending={isLoading}
+            pagination
+            fixedHeader
+            fixedHeaderScrollHeight="400px"
+            // selectableRows
+            // onSelectedRowsChange={handleSelectedRows}
+            // clearSelectedRows={toggledClearRows}
+            customStyles={customStyles}
+          />
+
+          <div className="mt-5 text-center mb-40">
             <select
               className="px-6 py-3"
               onChange={handleEventChange}
@@ -224,28 +264,6 @@ function AdminDashboard() {
               ))}
             </select>
           </div>
-          <Button
-            designType="secondary"
-            onClick={handleEventRegistration}
-            // isSubmitting={isSubmitting}
-          >
-            <span>Register</span>
-            <i />
-          </Button>
-        </header>
-        <section className="tableContainer">
-          <DataTable
-            columns={showUserData ? userColumns : eventColumns}
-            data={showUserData ? userData : eventData}
-            progressPending={isLoading}
-            pagination
-            fixedHeader
-            fixedHeaderScrollHeight="400px"
-            // selectableRows
-            // onSelectedRowsChange={handleSelectedRows}
-            // clearSelectedRows={toggledClearRows}
-            customStyles={customStyles}
-          />
         </section>
       </div>
     </Layout>
