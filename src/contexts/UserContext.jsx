@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ls from 'localstorage-slim';
 import axios from 'axios';
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -14,18 +13,15 @@ function UserProvider({ children }) {
   const navigate = useNavigate();
 
   const updateUserInfo = (userInfo) => {
-    ls.set('userInfo', userInfo);
     setUser(userInfo);
   };
 
   const logout = () => {
-    ls.remove('userInfo');
     setUser(null);
     navigate('/login');
   };
 
   useEffect(() => {
-    const userInfo = ls.get('userInfo');
     const validateUser = async () => {
       try {
         setLoading(true);
@@ -35,21 +31,16 @@ function UserProvider({ children }) {
         });
 
         if (res.data?.status === 'success') {
-          setUser(userInfo);
+          setUser(res.data.data);
         }
       } catch (error) {
-        ls.remove('userInfo');
         console.error('User not logged in', error);
       } finally {
         setLoading(false);
       }
     };
 
-    if (userInfo) {
-      validateUser();
-    } else {
-      setLoading(false);
-    }
+    validateUser();
   }, [navigate]);
   // adding navigate as a dependency to satisfy the eslint rule, otherwise its not required, as usually remains same
 
