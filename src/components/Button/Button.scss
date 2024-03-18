@@ -82,6 +82,11 @@
   position: relative;
   z-index: 1;
 }
+
+.button__delete {
+  background-color: #dc3545 !important;
+}
+
 .button__tertiary i {
   position: absolute;
   inset: 0;

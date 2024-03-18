@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import axios from 'axios';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import DataTable from 'react-data-table-component';
 import Layout from '../../components/Layout/Layout';
@@ -9,6 +9,8 @@ import eventList from '../EventsPage/EventList';
 import Button from '../../components/Button/Button';
 import toastStyle from '../../utilities/toastStyle';
 import downloadCSV from './Utilities';
+import useModal from '../../hooks/useModal';
+import RegisterTeam from '../../components/RegisterTeam/RegisterTeam';
 
 // createTheme creates a new theme named solarized that overrides the build in dark theme
 
@@ -120,34 +122,28 @@ const customStyles = {
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 function AdminDashboard() {
-  const [eventData, setEventData] = useState([]);
-  const [userData, setUserData] = useState([]);
+  const [tableData, setTableData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showUserData, setShowUserData] = useState(true);
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [toggle, visible] = useModal();
+
+  const queryClient = useQueryClient();
 
   const eventSelected = useRef(null);
 
-  useEffect(() => {
-    async function fetchEvents() {
-      try {
-        setIsLoading(true);
-        const res = await axios.get(`${BASE_URL}/admin/users`, {
-          withCredentials: true,
-        });
+  const { status: userDataStatus, data: userData } = useQuery({
+    queryKey: ['usersDataKey'],
+    queryFn: async () => {
+      const res = await axios.get(`${BASE_URL}/admin/users`, {
+        withCredentials: true,
+      });
 
-        setUserData(res.data.data);
-      } catch (error) {
-        // console.log(error);
-        toast.error(error.message, toastStyle);
-      } finally {
-        setIsLoading(false);
-      }
-    }
+      return res?.data?.data || [];
+    },
+  });
 
-    fetchEvents();
-  }, []);
-
-  const { status, data, error, refetch } = useQuery({
+  const { status: eventDataStatus, data: eventData } = useQuery({
     queryKey: [eventSelected?.current?.value],
     queryFn: async () => {
       if (!eventSelected?.current?.value) {
@@ -172,53 +168,124 @@ function AdminDashboard() {
   });
 
   useEffect(() => {
-    if (status === 'loading') {
+    if (eventDataStatus === 'loading' || userDataStatus === 'loading') {
       setIsLoading(true);
     }
 
-    if (status === 'error') {
+    if (showUserData && userDataStatus === 'success') {
+      setTableData(userData);
       setIsLoading(false);
-      toast.error(error.message, toastStyle);
+    } else if (eventDataStatus === 'success') {
+      setIsLoading(false);
+      setTableData(eventData.participants);
+    }
+  }, [userData, eventData, userDataStatus, eventDataStatus, showUserData]);
+
+  const deleteMutationFn = async ({ url, reqBody }) => {
+    const res = await axios.delete(url, {
+      data: reqBody,
+
+      withCredentials: true,
+    });
+
+    return res.data;
+  };
+
+  const deleteMutation = useMutation({
+    mutationFn: deleteMutationFn,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [eventSelected.current.value],
+      });
+      queryClient.invalidateQueries({ queryKey: ['usersDataKey'] });
+    },
+  });
+
+  const handleSelectedRows = (state) => {
+    const emails = state.selectedRows.map((row) => row.email);
+    setSelectedRows(emails);
+  };
+
+  const deleteUsers = async () => {
+    if (selectedRows.length === 0) {
+      toast.error('Select a row to delete', toastStyle);
+      return;
     }
 
-    if (status === 'success') {
-      setIsLoading(false);
-      setEventData(data.participants);
-    }
-  }, [status, data, error]);
+    const reqBody = {
+      emails: selectedRows,
+    };
 
-  // const handleSelectedRows = (state) => {
-  //   console.log(state.selectedRows);
-  // };
+    const url = `${BASE_URL}/admin/users`;
+
+    await deleteMutation.mutateAsync({ url, reqBody });
+  };
+
+  const deleteEventRegistrations = async () => {
+    if (selectedRows.length === 0) {
+      toast.error('Select a row to delete', toastStyle);
+      return;
+    }
+
+    const reqBody = {
+      emails: selectedRows,
+      eventName: eventSelected.current.value,
+    };
+
+    const event = eventList.find((e) => e.name === eventSelected.current.value);
+
+    if (event.teamSize) {
+      reqBody.teamName = selectedRows.map((row) => row.teamName);
+    }
+
+    const url = `${BASE_URL}/admin/eventRegistration`;
+
+    await deleteMutation.mutateAsync({ url, reqBody });
+  };
+
+  const handleDelete = () => {
+    const confirmDelete = window.confirm('Are you sure you want to delete?');
+
+    if (!confirmDelete) {
+      return;
+    }
+
+    if (showUserData) {
+      deleteUsers();
+    } else {
+      deleteEventRegistrations();
+    }
+  };
 
   const eventsName = eventList.map((event) => event.name);
 
   const handleEventChange = () => {
+    setSelectedRows([]);
     if (eventSelected.current.value === 'userRegistered') {
       setShowUserData(true);
+      // refetchUsers();
       return;
     }
     setShowUserData(false);
-    refetch();
+    // refetchEvents();
   };
 
   const handleEventRegistration = () => {
     if (showUserData) {
-      toast.error('Kar Dunga Baad me', toastStyle);
+      toast.error('Select an event to register', toastStyle);
+      return;
     }
+    toggle();
   };
 
   const exportData = useMemo(
     () => (
-      <Button
-        onClick={() => downloadCSV(showUserData ? userData : eventData)}
-        designType="secondary"
-      >
+      <Button onClick={() => downloadCSV(tableData)} designType="secondary">
         <span>Export</span>
         <i />
       </Button>
     ),
-    [showUserData, userData, eventData]
+    [tableData]
   );
 
   return (
@@ -239,20 +306,19 @@ function AdminDashboard() {
         <section className="tableContainer mb-10">
           <DataTable
             columns={showUserData ? userColumns : eventColumns}
-            data={showUserData ? userData : eventData}
+            data={tableData}
             progressPending={isLoading}
             pagination
             fixedHeader
             fixedHeaderScrollHeight="400px"
-            // selectableRows
-            // onSelectedRowsChange={handleSelectedRows}
-            // clearSelectedRows={toggledClearRows}
+            selectableRows
+            onSelectedRowsChange={handleSelectedRows}
             customStyles={customStyles}
           />
 
-          <div className="mt-5 text-center">
+          <div className="flex flex-row justify-between items-center mt-5 gap-6 md:gap-0">
             <select
-              className="px-4 py-3"
+              className="px-2 md:px-5 py-2 md:py-3"
               onChange={handleEventChange}
               ref={eventSelected}
             >
@@ -263,8 +329,25 @@ function AdminDashboard() {
                 </option>
               ))}
             </select>
+            <Button
+              designType="secondary button__delete"
+              onClick={handleDelete}
+              // isSubmitting={isSubmitting}
+            >
+              <span>Delete</span>
+              <i />
+            </Button>
           </div>
         </section>
+        <RegisterTeam
+          toggle={toggle}
+          visible={visible}
+          eventName={eventSelected?.current?.value}
+          teamSize={
+            eventList.find((e) => e.name === eventSelected?.current?.value)
+              ?.teamSize || [1]
+          }
+        />
       </div>
     </Layout>
   );

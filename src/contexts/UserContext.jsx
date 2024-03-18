@@ -16,7 +16,10 @@ function UserProvider({ children }) {
     setUser(userInfo);
   };
 
-  const logout = () => {
+  const logout = async () => {
+    await axios.get(`${BASE_URL}/logout`, {
+      withCredentials: true,
+    });
     setUser(null);
     navigate('/login');
   };
@@ -34,7 +37,7 @@ function UserProvider({ children }) {
           setUser(res.data.data);
         }
       } catch (error) {
-        console.error('User not logged in', error);
+        // console.error('User not logged in', error);
       } finally {
         setLoading(false);
       }

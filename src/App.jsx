@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './styles/global.scss';
 import { UserProvider } from './contexts/UserContext';
@@ -19,7 +19,6 @@ const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
 const AdminDashboard = lazy(
   () => import('./pages/AdminDashboard/AdminDashboard')
 );
-
 const queryClient = new QueryClient();
 
 function App() {
