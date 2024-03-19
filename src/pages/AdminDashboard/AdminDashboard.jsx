@@ -10,7 +10,7 @@ import Button from '../../components/Button/Button';
 import toastStyle from '../../utilities/toastStyle';
 import downloadCSV from './Utilities';
 import useModal from '../../hooks/useModal';
-import RegisterTeam from '../../components/RegisterTeam/RegisterTeam';
+import RegisterAdmin from '../../components/RegisterAdmin/RegisterAdmin';
 
 // createTheme creates a new theme named solarized that overrides the build in dark theme
 
@@ -235,8 +235,15 @@ function AdminDashboard() {
     const event = eventList.find((e) => e.name === eventSelected.current.value);
 
     if (event.teamSize) {
-      reqBody.teamName = selectedRows.map((row) => row.teamName);
+      reqBody.teamNames = eventData.participants.map((row) => {
+        if (selectedRows.includes(row.email)) return row.teamName;
+        return null;
+      });
     }
+
+    reqBody.teamNames = reqBody.teamNames?.filter(
+      (teamName) => teamName !== null
+    );
 
     const url = `${BASE_URL}/admin/eventRegistration`;
 
@@ -292,11 +299,7 @@ function AdminDashboard() {
     <Layout>
       <div className="tableWrapper">
         <header className="tableHeader flex flex-row justify-between items-center mb-5 gap-6 md:gap-0">
-          <Button
-            designType="secondary"
-            onClick={handleEventRegistration}
-            // isSubmitting={isSubmitting}
-          >
+          <Button designType="secondary" onClick={handleEventRegistration}>
             <span>Register</span>
             <i />
           </Button>
@@ -332,14 +335,20 @@ function AdminDashboard() {
             <Button
               designType="secondary button__delete"
               onClick={handleDelete}
-              // isSubmitting={isSubmitting}
+              isSubmitting={deleteMutation.isPending}
             >
               <span>Delete</span>
               <i />
             </Button>
           </div>
+
+          <p className="text-white mt-10 italic">
+            <span className=" text-red-500">Note:</span> If you delete a User
+            Entry in team event, whole team will be deleted. Please be very
+            careful while using delete button, you can&apos;t undo.
+          </p>
         </section>
-        <RegisterTeam
+        <RegisterAdmin
           toggle={toggle}
           visible={visible}
           eventName={eventSelected?.current?.value}
