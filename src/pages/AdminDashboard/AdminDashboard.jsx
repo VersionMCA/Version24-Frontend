@@ -206,20 +206,20 @@ function AdminDashboard() {
     setSelectedRows(emails);
   };
 
-  const deleteUsers = async () => {
-    if (selectedRows.length === 0) {
-      toast.error('Select a row to delete', toastStyle);
-      return;
-    }
+  // const deleteUsers = async () => {
+  //   if (selectedRows.length === 0) {
+  //     toast.error('Select a row to delete', toastStyle);
+  //     return;
+  //   }
 
-    const reqBody = {
-      emails: selectedRows,
-    };
+  //   const reqBody = {
+  //     emails: selectedRows,
+  //   };
 
-    const url = `${BASE_URL}/admin/users`;
+  //   const url = `${BASE_URL}/admin/users`;
 
-    await deleteMutation.mutateAsync({ url, reqBody });
-  };
+  //   await deleteMutation.mutateAsync({ url, reqBody });
+  // };
 
   const deleteEventRegistrations = async () => {
     if (selectedRows.length === 0) {
@@ -251,17 +251,18 @@ function AdminDashboard() {
   };
 
   const handleDelete = () => {
-    const confirmDelete = window.confirm('Are you sure you want to delete?');
+    if (showUserData) {
+      toast.error('You need to higher privileges to delete users', toastStyle);
+      return;
+    }
 
+    // eslint-disable-next-line no-alert
+    const confirmDelete = window.confirm('Are you sure you want to delete?');
     if (!confirmDelete) {
       return;
     }
 
-    if (showUserData) {
-      deleteUsers();
-    } else {
-      deleteEventRegistrations();
-    }
+    deleteEventRegistrations();
   };
 
   const eventsName = eventList.map((event) => event.name);
@@ -342,8 +343,8 @@ function AdminDashboard() {
             </Button>
           </div>
 
-          <p className="text-white mt-10 italic">
-            <span className=" text-red-500">Note:</span> If you delete a User
+          <p className="text-white mt-10 font-semibold italic text-sm">
+            <span className="text-red-500">Note:</span> If you delete a User
             Entry in team event, whole team will be deleted. Please be very
             careful while using delete button, you can&apos;t undo.
           </p>
