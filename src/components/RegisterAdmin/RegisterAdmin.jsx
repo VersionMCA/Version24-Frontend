@@ -71,10 +71,11 @@ export default function RegisterAdmin({
   };
 
   const handleAddUser = async () => {
-    if (!email || !email.includes('@') || !email.includes('.')) {
+    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
       toast.error('Please enter a valid email', toastStyle);
       return;
     }
+
     if (emailList.includes(email)) {
       toast.error('User already added', toastStyle);
       return;

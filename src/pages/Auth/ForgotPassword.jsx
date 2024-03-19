@@ -23,8 +23,9 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email && email.includes('@') && email.includes('.')) {
+    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
       toast.error('Please enter a valid email', toastStyle);
+      return;
     }
 
     try {
