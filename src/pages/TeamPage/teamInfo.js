@@ -270,6 +270,14 @@ const teamInfo = [
         github: 'https://github.com/Sachin-Kushwaha1',
         linkedin: 'https://www.linkedin.com/in/sachin-kumar-a7110a183/',
       },
+      {
+        id: '418',
+        name: 'Vaibhav Waghmare',
+        image: '/vaibhav.jpg',
+        designation: '',
+        github: 'https://github.com/vaibhav7k',
+        linkedin: 'https://www.linkedin.com/in/vaibhav7k',
+      },
     ],
   },
   {
