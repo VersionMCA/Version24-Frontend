@@ -47,6 +47,10 @@ export default function LeftSideNav() {
     days = hours = minutes = seconds = '00';
   }
 
+  if (days.split('-').length > 1) {
+    return null;
+  }
+
   return (
     <div className="text-offWhite font-medium text-2xl md:text-4xl fixed bottom-24 md:bottom-14 md:left-10 text-opacity-30 w-full md:text-left text-center">
       <p className="flex flex-col md:w-max text-center">
