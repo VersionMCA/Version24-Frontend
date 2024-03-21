@@ -62,6 +62,8 @@ function EventCard({ name, teamSize, date, content, imgLink }) {
 
   const todaysDate = new Date();
   const eventDate = new Date(date);
+  eventDate.setHours(23);
+  eventDate.setMinutes(59);
 
   const newContent = content.split('\n').map((str, i) => <p key={i}>{str}</p>);
   return (
